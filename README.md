@@ -223,11 +223,13 @@ Performance is a primary design goal for Bolt.
 
 | Framework         | Requests/sec | Allocations/op |
 | ----------------- | ------------ | -------------- |
-| **Bolt (Static)** | \~185,000     | 0 allocs/op    |
-| **Bolt (Params)** | \~140,000     | 2 allocs/op    |
-| `net/http`        | \~75,000      | 0 allocs/op    |
+| **Bolt (Static)** | IN-PROGRESS     | IN-PROGRESS    |
+| **Bolt (Params)** | IN-PROGRESS     | IN-PROGRESS    |
+| `net/http`        | IN-PROGRESS      | IN-PROGRESS    |
+| `labstack/echo`   | IN-PROGRESS      | IN-PROGRESS    |
+| `gin-gonic/gin`     | IN-PROGRESS      | IN-PROGRESS    |
 
-*\*Benchmarks are illustrative. Please run your own tests for accurate numbers.*
+> I'm still creating the benchmarks, they are in progress, when they are done I'll update this table.
 
 This is achieved through:
 
