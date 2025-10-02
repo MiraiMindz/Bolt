@@ -1,4 +1,4 @@
-package example_basic_app
+package main
 
 import (  
     "log"  

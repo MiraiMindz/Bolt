@@ -1,4 +1,4 @@
-package example_middlewares
+package main
 
 import (  
     "log"  

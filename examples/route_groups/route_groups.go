@@ -1,4 +1,4 @@
-package example_route_groups
+package main
 
 import (  
     "log"  
