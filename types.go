@@ -54,7 +54,6 @@ type RouteInfo struct {
 }
 
 // ChainLink represents the current state of a fluent configuration chain.
-// It holds a "subject" which is the focus of subsequent calls.
 type ChainLink struct {
 	app     *App
 	subject interface{} // The subject can be *RouteInfo or *RouteGroup
@@ -109,7 +108,7 @@ type StatusCode int
 type ContentType string
 
 const (
-	ContentTypeJSON ContentType = "application/json; charset=utf-8"
+	ContentTypeJSON ContentType = "application/json; charset=utf-t"
 	ContentTypeText ContentType = "text/plain; charset=utf-8"
 	ContentTypeHTML ContentType = "text/html; charset=utf-8"
 )
@@ -132,10 +131,7 @@ type Listener interface {
 
 // HandlerInfo contains information about a handler function for documentation
 type HandlerInfo struct {
-	// The function itself
-	Fn interface{}
-	// The input type (e.g., a struct for the request body)
-	InputType reflect.Type
-	// The output type (e.g., a struct for the response body)
+	Fn         interface{}
+	InputType  reflect.Type
 	OutputType reflect.Type
 }

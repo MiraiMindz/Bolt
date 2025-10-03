@@ -1,6 +1,9 @@
 package bolt
 
-import "unsafe"
+import (
+	"sync"
+	"unsafe"
+)
 
 // nodeType represents the type of a node in the radix tree.
 type nodeType uint8
@@ -24,19 +27,45 @@ type Node struct {
 
 // Router implements a high-performance radix tree router.
 type Router struct {
-	trees map[HTTPMethod]*Node
+	trees     map[HTTPMethod]*Node
+	paramPool *sync.Pool // Pool for ParamMap to reduce allocations
 }
 
 // NewRouter creates a new router.
 func NewRouter() *Router {
 	return &Router{
 		trees: make(map[HTTPMethod]*Node),
+		paramPool: &sync.Pool{
+			New: func() interface{} {
+				// Initialize with a default capacity
+				return make(ParamMap, DefaultParamsSize)
+			},
+		},
 	}
 }
 
+// acquireParamMap gets a ParamMap from the pool.
+func (r *Router) acquireParamMap() ParamMap {
+	return r.paramPool.Get().(ParamMap)
+}
+
+// releaseParamMap returns a ParamMap to the pool after clearing it.
+func (r *Router) releaseParamMap(p ParamMap) {
+	if p == nil {
+		return
+	}
+	// If the map grew too large, don't return it to the pool.
+	// Let the GC handle it and create a new, smaller one next time.
+	if len(p) > MaxParams {
+		return
+	}
+	for k := range p {
+		delete(p, k)
+	}
+	r.paramPool.Put(p)
+}
+
 // unsafeBytesToString converts a byte slice to a string without allocation.
-// IMPORTANT: This is unsafe and should only be used when the underlying
-// []byte is not going to change for the lifetime of the string.
 func unsafeBytesToString(b []byte) string {
 	return *(*string)(unsafe.Pointer(&b))
 }
@@ -56,12 +85,11 @@ func (r *Router) AddRoute(method HTTPMethod, path string, handler Handler) {
 	addRoute(root, path, handler, method)
 }
 
+// (addRoute and insertChild logic remains the same as it's complex and not the primary bottleneck)
 func addRoute(n *Node, path string, handler Handler, method HTTPMethod) {
 	n.priority++
-
 walk:
 	for {
-		// Find the longest common prefix.
 		i := 0
 		max := len(path)
 		if len(n.path) < max {
@@ -70,8 +98,6 @@ walk:
 		for i < max && path[i] == n.path[i] {
 			i++
 		}
-
-		// Case 1: Split the current node's path.
 		if i < len(n.path) {
 			child := &Node{
 				path:      n.path[i:],
@@ -82,7 +108,6 @@ walk:
 				nodeType:  n.nodeType,
 				paramName: n.paramName,
 			}
-
 			n.children = []*Node{child}
 			n.indices = []byte{n.path[i]}
 			n.path = path[:i]
@@ -90,27 +115,15 @@ walk:
 			n.paramName = ""
 			n.nodeType = staticNode
 		}
-
-		// Case 2: The path continues, find or create the next child node.
 		if i < len(path) {
 			path = path[i:]
 			c := path[0]
-
-			// Check for existing children with the next character
 			for j := 0; j < len(n.indices); j++ {
 				if c == n.indices[j] {
 					n = n.children[j]
 					continue walk
 				}
 			}
-
-			// No existing child, create a new one.
-			if c == ':' || c == '*' {
-				if len(n.children) > 0 {
-					// Logic for conflicting wildcards/params can be complex.
-				}
-			}
-
 			n.indices = append(n.indices, c)
 			child := &Node{}
 			n.children = append(n.children, child)
@@ -118,8 +131,6 @@ walk:
 			insertChild(n, path, handler, method)
 			return
 		}
-
-		// Case 3: The path matches the node's path exactly. Set the handler.
 		if n.handlers == nil {
 			n.handlers = make(map[HTTPMethod]Handler)
 		}
@@ -136,10 +147,9 @@ func insertChild(n *Node, path string, handler Handler, method HTTPMethod) {
 			break
 		}
 	}
-
 	if offset < len(path) {
 		c := path[offset]
-		if c == ':' { // Parameter
+		if c == ':' {
 			end := offset + 1
 			for end < len(path) && path[end] != '/' {
 				end++
@@ -154,7 +164,7 @@ func insertChild(n *Node, path string, handler Handler, method HTTPMethod) {
 				addRoute(child, path[end:], handler, method)
 				return
 			}
-		} else if c == '*' { // Wildcard
+		} else if c == '*' {
 			n.path = path
 			n.paramName = path[offset+1:]
 			n.nodeType = wildcardNode
@@ -162,14 +172,15 @@ func insertChild(n *Node, path string, handler Handler, method HTTPMethod) {
 	} else {
 		n.path = path
 	}
-
 	if n.handlers == nil {
 		n.handlers = make(map[HTTPMethod]Handler)
 	}
 	n.handlers[method] = handler
 }
 
+
 // GetValue finds a handler and extracts parameters for a given path.
+// It now uses a pool for the parameters map to reduce allocations.
 func (r *Router) GetValue(method HTTPMethod, path string) (Handler, ParamMap) {
 	root := r.trees[method]
 	if root == nil {
@@ -177,56 +188,72 @@ func (r *Router) GetValue(method HTTPMethod, path string) (Handler, ParamMap) {
 	}
 
 	var handler Handler
-	params := make(ParamMap)
-	pathBytes := []byte(path) // Work with byte slice to avoid allocations
+	var params ParamMap = nil // Initialize to nil
+	pathBytes := []byte(path)
 
 walk:
 	for {
 		prefixLen := len(root.path)
-		if len(pathBytes) > prefixLen {
-			if unsafeBytesToString(pathBytes[:prefixLen]) == root.path {
-				pathBytes = pathBytes[prefixLen:]
-				c := pathBytes[0]
-				for i, index := range root.indices {
-					if c == index {
-						root = root.children[i]
-						continue walk
-					}
-				}
+		if len(pathBytes) >= prefixLen && unsafeBytesToString(pathBytes[:prefixLen]) == root.path {
+			pathBytes = pathBytes[prefixLen:]
 
-				// Handle parameter
-				if len(root.children) > 0 && root.children[0].nodeType == paramNode {
-					root = root.children[0]
+			if len(pathBytes) == 0 {
+				// Path matches exactly
+				if root.handlers != nil {
+					handler = root.handlers[method]
+				}
+				return handler, params
+			}
+
+			// Path continues, look for a matching child
+			c := pathBytes[0]
+			for i, index := range root.indices {
+				if c == index {
+					root = root.children[i]
+					continue walk
+				}
+			}
+
+			// No static child found, check for param/wildcard
+			if len(root.children) > 0 {
+				child := root.children[0]
+				if child.nodeType == paramNode {
+					root = child
 					end := 0
 					for end < len(pathBytes) && pathBytes[end] != '/' {
 						end++
 					}
-					params[root.paramName] = unsafeBytesToString(pathBytes[:end])
-					if end < len(pathBytes) {
-						pathBytes = pathBytes[end:]
-						continue walk
+
+					if params == nil {
+						params = r.acquireParamMap()
 					}
-					handler = root.handlers[method]
-					return handler, params
+					params[root.paramName] = unsafeBytesToString(pathBytes[:end])
+					pathBytes = pathBytes[end:]
+					continue walk
 				}
 
-				// Handle wildcard
-				if len(root.children) > 0 && root.children[0].nodeType == wildcardNode {
-					root = root.children[0]
+				if child.nodeType == wildcardNode {
+					root = child
+					if params == nil {
+						params = r.acquireParamMap()
+					}
 					params[root.paramName] = unsafeBytesToString(pathBytes)
 					handler = root.handlers[method]
 					return handler, params
 				}
+			}
 
-				return nil, nil
+			// No route matched
+			if params != nil {
+				r.releaseParamMap(params)
 			}
-		} else if unsafeBytesToString(pathBytes) == root.path {
-			if root.handlers != nil {
-				handler = root.handlers[method]
-				return handler, params
-			}
+			return nil, nil
 		}
-
+		
+		// This node's path does not match
+		if params != nil {
+			r.releaseParamMap(params)
+		}
 		return nil, nil
 	}
 }

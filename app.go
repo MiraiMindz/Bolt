@@ -12,6 +12,13 @@ import (
 	"time"
 )
 
+// Pre-serialized JSON error responses to avoid allocations in the error handler.
+var (
+	errNotFoundResponse      = []byte(`{"error":"Not Found"}`)
+	errBadRequestResponse    = []byte(`{"error":"Bad Request"}`)
+	errInternalServerResponse = []byte(`{"error":"Internal Server Error"}`)
+)
+
 // App is the main application. It can also represent a sub-application within a group.
 type App struct {
 	router       *Router
@@ -21,6 +28,7 @@ type App struct {
 	errorHandler ErrorHandler
 	contextPool  *ContextPool
 	bufferPool   *BufferPool
+	pathBuilder  *pathBuilder // For efficient path building
 	server       *Server
 	prefix       string
 	parentGroup  *RouteGroup // The group this App instance belongs to
@@ -40,12 +48,13 @@ func New(opts ...Option) *App {
 		routes:       make([]RouteInfo, 0, config.PreallocateRoutes),
 		middleware:   make([]Middleware, 0, 8),
 		errorHandler: DefaultErrorHandler,
+		pathBuilder:  newPathBuilder(),
 		parentGroup:  nil, // A new app has no parent
 	}
 
 	if config.EnablePooling {
 		app.contextPool = NewContextPool()
-		app.bufferPool = NewBufferPool() // Updated to use the new BufferPool
+		app.bufferPool = NewBufferPool()
 	}
 
 	return app
@@ -115,23 +124,33 @@ func (a *App) PatchJSON(path string, handler interface{}) *ChainLink {
 	return a.addRoute(MethodPatch, path, wrappedHandler)
 }
 
-// addRoute adds a route to the router and associates it with the current group context.
-// It also pre-compiles the middleware chain for the route.
-func (a *App) addRoute(method HTTPMethod, path string, handler Handler) *ChainLink {
-	fullPath := a.prefix + path
-
-	// Pre-compile the middleware chain for this route
-	finalHandler := handler
-	for i := len(a.middleware) - 1; i >= 0; i-- {
-		finalHandler = a.middleware[i](finalHandler)
+// compileMiddleware pre-builds the middleware chain for a handler.
+func compileMiddleware(middleware []Middleware, finalHandler Handler) Handler {
+	if len(middleware) == 0 {
+		return finalHandler
 	}
+	// Build the chain from right to left.
+	h := finalHandler
+	for i := len(middleware) - 1; i >= 0; i-- {
+		h = middleware[i](h)
+	}
+	return h
+}
+
+// addRoute adds a route to the router and pre-compiles the middleware chain.
+func (a *App) addRoute(method HTTPMethod, path string, handler Handler) *ChainLink {
+	// Use the path builder to avoid string concatenation allocations
+	fullPath := a.pathBuilder.build(a.prefix, path)
+
+	// Pre-compile the middleware chain for this specific route.
+	finalHandler := compileMiddleware(a.middleware, handler)
 
 	a.router.AddRoute(method, fullPath, finalHandler)
 
 	routeInfo := &RouteInfo{
 		Method:  method,
 		Path:    fullPath,
-		Handler: handler, // Store original handler for documentation/inspection
+		Handler: handler, // Store original handler for documentation
 		Group:   a.parentGroup,
 	}
 	a.routes = append(a.routes, *routeInfo)
@@ -139,34 +158,29 @@ func (a *App) addRoute(method HTTPMethod, path string, handler Handler) *ChainLi
 	return &ChainLink{app: a, subject: routeInfo}
 }
 
-// Group creates a route group. It returns a ChainLink so that methods like .Doc()
-// can be called on the group itself.
+// Group creates a route group.
 func (a *App) Group(prefix string, fn GroupFunc) *ChainLink {
 	group := &RouteGroup{
-		Prefix: a.prefix + prefix,
+		Prefix: a.pathBuilder.build(a.prefix, prefix),
 	}
 
-	// Create a sub-app that will be passed to the user's function.
-	// This sub-app carries the context of the group.
 	subApp := &App{
 		router:       a.router,
 		config:       a.config,
-		routes:       a.routes,     // Use the same slice to collect all routes
-		middleware:   a.middleware, // Inherit middleware
+		routes:       a.routes,
+		middleware:   a.middleware,
 		errorHandler: a.errorHandler,
 		contextPool:  a.contextPool,
 		bufferPool:   a.bufferPool,
-		prefix:       group.Prefix, // New prefix for routes defined inside
-		parentGroup:  group,        // All routes in here will belong to this group
+		pathBuilder:  a.pathBuilder,
+		prefix:       group.Prefix,
+		parentGroup:  group,
 	}
 
-	// Execute the user's function, defining all the routes within the group.
 	fn(subApp)
 
-	// Update the parent's route slice, ensuring it has all the new routes.
 	a.routes = subApp.routes
 
-	// Return a chain link focused on the group object itself.
 	return &ChainLink{app: a, subject: group}
 }
 
@@ -176,41 +190,29 @@ func (a *App) Group(prefix string, fn GroupFunc) *ChainLink {
 func (cl *ChainLink) Doc(doc RouteDoc) *ChainLink {
 	switch v := cl.subject.(type) {
 	case *RouteInfo:
-		// When called after a route, update the last added route's doc.
 		if len(cl.app.routes) > 0 {
 			cl.app.routes[len(cl.app.routes)-1].Doc = doc
 		}
 	case *RouteGroup:
-		// When called after a group, update the group's doc.
 		v.Doc = doc
 	}
 	return cl
 }
 
-// Get, Post, etc., on a ChainLink delegate to the app, creating a new route.
-func (cl *ChainLink) Get(path string, handler Handler) *ChainLink { return cl.app.Get(path, handler) }
-func (cl *ChainLink) Post(path string, handler Handler) *ChainLink { return cl.app.Post(path, handler) }
-func (cl *ChainLink) Put(path string, handler Handler) *ChainLink { return cl.app.Put(path, handler) }
-func (cl *ChainLink) Delete(path string, handler Handler) *ChainLink {
-	return cl.app.Delete(path, handler)
-}
-func (cl *ChainLink) Patch(path string, handler Handler) *ChainLink { return cl.app.Patch(path, handler) }
-func (cl *ChainLink) Head(path string, handler Handler) *ChainLink { return cl.app.Head(path, handler) }
-func (cl *ChainLink) Options(path string, handler Handler) *ChainLink {
-	return cl.app.Options(path, handler)
-}
-func (cl *ChainLink) PostJSON(path string, handler interface{}) *ChainLink {
-	return cl.app.PostJSON(path, handler)
-}
-func (cl *ChainLink) PutJSON(path string, handler interface{}) *ChainLink {
-	return cl.app.PutJSON(path, handler)
-}
-func (cl *ChainLink) PatchJSON(path string, handler interface{}) *ChainLink {
-	return cl.app.PatchJSON(path, handler)
-}
-func (cl *ChainLink) Group(prefix string, fn GroupFunc) *ChainLink { return cl.app.Group(prefix, fn) }
+// Delegate methods for fluent API
+func (cl *ChainLink) Get(path string, handler Handler) *ChainLink         { return cl.app.Get(path, handler) }
+func (cl *ChainLink) Post(path string, handler Handler) *ChainLink        { return cl.app.Post(path, handler) }
+func (cl *ChainLink) Put(path string, handler Handler) *ChainLink         { return cl.app.Put(path, handler) }
+func (cl *ChainLink) Delete(path string, handler Handler) *ChainLink      { return cl.app.Delete(path, handler) }
+func (cl *ChainLink) Patch(path string, handler Handler) *ChainLink       { return cl.app.Patch(path, handler) }
+func (cl *ChainLink) Head(path string, handler Handler) *ChainLink        { return cl.app.Head(path, handler) }
+func (cl *ChainLink) Options(path string, handler Handler) *ChainLink     { return cl.app.Options(path, handler) }
+func (cl *ChainLink) PostJSON(path string, handler interface{}) *ChainLink { return cl.app.PostJSON(path, handler) }
+func (cl *ChainLink) PutJSON(path string, handler interface{}) *ChainLink  { return cl.app.PutJSON(path, handler) }
+func (cl *ChainLink) PatchJSON(path string, handler interface{}) *ChainLink{ return cl.app.PatchJSON(path, handler) }
+func (cl *ChainLink) Group(prefix string, fn GroupFunc) *ChainLink         { return cl.app.Group(prefix, fn) }
 
-// wrapTypedHandler remains the same
+// wrapTypedHandler uses reflection to handle strongly-typed JSON handlers.
 func wrapTypedHandler(handler interface{}) Handler {
 	return func(c *Context) error {
 		handlerValue := reflect.ValueOf(handler)
@@ -238,7 +240,7 @@ func wrapTypedHandler(handler interface{}) Handler {
 // ServeHTTP is the main entry point for handling requests.
 func (a *App) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	var c *Context
-	if a.contextPool != nil {
+	if a.config.EnablePooling {
 		c = a.contextPool.Acquire()
 		defer a.contextPool.Release(c)
 	} else {
@@ -251,8 +253,6 @@ func (a *App) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	c.Response = w
 	c.app = a
 
-	// Eagerly parse query parameters and populate the pooled map.
-	// r.URL.Query() will allocate, but we reuse our `c.query` map.
 	parsedQuery := r.URL.Query()
 	for k, v := range parsedQuery {
 		c.query[k] = v
@@ -265,30 +265,40 @@ func (a *App) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	}
 	c.params = params
 
-	// The middleware chain is pre-compiled, so we can call the handler directly.
 	if err := handler(c); err != nil {
 		a.errorHandler(c, err)
 	}
+
+	// Release params back to the pool if it was acquired by the router
+	if params != nil && a.router.paramPool != nil {
+		a.router.releaseParamMap(params)
+	}
 }
 
-// DefaultErrorHandler remains the same
+// DefaultErrorHandler provides a zero-allocation error handling mechanism.
 func DefaultErrorHandler(c *Context, err error) {
 	if err == nil {
 		return
 	}
-	code := http.StatusInternalServerError
-	message := "Internal Server Error"
+
+	var code int
+	var body []byte
+
 	switch err {
 	case ErrNotFound:
 		code = http.StatusNotFound
-		message = "Not Found"
+		body = errNotFoundResponse
 	case ErrBadRequest:
 		code = http.StatusBadRequest
-		message = "Bad Request"
+		body = errBadRequestResponse
+	default:
+		code = http.StatusInternalServerError
+		body = errInternalServerResponse
 	}
-	// We check if the response has been written to already
-	if c.Response.Header().Get("Content-Type") == "" {
-		c.JSON(code, map[string]string{"error": message})
+
+	// Avoid writing header twice
+	if c.StatusCode == 0 {
+		_ = c.Bytes(StatusCode(code), ContentTypeJSON, body)
 	}
 }
 
@@ -298,7 +308,7 @@ func (a *App) SetErrorHandler(handler ErrorHandler) *App {
 	return a
 }
 
-// Listen, setupDocs, handleShutdown, and Shutdown remain the same
+// setupDocs configures documentation endpoints.
 func (a *App) setupDocs() {
 	if !a.config.GenerateDocs || !a.config.DocsConfig.Enabled {
 		return
@@ -315,6 +325,7 @@ func (a *App) setupDocs() {
 	}
 }
 
+// Listen starts the HTTP server.
 func (a *App) Listen(addr string) error {
 	a.server = &http.Server{
 		Addr:         addr,
@@ -327,7 +338,7 @@ func (a *App) Listen(addr string) error {
 	if a.config.DevMode {
 		log.Printf("🚀 Server starting on http://localhost%s", addr)
 	}
-	a.setupDocs() // Call after server is configured to get Addr
+	a.setupDocs()
 	listener, err := net.Listen("tcp", addr)
 	if err != nil {
 		return err
@@ -335,6 +346,7 @@ func (a *App) Listen(addr string) error {
 	return a.server.Serve(listener)
 }
 
+// handleShutdown gracefully shuts down the server.
 func (a *App) handleShutdown() {
 	quit := make(chan os.Signal, 1)
 	signal.Notify(quit, os.Interrupt, syscall.SIGTERM)
@@ -348,6 +360,7 @@ func (a *App) handleShutdown() {
 	log.Println("✅ Server stopped")
 }
 
+// Shutdown provides a way to programmatically shut down the server.
 func (a *App) Shutdown(ctx context.Context) error {
 	if a.server == nil {
 		return nil

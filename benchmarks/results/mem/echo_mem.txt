@@ -1,58 +1,52 @@
-File: gin.test
-Build ID: ea5d1f591631c56fc8179f52f76ddfdbdf4fa5c3
+File: echo.test
+Build ID: 5c55fcc1b7b62683b68df8db11ac725d2c35fcea
 Type: alloc_space
-Time: 2025-10-03 10:04:58 -03
-Showing nodes accounting for 61.59GB, 99.02% of 62.20GB total
-Dropped 68 nodes (cum <= 0.31GB)
+Time: 2025-10-03 12:00:49 -03
+Showing nodes accounting for 39.02GB, 99.19% of 39.34GB total
+Dropped 78 nodes (cum <= 0.20GB)
       flat  flat%   sum%        cum   cum%
-   19.35GB 31.10% 31.10%    19.35GB 31.10%  net/http.Header.Clone (inline)
-   11.57GB 18.60% 49.70%    11.57GB 18.60%  github.com/gin-gonic/gin/render.writeContentType
-    8.36GB 13.44% 63.14%     8.36GB 13.44%  net/http/httptest.NewRecorder (inline)
-    6.88GB 11.06% 74.20%     6.88GB 11.06%  net/textproto.MIMEHeader.Set (inline)
-    3.52GB  5.65% 79.86%     3.52GB  5.65%  encoding/json.(*Decoder).refill
-    3.33GB  5.36% 85.21%     3.33GB  5.36%  bytes.(*Buffer).grow
-    2.84GB  4.56% 89.77%    10.83GB 17.42%  benchmarks/gin.BenchmarkDynamicRoute.func1
-    2.19GB  3.52% 93.30%     2.19GB  3.52%  encoding/json.NewDecoder (inline)
-    1.72GB  2.76% 96.06%    25.75GB 41.39%  github.com/gin-gonic/gin.(*Context).String (inline)
-    0.43GB  0.69% 96.75%    10.33GB 16.60%  benchmarks/gin.BenchmarkTypedJSON.func1
-    0.42GB  0.68% 97.43%     0.70GB  1.12%  encoding/json.mapEncoder.encode
-    0.38GB  0.61% 98.04%     0.38GB  0.61%  github.com/gin-gonic/gin.(*Context).Error
-    0.31GB   0.5% 98.54%     1.02GB  1.64%  encoding/json.Marshal
-    0.25GB   0.4% 98.94%    11.42GB 18.36%  github.com/gin-gonic/gin.(*Context).JSON (inline)
-    0.05GB 0.078% 99.02%     6.47GB 10.41%  github.com/gin-gonic/gin.(*Context).MustBindWith
-         0     0% 99.02%    12.21GB 19.62%  benchmarks/gin.BenchmarkDynamicRoute
-         0     0% 99.02%    20.02GB 32.18%  benchmarks/gin.BenchmarkMiddleware
-         0     0% 99.02%    17.02GB 27.36%  benchmarks/gin.BenchmarkMiddleware.func1
-         0     0% 99.02%    10.14GB 16.30%  benchmarks/gin.BenchmarkMiddleware.func2
-         0     0% 99.02%    18.48GB 29.71%  benchmarks/gin.BenchmarkStaticRoute
-         0     0% 99.02%    15.61GB 25.09%  benchmarks/gin.BenchmarkStaticRoute.func1
-         0     0% 99.02%    11.47GB 18.44%  benchmarks/gin.BenchmarkTypedJSON
-         0     0% 99.02%     3.33GB  5.36%  bytes.(*Buffer).Write
-         0     0% 99.02%     3.52GB  5.65%  encoding/json.(*Decoder).Decode
-         0     0% 99.02%     3.52GB  5.65%  encoding/json.(*Decoder).readValue
-         0     0% 99.02%     0.70GB  1.12%  encoding/json.(*encodeState).marshal
-         0     0% 99.02%     0.70GB  1.12%  encoding/json.(*encodeState).reflectValue
-         0     0% 99.02%     0.72GB  1.15%  github.com/gin-gonic/gin.(*Context).AbortWithError
-         0     0% 99.02%     0.34GB  0.54%  github.com/gin-gonic/gin.(*Context).AbortWithStatus
-         0     0% 99.02%     6.47GB 10.41%  github.com/gin-gonic/gin.(*Context).BindJSON (inline)
-         0     0% 99.02%     6.88GB 11.06%  github.com/gin-gonic/gin.(*Context).Header
-         0     0% 99.02%    53.79GB 86.47%  github.com/gin-gonic/gin.(*Context).Next
-         0     0% 99.02%    35.20GB 56.59%  github.com/gin-gonic/gin.(*Context).Render
-         0     0% 99.02%     5.71GB  9.17%  github.com/gin-gonic/gin.(*Context).ShouldBindWith (inline)
-         0     0% 99.02%    53.81GB 86.51%  github.com/gin-gonic/gin.(*Engine).ServeHTTP
-         0     0% 99.02%    53.79GB 86.47%  github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
-         0     0% 99.02%    22.34GB 35.92%  github.com/gin-gonic/gin.(*responseWriter).Write
-         0     0% 99.02%    19.35GB 31.10%  github.com/gin-gonic/gin.(*responseWriter).WriteHeaderNow (partial-inline)
-         0     0% 99.02%     5.71GB  9.17%  github.com/gin-gonic/gin/binding.decodeJSON
-         0     0% 99.02%     5.71GB  9.17%  github.com/gin-gonic/gin/binding.jsonBinding.Bind
-         0     0% 99.02%     1.02GB  1.64%  github.com/gin-gonic/gin/codec/json.jsonApi.Marshal
-         0     0% 99.02%     2.19GB  3.52%  github.com/gin-gonic/gin/codec/json.jsonApi.NewDecoder
-         0     0% 99.02%    10.90GB 17.53%  github.com/gin-gonic/gin/render.JSON.Render
-         0     0% 99.02%    24.03GB 38.63%  github.com/gin-gonic/gin/render.String.Render
-         0     0% 99.02%    10.90GB 17.53%  github.com/gin-gonic/gin/render.WriteJSON
-         0     0% 99.02%    24.03GB 38.63%  github.com/gin-gonic/gin/render.WriteString
-         0     0% 99.02%     6.88GB 11.06%  net/http.Header.Set (inline)
-         0     0% 99.02%     3.33GB  5.36%  net/http/httptest.(*ResponseRecorder).Write
-         0     0% 99.02%    19.35GB 31.10%  net/http/httptest.(*ResponseRecorder).WriteHeader
-         0     0% 99.02%    62.17GB   100%  testing.(*B).launch
-         0     0% 99.02%    62.17GB   100%  testing.(*B).runN
+   13.18GB 33.50% 33.50%    13.18GB 33.50%  net/http.Header.Clone (inline)
+   11.77GB 29.93% 63.43%    11.77GB 29.93%  net/textproto.MIMEHeader.Set (inline)
+    5.06GB 12.86% 76.29%     5.06GB 12.86%  net/http/httptest.NewRecorder (inline)
+    2.16GB  5.48% 81.77%     2.16GB  5.48%  encoding/json.(*Decoder).refill
+    2.01GB  5.10% 86.87%     2.01GB  5.10%  bytes.(*Buffer).grow
+    1.87GB  4.75% 91.62%     7.26GB 18.47%  benchmarks/echo.BenchmarkDynamicRoute.func1
+    1.32GB  3.35% 94.97%     1.32GB  3.35%  encoding/json.NewDecoder (inline)
+    0.47GB  1.21% 96.17%     0.47GB  1.21%  net/url.ParseQuery (inline)
+    0.34GB  0.88% 97.05%    16.73GB 42.54%  github.com/labstack/echo/v4.(*context).String
+    0.27GB  0.68% 97.73%     0.43GB  1.10%  encoding/json.mapEncoder.encode
+    0.26GB  0.66% 98.39%     0.26GB  0.66%  github.com/labstack/echo/v4.NewHTTPError
+    0.25GB  0.63% 99.02%     7.84GB 19.93%  benchmarks/echo.BenchmarkTypedJSON.func1
+    0.07GB  0.17% 99.19%     3.80GB  9.66%  github.com/labstack/echo/v4.(*DefaultBinder).BindBody
+         0     0% 99.19%     8.12GB 20.63%  benchmarks/echo.BenchmarkDynamicRoute
+         0     0% 99.19%     6.61GB 16.79%  benchmarks/echo.BenchmarkMiddleware
+         0     0% 99.19%     5.53GB 14.05%  benchmarks/echo.BenchmarkMiddleware.func1.1
+         0     0% 99.19%     3.23GB  8.22%  benchmarks/echo.BenchmarkMiddleware.func2
+         0     0% 99.19%    16.06GB 40.83%  benchmarks/echo.BenchmarkStaticRoute
+         0     0% 99.19%    13.50GB 34.32%  benchmarks/echo.BenchmarkStaticRoute.func1
+         0     0% 99.19%     8.52GB 21.67%  benchmarks/echo.BenchmarkTypedJSON
+         0     0% 99.19%     2.01GB  5.10%  bytes.(*Buffer).Write
+         0     0% 99.19%     2.16GB  5.48%  encoding/json.(*Decoder).Decode
+         0     0% 99.19%     2.16GB  5.48%  encoding/json.(*Decoder).readValue
+         0     0% 99.19%     5.09GB 12.94%  encoding/json.(*Encoder).Encode
+         0     0% 99.19%     0.43GB  1.10%  encoding/json.(*encodeState).marshal
+         0     0% 99.19%     0.43GB  1.10%  encoding/json.(*encodeState).reflectValue
+         0     0% 99.19%     3.80GB  9.66%  github.com/labstack/echo/v4.(*DefaultBinder).Bind
+         0     0% 99.19%    34.25GB 87.07%  github.com/labstack/echo/v4.(*Echo).ServeHTTP
+         0     0% 99.19%    31.84GB 80.94%  github.com/labstack/echo/v4.(*Echo).add.func1
+         0     0% 99.19%     6.02GB 15.30%  github.com/labstack/echo/v4.(*Response).Write
+         0     0% 99.19%    13.18GB 33.50%  github.com/labstack/echo/v4.(*Response).WriteHeader
+         0     0% 99.19%     3.80GB  9.66%  github.com/labstack/echo/v4.(*context).Bind
+         0     0% 99.19%    16.39GB 41.66%  github.com/labstack/echo/v4.(*context).Blob
+         0     0% 99.19%     9.19GB 23.36%  github.com/labstack/echo/v4.(*context).JSON
+         0     0% 99.19%     0.47GB  1.21%  github.com/labstack/echo/v4.(*context).QueryParams (inline)
+         0     0% 99.19%     8.71GB 22.15%  github.com/labstack/echo/v4.(*context).json
+         0     0% 99.19%     9.48GB 24.09%  github.com/labstack/echo/v4.(*context).writeContentType
+         0     0% 99.19%     3.47GB  8.83%  github.com/labstack/echo/v4.DefaultJSONSerializer.Deserialize
+         0     0% 99.19%     5.09GB 12.94%  github.com/labstack/echo/v4.DefaultJSONSerializer.Serialize
+         0     0% 99.19%    11.77GB 29.93%  net/http.Header.Set (inline)
+         0     0% 99.19%     2.01GB  5.10%  net/http/httptest.(*ResponseRecorder).Write
+         0     0% 99.19%    13.18GB 33.50%  net/http/httptest.(*ResponseRecorder).WriteHeader
+         0     0% 99.19%     0.47GB  1.21%  net/url.(*URL).Query
+         0     0% 99.19%    39.31GB 99.93%  testing.(*B).launch
+         0     0% 99.19%    39.31GB 99.93%  testing.(*B).runN

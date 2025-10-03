@@ -2,17 +2,18 @@ package bolt
 
 import (
 	"fmt"
+	"net/http"
 	"reflect"
 	"strings"
 )
 
 // OpenAPISpec represents OpenAPI 3.0 specification
 type OpenAPISpec struct {
-	OpenAPI    string                          `json:"openapi"`
-	Info       OpenAPIInfo                     `json:"info"`
-	Paths      map[string]map[string]Operation `json:"paths"`
-	Components Components                      `json:"components,omitempty"`
-	Tags       []Tag                           `json:"tags,omitempty"`
+	OpenAPI    string                           `json:"openapi"`
+	Info       OpenAPIInfo                      `json:"info"`
+	Paths      map[string]map[string]Operation  `json:"paths"`
+	Components Components                       `json:"components,omitempty"`
+	Tags       []Tag                            `json:"tags,omitempty"`
 }
 
 // Tag represents an OpenAPI Tag Object for grouping operations.
@@ -121,22 +122,18 @@ func (a *App) GenerateDocs() *OpenAPISpec {
 			spec.Paths[route.Path] = make(map[string]Operation)
 		}
 
-		// Combine group and route documentation
 		finalDoc := route.Doc
 		var finalTags []string
 
 		if route.Group != nil {
-			// Derive tag name from prefix
 			parts := strings.Split(strings.Trim(route.Group.Prefix, "/"), "/")
 			tagName := parts[len(parts)-1]
 			if tagName != "" {
 				finalTags = append(finalTags, tagName)
 			}
-			// Combine tags from group and route
 			finalTags = append(finalTags, route.Group.Doc.Tags...)
-			// Prepend group description to route description
 			if route.Group.Doc.Description != "" {
-				finalDoc.Description = route.Group.Doc.Description + "nn" + finalDoc.Description
+				finalDoc.Description = route.Group.Doc.Description + "\n\n" + finalDoc.Description
 			}
 		}
 		finalTags = append(finalTags, route.Doc.Tags...)
@@ -189,7 +186,6 @@ func (a *App) GenerateDocs() *OpenAPISpec {
 	return spec
 }
 
-// extractPathParams, getTypeName, generateSchema, getJSONType, ServeSwaggerUI are the same.
 func extractPathParams(path string) []string {
 	var params []string
 	parts := strings.Split(path, "/")
@@ -284,9 +280,9 @@ func getJSONType(t reflect.Type) string {
 	}
 }
 
+// ServeSwaggerUI serves the Swagger UI HTML page.
 func ServeSwaggerUI(specPath string) Handler {
-	return func(c *Context) error {
-		html := fmt.Sprintf(`<!DOCTYPE html>
+	html := fmt.Sprintf(`<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -311,6 +307,10 @@ func ServeSwaggerUI(specPath string) Handler {
 </body>
 </html>`, specPath)
 
-		return c.HTML(200, html)
+	return func(c *Context) error {
+		c.Response.Header().Set("Content-Type", "text/html; charset=utf-8")
+		c.Response.WriteHeader(http.StatusOK)
+		_, err := c.Response.Write([]byte(html))
+		return err
 	}
 }
