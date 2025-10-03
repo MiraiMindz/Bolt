@@ -8,6 +8,7 @@ import (
 	"os"
 	"os/signal"
 	"reflect"
+	"sync"
 	"syscall"
 	"time"
 )
@@ -19,6 +20,19 @@ var (
 	errInternalServerResponse = []byte(`{"error":"Internal Server Error"}`)
 )
 
+// TypedHandlerInfo caches reflection information for typed handlers
+type TypedHandlerInfo struct {
+	HandlerValue reflect.Value
+	BodyType     reflect.Type
+}
+
+// Global cache for typed handler reflection info to avoid repeated reflection
+var (
+	typedHandlerCache = make(map[uintptr]*TypedHandlerInfo)
+	typedHandlerMutex sync.RWMutex
+)
+
+
 // App is the main application. It can also represent a sub-application within a group.
 type App struct {
 	router       *Router
@@ -28,10 +42,10 @@ type App struct {
 	errorHandler ErrorHandler
 	contextPool  *ContextPool
 	bufferPool   *BufferPool
-	pathBuilder  *pathBuilder // For efficient path building
+	pathBuilder  *pathBuilder       // For efficient path building
 	server       *Server
 	prefix       string
-	parentGroup  *RouteGroup // The group this App instance belongs to
+	parentGroup  *RouteGroup   // The group this App instance belongs to
 }
 
 // New creates a new top-level App
@@ -124,12 +138,18 @@ func (a *App) PatchJSON(path string, handler interface{}) *ChainLink {
 	return a.addRoute(MethodPatch, path, wrappedHandler)
 }
 
-// compileMiddleware pre-builds the middleware chain for a handler.
+// compileMiddleware pre-builds the middleware chain for a handler with fast path for single middleware.
 func compileMiddleware(middleware []Middleware, finalHandler Handler) Handler {
 	if len(middleware) == 0 {
 		return finalHandler
 	}
-	// Build the chain from right to left.
+
+	// Fast path for single middleware (common case)
+	if len(middleware) == 1 {
+		return middleware[0](finalHandler)
+	}
+
+	// Chain building for multiple middleware
 	h := finalHandler
 	for i := len(middleware) - 1; i >= 0; i-- {
 		h = middleware[i](h)
@@ -137,14 +157,13 @@ func compileMiddleware(middleware []Middleware, finalHandler Handler) Handler {
 	return h
 }
 
-// addRoute adds a route to the router and pre-compiles the middleware chain.
+// addRoute adds a route to the router with simplified middleware compilation.
 func (a *App) addRoute(method HTTPMethod, path string, handler Handler) *ChainLink {
 	// Use the path builder to avoid string concatenation allocations
 	fullPath := a.pathBuilder.build(a.prefix, path)
 
-	// Pre-compile the middleware chain for this specific route.
+	// Apply middleware compilation directly
 	finalHandler := compileMiddleware(a.middleware, handler)
-
 	a.router.AddRoute(method, fullPath, finalHandler)
 
 	routeInfo := &RouteInfo{
@@ -212,24 +231,47 @@ func (cl *ChainLink) PutJSON(path string, handler interface{}) *ChainLink  { ret
 func (cl *ChainLink) PatchJSON(path string, handler interface{}) *ChainLink{ return cl.app.PatchJSON(path, handler) }
 func (cl *ChainLink) Group(prefix string, fn GroupFunc) *ChainLink         { return cl.app.Group(prefix, fn) }
 
-// wrapTypedHandler uses reflection to handle strongly-typed JSON handlers.
+// wrapTypedHandler uses cached reflection to handle strongly-typed JSON handlers efficiently.
 func wrapTypedHandler(handler interface{}) Handler {
-	return func(c *Context) error {
+	// Pre-compute reflection info and cache it
+	handlerPtr := reflect.ValueOf(handler).Pointer()
+
+	typedHandlerMutex.RLock()
+	info, exists := typedHandlerCache[handlerPtr]
+	typedHandlerMutex.RUnlock()
+
+	if !exists {
+		// First time - compute and cache reflection info
 		handlerValue := reflect.ValueOf(handler)
 		handlerType := handlerValue.Type()
 		if handlerType.NumIn() != 2 {
 			panic("typed handler must accept exactly 2 parameters: (*Context, T)")
 		}
-		bodyType := handlerType.In(1)
-		bodyValue := reflect.New(bodyType)
+
+		info = &TypedHandlerInfo{
+			HandlerValue: handlerValue,
+			BodyType:     handlerType.In(1),
+		}
+
+		typedHandlerMutex.Lock()
+		typedHandlerCache[handlerPtr] = info
+		typedHandlerMutex.Unlock()
+	}
+
+	return func(c *Context) error {
+		// Fast path - use cached reflection info
+		bodyValue := reflect.New(info.BodyType)
 		bodyPtr := bodyValue.Interface()
+
 		if err := c.BindJSON(bodyPtr); err != nil {
 			return err
 		}
-		results := handlerValue.Call([]reflect.Value{
+
+		results := info.HandlerValue.Call([]reflect.Value{
 			reflect.ValueOf(c),
 			bodyValue.Elem(),
 		})
+
 		if len(results) > 0 && !results[0].IsNil() {
 			return results[0].Interface().(error)
 		}
@@ -237,39 +279,71 @@ func wrapTypedHandler(handler interface{}) Handler {
 	}
 }
 
-// ServeHTTP is the main entry point for handling requests.
+// cachedHeaderWriter wraps http.ResponseWriter to return cached headers
+type cachedHeaderWriter struct {
+	http.ResponseWriter
+	cachedHeaders http.Header
+}
+
+// Header returns the cached headers instead of calling the underlying writer's Header()
+func (w *cachedHeaderWriter) Header() http.Header {
+	return w.cachedHeaders
+}
+
+// ServeHTTP is the main entry point for handling requests - optimized for speed.
 func (a *App) ServeHTTP(w http.ResponseWriter, r *http.Request) {
-	var c *Context
-	if a.config.EnablePooling {
-		c = a.contextPool.Acquire()
-		defer a.contextPool.Release(c)
-	} else {
-		c = &Context{
-			params: make(ParamMap, 8),
-			query:  make(QueryValues, 8),
-		}
-	}
-	c.Request = r
-	c.Response = w
-	c.app = a
-
-	parsedQuery := r.URL.Query()
-	for k, v := range parsedQuery {
-		c.query[k] = v
-	}
-
 	handler, params := a.router.GetValue(HTTPMethod(r.Method), r.URL.Path)
 	if handler == nil {
+		headers := w.Header()
+		wrappedWriter := &cachedHeaderWriter{ResponseWriter: w, cachedHeaders: headers}
+		c := &Context{Request: r, Response: wrappedWriter, app: a, headers: headers}
 		a.errorHandler(c, ErrNotFound)
 		return
 	}
+
+	var c *Context
+	if a.config.EnablePooling && a.contextPool != nil {
+		c = a.contextPool.Acquire()
+		defer a.contextPool.Release(c)
+	} else {
+		c = &Context{}
+	}
+
+	// Cache headers once to avoid repeated Header() calls in middleware/handlers
+	headers := w.Header()
+	wrappedWriter := &cachedHeaderWriter{ResponseWriter: w, cachedHeaders: headers}
+
+	// Initialize context with minimal overhead
+	c.Request = r
+	c.Response = wrappedWriter
+	c.app = a
 	c.params = params
+	c.headers = headers
+
+	// Fast path: Static routes with no query (most common case for middleware benchmarks)
+	if params == nil && r.URL.RawQuery == "" {
+		err := handler(c)
+		if err != nil {
+			a.errorHandler(c, err)
+		}
+		return
+	}
+
+	// Slow path: Dynamic routes or query parameters
+	if r.URL.RawQuery != "" {
+		if c.query == nil {
+			c.query = make(QueryValues)
+		}
+		parsedQuery := r.URL.Query()
+		for k, v := range parsedQuery {
+			c.query[k] = v
+		}
+	}
 
 	if err := handler(c); err != nil {
 		a.errorHandler(c, err)
 	}
 
-	// Release params back to the pool if it was acquired by the router
 	if params != nil && a.router.paramPool != nil {
 		a.router.releaseParamMap(params)
 	}

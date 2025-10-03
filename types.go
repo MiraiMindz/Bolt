@@ -4,6 +4,7 @@ import (
 	"net/http"
 	"net/url"
 	"reflect"
+	"sync"
 	"time"
 )
 
@@ -108,7 +109,7 @@ type StatusCode int
 type ContentType string
 
 const (
-	ContentTypeJSON ContentType = "application/json; charset=utf-t"
+	ContentTypeJSON ContentType = "application/json; charset=utf-8"
 	ContentTypeText ContentType = "text/plain; charset=utf-8"
 	ContentTypeHTML ContentType = "text/html; charset=utf-8"
 )
@@ -134,4 +135,20 @@ type HandlerInfo struct {
 	Fn         interface{}
 	InputType  reflect.Type
 	OutputType reflect.Type
+}
+
+// LazyCompiledRoute represents a route with lazily compiled middleware
+type LazyCompiledRoute struct {
+	middleware []Middleware
+	handler    Handler
+	compiled   Handler
+	once       sync.Once
+}
+
+// GetHandler returns the compiled handler, compiling it lazily on first access
+func (lcr *LazyCompiledRoute) GetHandler() Handler {
+	lcr.once.Do(func() {
+		lcr.compiled = compileMiddleware(lcr.middleware, lcr.handler)
+	})
+	return lcr.compiled
 }

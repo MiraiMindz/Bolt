@@ -1,25 +1,54 @@
 /dev/fd/63: 
-                │  /dev/fd/62  │             /dev/fd/61              │
-                │    sec/op    │    sec/op     vs base               │
-StaticRoute-12    1.345µ ± 45%   1.416µ ± 46%        ~ (p=0.878 n=8)
-DynamicRoute-12   2.031µ ± 41%   2.828µ ± 49%        ~ (p=0.721 n=8)
-TypedJSON-12      2.914µ ± 25%   3.658µ ± 44%        ~ (p=0.065 n=8)
-Middleware-12     1.702µ ± 25%   2.269µ ± 46%        ~ (p=0.195 n=8)
-geomean           1.918µ         2.401µ        +25.19%
+                       │  /dev/fd/62  │     /dev/fd/61      │      /dev/fd/60      │
+                       │    sec/op    │    sec/op     vs base   │    sec/op      vs base   │
+FastStaticRoute-12       2.481µ ± 17%
+FastDynamicRoute-12      2.455µ ±  4%
+FastTypedJSON-12         3.568µ ±  6%
+FastMiddleware-12        2.664µ ±  6%
+FastComplexRouting-12    4.331µ ± 15%
+FastLargeJSON-12         4.348µ ± 14%
+FastQueryParameters-12   6.344µ ±  7%
+FastFileUpload-12        15.13µ ± 13%
+StaticRoute-12                          989.6n ± 40%          1552.5n ±  9%
+DynamicRoute-12                         2.300µ ± 19%           1.847µ ± 27%
+TypedJSON-12                            2.631µ ±  5%           2.159µ ± 21%
+Middleware-12                           1.682µ ± 31%           1.491µ ± 37%
+geomean                  4.241µ         1.781µ        ? ¹ ²    1.743µ        ? ¹ ²
+¹ benchmark set differs from baseline; geomeans may not be comparable
+² ratios must be >0 to compute geomean
 
-                │  /dev/fd/62  │             /dev/fd/61              │
-                │     B/op     │     B/op      vs base               │
-StaticRoute-12    1.016Ki ± 0%   1.000Ki ± 0%   -1.54% (p=0.000 n=8)
-DynamicRoute-12   1.407Ki ± 0%   1.439Ki ± 0%   +2.26% (p=0.000 n=8)
-TypedJSON-12      1.626Ki ± 0%   1.986Ki ± 0%  +22.13% (p=0.000 n=8)
-Middleware-12     1.047Ki ± 0%   1.047Ki ± 0%        ~ (p=0.569 n=8)
-geomean           1.249Ki        1.315Ki        +5.30%
+                       │  /dev/fd/62  │     /dev/fd/61      │     /dev/fd/60      │
+                       │     B/op     │     B/op      vs base   │     B/op      vs base   │
+FastStaticRoute-12       1.008Ki ± 0%
+FastDynamicRoute-12      1.117Ki ± 0%
+FastTypedJSON-12         1.688Ki ± 0%
+FastMiddleware-12        1.040Ki ± 0%
+FastComplexRouting-12    1.588Ki ± 0%
+FastLargeJSON-12         1.751Ki ± 0%
+FastQueryParameters-12   2.112Ki ± 0%
+FastFileUpload-12        11.51Ki ± 0%
+StaticRoute-12                          1.016Ki ± 0%          1.000Ki ± 0%
+DynamicRoute-12                         1.407Ki ± 0%          1.438Ki ± 0%
+TypedJSON-12                            1.626Ki ± 0%          1.986Ki ± 0%
+Middleware-12                           1.047Ki ± 0%          1.047Ki ± 0%
+geomean                  1.844Ki        1.249Ki       ? ¹ ²   1.315Ki       ? ¹ ²
+¹ benchmark set differs from baseline; geomeans may not be comparable
+² ratios must be >0 to compute geomean
 
-                │ /dev/fd/62 │              /dev/fd/61              │
-                │ allocs/op  │  allocs/op   vs base                 │
-StaticRoute-12    9.000 ± 0%   10.000 ± 0%  +11.11% (p=0.000 n=8)
-DynamicRoute-12   15.00 ± 0%    15.00 ± 0%        ~ (p=1.000 n=8) ¹
-TypedJSON-12      17.00 ± 0%    17.00 ± 0%        ~ (p=1.000 n=8) ¹
-Middleware-12     10.00 ± 0%    12.00 ± 0%  +20.00% (p=0.000 n=8)
-geomean           12.31         13.23        +7.46%
-¹ all samples are equal
+                       │ /dev/fd/62 │    /dev/fd/61     │     /dev/fd/60     │
+                       │ allocs/op  │ allocs/op   vs base   │  allocs/op   vs base   │
+FastStaticRoute-12       10.00 ± 0%
+FastDynamicRoute-12      12.00 ± 0%
+FastTypedJSON-12         15.00 ± 0%
+FastMiddleware-12        11.00 ± 0%
+FastComplexRouting-12    15.00 ± 0%
+FastLargeJSON-12         15.00 ± 0%
+FastQueryParameters-12   22.00 ± 0%
+FastFileUpload-12        12.00 ± 0%
+StaticRoute-12                        9.000 ± 0%          10.000 ± 0%
+DynamicRoute-12                       15.00 ± 0%           15.00 ± 0%
+TypedJSON-12                          17.00 ± 0%           17.00 ± 0%
+Middleware-12                         10.00 ± 0%           12.00 ± 0%
+geomean                  13.61        12.31       ? ¹ ²    13.23       ? ¹ ²
+¹ benchmark set differs from baseline; geomeans may not be comparable
+² ratios must be >0 to compute geomean

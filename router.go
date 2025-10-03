@@ -25,16 +25,20 @@ type Node struct {
 	paramName string
 }
 
+
 // Router implements a high-performance radix tree router.
 type Router struct {
-	trees     map[HTTPMethod]*Node
-	paramPool *sync.Pool // Pool for ParamMap to reduce allocations
+	trees      map[HTTPMethod]*Node
+	staticMap  map[HTTPMethod]map[string]Handler // Fast static route cache
+	paramPool  *sync.Pool // Pool for ParamMap to reduce allocations
+	mutex      sync.RWMutex
 }
 
 // NewRouter creates a new router.
 func NewRouter() *Router {
 	return &Router{
-		trees: make(map[HTTPMethod]*Node),
+		trees:     make(map[HTTPMethod]*Node),
+		staticMap: make(map[HTTPMethod]map[string]Handler),
 		paramPool: &sync.Pool{
 			New: func() interface{} {
 				// Initialize with a default capacity
@@ -70,18 +74,38 @@ func unsafeBytesToString(b []byte) string {
 	return *(*string)(unsafe.Pointer(&b))
 }
 
-// AddRoute adds a new route to the router.
+
+// AddRoute adds a new route to the router using radix tree.
 func (r *Router) AddRoute(method HTTPMethod, path string, handler Handler) {
 	if path[0] != '/' {
 		panic("path must begin with '/'")
 	}
 
+	// Check if this is a static route (no params or wildcards)
+	isStatic := true
+	for i := 0; i < len(path); i++ {
+		if path[i] == ':' || path[i] == '*' {
+			isStatic = false
+			break
+		}
+	}
+
+	// Add to static map for O(1) lookup
+	if isStatic {
+		r.mutex.Lock()
+		if r.staticMap[method] == nil {
+			r.staticMap[method] = make(map[string]Handler)
+		}
+		r.staticMap[method][path] = handler
+		r.mutex.Unlock()
+	}
+
+	// Also add to radix tree for consistency
 	root := r.trees[method]
 	if root == nil {
 		root = &Node{}
 		r.trees[method] = root
 	}
-
 	addRoute(root, path, handler, method)
 }
 
@@ -180,8 +204,18 @@ func insertChild(n *Node, path string, handler Handler, method HTTPMethod) {
 
 
 // GetValue finds a handler and extracts parameters for a given path.
-// It now uses a pool for the parameters map to reduce allocations.
 func (r *Router) GetValue(method HTTPMethod, path string) (Handler, ParamMap) {
+	// Fast path: Check static routes first (O(1) lookup)
+	r.mutex.RLock()
+	if staticRoutes := r.staticMap[method]; staticRoutes != nil {
+		if handler := staticRoutes[path]; handler != nil {
+			r.mutex.RUnlock()
+			return handler, nil
+		}
+	}
+	r.mutex.RUnlock()
+
+	// Fallback to radix tree for dynamic routes
 	root := r.trees[method]
 	if root == nil {
 		return nil, nil
@@ -257,3 +291,4 @@ walk:
 		return nil, nil
 	}
 }
+

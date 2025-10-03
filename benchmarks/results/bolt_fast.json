@@ -1,0 +1,97 @@
+{"Time":"2025-10-03T18:03:50.609620128-03:00","Action":"start","Package":"benchmarks/bolt_fast"}
+{"Time":"2025-10-03T18:03:50.811607833-03:00","Action":"output","Package":"benchmarks/bolt_fast","Output":"goos: linux\n"}
+{"Time":"2025-10-03T18:03:50.81474819-03:00","Action":"output","Package":"benchmarks/bolt_fast","Output":"goarch: amd64\n"}
+{"Time":"2025-10-03T18:03:50.81512611-03:00","Action":"output","Package":"benchmarks/bolt_fast","Output":"pkg: benchmarks/bolt_fast\n"}
+{"Time":"2025-10-03T18:03:50.815241296-03:00","Action":"output","Package":"benchmarks/bolt_fast","Output":"cpu: 13th Gen Intel(R) Core(TM) i5-1334U\n"}
+{"Time":"2025-10-03T18:03:50.815297444-03:00","Action":"run","Package":"benchmarks/bolt_fast","Test":"BenchmarkFastStaticRoute"}
+{"Time":"2025-10-03T18:03:50.815422464-03:00","Action":"output","Package":"benchmarks/bolt_fast","Test":"BenchmarkFastStaticRoute","Output":"=== RUN   BenchmarkFastStaticRoute\n"}
+{"Time":"2025-10-03T18:03:50.815441196-03:00","Action":"output","Package":"benchmarks/bolt_fast","Test":"BenchmarkFastStaticRoute","Output":"BenchmarkFastStaticRoute\n"}
+{"Time":"2025-10-03T18:03:53.648588772-03:00","Action":"output","Package":"benchmarks/bolt_fast","Test":"BenchmarkFastStaticRoute","Output":"BenchmarkFastStaticRoute-12        \t  472348\t      2742 ns/op\t    1032 B/op\t      10 allocs/op\n"}
+{"Time":"2025-10-03T18:03:55.430068669-03:00","Action":"output","Package":"benchmarks/bolt_fast","Output":"BenchmarkFastStaticRoute-12        \t  424806\t      2401 ns/op\t    1032 B/op\t      10 allocs/op\n"}
+{"Time":"2025-10-03T18:03:54.932971034-03:00","Action":"output","Package":"benchmarks/bolt_fast","Output":"BenchmarkFastStaticRoute-12        \t  687705\t      2444 ns/op\t    1033 B/op\t      10 allocs/op\n"}
+{"Time":"2025-10-03T18:03:56.180154657-03:00","Action":"output","Package":"benchmarks/bolt_fast","Output":"BenchmarkFastStaticRoute-12        \t  415261\t      2894 ns/op\t    1032 B/op\t      10 allocs/op\n"}
+{"Time":"2025-10-03T18:03:57.257034839-03:00","Action":"output","Package":"benchmarks/bolt_fast","Output":"BenchmarkFastStaticRoute-12        \t  408712\t      2516 ns/op\t    1032 B/op\t      10 allocs/op\n"}
+{"Time":"2025-10-03T18:03:58.388756671-03:00","Action":"output","Package":"benchmarks/bolt_fast","Output":"BenchmarkFastStaticRoute-12        \t  350512\t      3067 ns/op\t    1033 B/op\t      10 allocs/op\n"}
+{"Time":"2025-10-03T18:03:59.62049577-03:00","Action":"output","Package":"benchmarks/bolt_fast","Output":"BenchmarkFastStaticRoute-12        \t  486759\t      2446 ns/op\t    1032 B/op\t      10 allocs/op\n"}
+{"Time":"2025-10-03T18:04:01.732320621-03:00","Action":"output","Package":"benchmarks/bolt_fast","Output":"BenchmarkFastStaticRoute-12        \t  862844\t      2422 ns/op\t    1032 B/op\t      10 allocs/op\n"}
+{"Time":"2025-10-03T18:04:01.732519094-03:00","Action":"run","Package":"benchmarks/bolt_fast","Test":"BenchmarkFastDynamicRoute"}
+{"Time":"2025-10-03T18:04:01.732556601-03:00","Action":"output","Package":"benchmarks/bolt_fast","Test":"BenchmarkFastDynamicRoute","Output":"=== RUN   BenchmarkFastDynamicRoute\n"}
+{"Time":"2025-10-03T18:04:01.732580038-03:00","Action":"output","Package":"benchmarks/bolt_fast","Test":"BenchmarkFastDynamicRoute","Output":"BenchmarkFastDynamicRoute\n"}
+{"Time":"2025-10-03T18:04:03.826080225-03:00","Action":"output","Package":"benchmarks/bolt_fast","Test":"BenchmarkFastDynamicRoute","Output":"BenchmarkFastDynamicRoute-12       \t  510976\t      2455 ns/op\t    1144 B/op\t      12 allocs/op\n"}
+{"Time":"2025-10-03T18:04:04.91763912-03:00","Action":"output","Package":"benchmarks/bolt_fast","Output":"BenchmarkFastDynamicRoute-12       \t  425877\t      2455 ns/op\t    1144 B/op\t      12 allocs/op\n"}
+{"Time":"2025-10-03T18:04:06.094677534-03:00","Action":"output","Package":"benchmarks/bolt_fast","Output":"BenchmarkFastDynamicRoute-12       \t  442638\t      2556 ns/op\t    1144 B/op\t      12 allocs/op\n"}
+{"Time":"2025-10-03T18:04:08.349760758-03:00","Action":"output","Package":"benchmarks/bolt_fast","Output":"BenchmarkFastDynamicRoute-12       \t  534008\t      2371 ns/op\t    1144 B/op\t      12 allocs/op\n"}
+{"Time":"2025-10-03T18:04:09.667365288-03:00","Action":"output","Package":"benchmarks/bolt_fast","Output":"BenchmarkFastDynamicRoute-12       \t  523632\t      2439 ns/op\t    1144 B/op\t      12 allocs/op\n"}
+{"Time":"2025-10-03T18:04:10.738658453-03:00","Action":"output","Package":"benchmarks/bolt_fast","Output":"BenchmarkFastDynamicRoute-12       \t  424072\t      2426 ns/op\t    1144 B/op\t      12 allocs/op\n"}
+{"Time":"2025-10-03T18:04:12.19054412-03:00","Action":"output","Package":"benchmarks/bolt_fast","Output":"BenchmarkFastDynamicRoute-12       \t  550189\t      2566 ns/op\t    1144 B/op\t      12 allocs/op\n"}
+{"Time":"2025-10-03T18:04:14.354482499-03:00","Action":"output","Package":"benchmarks/bolt_fast","Output":"BenchmarkFastDynamicRoute-12       \t  474961\t      2533 ns/op\t    1144 B/op\t      12 allocs/op\n"}
+{"Time":"2025-10-03T18:04:14.354758239-03:00","Action":"run","Package":"benchmarks/bolt_fast","Test":"BenchmarkFastTypedJSON"}
+{"Time":"2025-10-03T18:04:14.354795674-03:00","Action":"output","Package":"benchmarks/bolt_fast","Test":"BenchmarkFastTypedJSON","Output":"=== RUN   BenchmarkFastTypedJSON\n"}
+{"Time":"2025-10-03T18:04:14.354818038-03:00","Action":"output","Package":"benchmarks/bolt_fast","Test":"BenchmarkFastTypedJSON","Output":"BenchmarkFastTypedJSON\n"}
+{"Time":"2025-10-03T18:04:16.546443308-03:00","Action":"output","Package":"benchmarks/bolt_fast","Test":"BenchmarkFastTypedJSON","Output":"BenchmarkFastTypedJSON-12          \t  360651\t      3447 ns/op\t    1729 B/op\t      15 allocs/op\n"}
+{"Time":"2025-10-03T18:04:17.933241343-03:00","Action":"output","Package":"benchmarks/bolt_fast","Output":"BenchmarkFastTypedJSON-12          \t  371318\t      3596 ns/op\t    1729 B/op\t      15 allocs/op\n"}
+{"Time":"2025-10-03T18:04:19.096571573-03:00","Action":"output","Package":"benchmarks/bolt_fast","Output":"BenchmarkFastTypedJSON-12          \t  327936\t      3368 ns/op\t    1730 B/op\t      15 allocs/op\n"}
+{"Time":"2025-10-03T18:04:20.452734686-03:00","Action":"output","Package":"benchmarks/bolt_fast","Output":"BenchmarkFastTypedJSON-12          \t  360328\t      3618 ns/op\t    1729 B/op\t      15 allocs/op\n"}
+{"Time":"2025-10-03T18:04:21.931631924-03:00","Action":"output","Package":"benchmarks/bolt_fast","Output":"BenchmarkFastTypedJSON-12          \t  384480\t      3704 ns/op\t    1729 B/op\t      15 allocs/op\n"}
+{"Time":"2025-10-03T18:04:24.126934141-03:00","Action":"output","Package":"benchmarks/bolt_fast","Output":"BenchmarkFastTypedJSON-12          \t  325662\t      3540 ns/op\t    1729 B/op\t      15 allocs/op\n"}
+{"Time":"2025-10-03T18:04:25.38873037-03:00","Action":"output","Package":"benchmarks/bolt_fast","Output":"BenchmarkFastTypedJSON-12          \t  325359\t      3693 ns/op\t    1729 B/op\t      15 allocs/op\n"}
+{"Time":"2025-10-03T18:04:24.330563132-03:00","Action":"output","Package":"benchmarks/bolt_fast","Output":"BenchmarkFastTypedJSON-12          \t  320614\t      3536 ns/op\t    1729 B/op\t      15 allocs/op\n"}
+{"Time":"2025-10-03T18:04:24.331020329-03:00","Action":"run","Package":"benchmarks/bolt_fast","Test":"BenchmarkFastMiddleware"}
+{"Time":"2025-10-03T18:04:24.331089304-03:00","Action":"output","Package":"benchmarks/bolt_fast","Test":"BenchmarkFastMiddleware","Output":"=== RUN   BenchmarkFastMiddleware\n"}
+{"Time":"2025-10-03T18:04:24.331124239-03:00","Action":"output","Package":"benchmarks/bolt_fast","Test":"BenchmarkFastMiddleware","Output":"BenchmarkFastMiddleware\n"}
+{"Time":"2025-10-03T18:04:26.408818927-03:00","Action":"output","Package":"benchmarks/bolt_fast","Test":"BenchmarkFastMiddleware","Output":"BenchmarkFastMiddleware-12         \t"}
+{"Time":"2025-10-03T18:04:26.409171654-03:00","Action":"output","Package":"benchmarks/bolt_fast","Test":"BenchmarkFastMiddleware","Output":"  432356\t      2638 ns/op\t    1065 B/op\t      11 allocs/op\n"}
+{"Time":"2025-10-03T18:04:28.62043477-03:00","Action":"output","Package":"benchmarks/bolt_fast","Output":"BenchmarkFastMiddleware-12         \t  463722\t      2504 ns/op\t    1065 B/op\t      11 allocs/op\n"}
+{"Time":"2025-10-03T18:04:29.685074379-03:00","Action":"output","Package":"benchmarks/bolt_fast","Output":"BenchmarkFastMiddleware-12         \t  373704\t      2711 ns/op\t    1064 B/op\t      11 allocs/op\n"}
+{"Time":"2025-10-03T18:04:31.250803638-03:00","Action":"output","Package":"benchmarks/bolt_fast","Output":"BenchmarkFastMiddleware-12         \t  614509\t      2491 ns/op\t    1065 B/op\t      11 allocs/op\n"}
+{"Time":"2025-10-03T18:04:33.646461973-03:00","Action":"output","Package":"benchmarks/bolt_fast","Output":"BenchmarkFastMiddleware-12         \t  499959\t      2690 ns/op\t    1064 B/op\t      11 allocs/op\n"}
+{"Time":"2025-10-03T18:04:35.547191594-03:00","Action":"output","Package":"benchmarks/bolt_fast","Output":"BenchmarkFastMiddleware-12         \t  647979\t      2887 ns/op\t    1065 B/op\t      11 allocs/op\n"}
+{"Time":"2025-10-03T18:04:37.086441209-03:00","Action":"output","Package":"benchmarks/bolt_fast","Output":"BenchmarkFastMiddleware-12         \t  553328\t      2713 ns/op\t    1065 B/op\t      11 allocs/op\n"}
+{"Time":"2025-10-03T18:04:38.149866553-03:00","Action":"output","Package":"benchmarks/bolt_fast","Output":"BenchmarkFastMiddleware-12         \t  385572\t      2624 ns/op\t    1064 B/op\t      11 allocs/op\n"}
+{"Time":"2025-10-03T18:04:38.151280761-03:00","Action":"run","Package":"benchmarks/bolt_fast","Test":"BenchmarkFastComplexRouting"}
+{"Time":"2025-10-03T18:04:38.151415748-03:00","Action":"output","Package":"benchmarks/bolt_fast","Test":"BenchmarkFastComplexRouting","Output":"=== RUN   BenchmarkFastComplexRouting\n"}
+{"Time":"2025-10-03T18:04:38.151440967-03:00","Action":"output","Package":"benchmarks/bolt_fast","Test":"BenchmarkFastComplexRouting","Output":"BenchmarkFastComplexRouting\n"}
+{"Time":"2025-10-03T18:04:39.675846992-03:00","Action":"output","Package":"benchmarks/bolt_fast","Test":"BenchmarkFastComplexRouting","Output":"BenchmarkFastComplexRouting-12     \t  343423\t      4283 ns/op\t    1625 B/op\t      15 allocs/op\n"}
+{"Time":"2025-10-03T18:04:40.798237553-03:00","Action":"output","Package":"benchmarks/bolt_fast","Output":"BenchmarkFastComplexRouting-12     \t  240655\t      4352 ns/op\t    1626 B/op\t      15 allocs/op\n"}
+{"Time":"2025-10-03T18:04:42.033072997-03:00","Action":"output","Package":"benchmarks/bolt_fast","Output":"BenchmarkFastComplexRouting-12     \t  257428\t      4534 ns/op\t    1625 B/op\t      15 allocs/op\n"}
+{"Time":"2025-10-03T18:04:43.174697573-03:00","Action":"output","Package":"benchmarks/bolt_fast","Output":"BenchmarkFastComplexRouting-12     \t  257324\t      4167 ns/op\t    1626 B/op\t      15 allocs/op\n"}
+{"Time":"2025-10-03T18:04:46.382658358-03:00","Action":"output","Package":"benchmarks/bolt_fast","Output":"BenchmarkFastComplexRouting-12     \t  414880\t      4085 ns/op\t    1626 B/op\t      15 allocs/op\n"}
+{"Time":"2025-10-03T18:04:48.039280461-03:00","Action":"output","Package":"benchmarks/bolt_fast","Output":"BenchmarkFastComplexRouting-12     \t  320584\t      4995 ns/op\t    1626 B/op\t      15 allocs/op\n"}
+{"Time":"2025-10-03T18:04:49.14861429-03:00","Action":"output","Package":"benchmarks/bolt_fast","Output":"BenchmarkFastComplexRouting-12     \t  198364\t      5165 ns/op\t    1626 B/op\t      15 allocs/op\n"}
+{"Time":"2025-10-03T18:04:50.413957763-03:00","Action":"output","Package":"benchmarks/bolt_fast","Output":"BenchmarkFastComplexRouting-12     \t  279093\t      4309 ns/op\t    1626 B/op\t      15 allocs/op\n"}
+{"Time":"2025-10-03T18:04:50.414210283-03:00","Action":"run","Package":"benchmarks/bolt_fast","Test":"BenchmarkFastLargeJSON"}
+{"Time":"2025-10-03T18:04:50.414228399-03:00","Action":"output","Package":"benchmarks/bolt_fast","Test":"BenchmarkFastLargeJSON","Output":"=== RUN   BenchmarkFastLargeJSON\n"}
+{"Time":"2025-10-03T18:04:50.41423692-03:00","Action":"output","Package":"benchmarks/bolt_fast","Test":"BenchmarkFastLargeJSON","Output":"BenchmarkFastLargeJSON\n"}
+{"Time":"2025-10-03T18:04:51.767212143-03:00","Action":"output","Package":"benchmarks/bolt_fast","Test":"BenchmarkFastLargeJSON","Output":"BenchmarkFastLargeJSON-12          \t  343586\t      3765 ns/op\t    1794 B/op\t      15 allocs/op\n"}
+{"Time":"2025-10-03T18:04:54.059741345-03:00","Action":"output","Package":"benchmarks/bolt_fast","Output":"BenchmarkFastLargeJSON-12          \t  319132\t      4212 ns/op\t    1793 B/op\t      15 allocs/op\n"}
+{"Time":"2025-10-03T18:04:55.355637844-03:00","Action":"output","Package":"benchmarks/bolt_fast","Output":"BenchmarkFastLargeJSON-12          \t  269931\t      4558 ns/op\t    1793 B/op\t      15 allocs/op\n"}
+{"Time":"2025-10-03T18:04:54.651426799-03:00","Action":"output","Package":"benchmarks/bolt_fast","Output":"BenchmarkFastLargeJSON-12          \t  307399\t      4673 ns/op\t    1794 B/op\t      15 allocs/op\n"}
+{"Time":"2025-10-03T18:04:56.361816017-03:00","Action":"output","Package":"benchmarks/bolt_fast","Output":"BenchmarkFastLargeJSON-12          \t  383648\t      4334 ns/op\t    1793 B/op\t      15 allocs/op\n"}
+{"Time":"2025-10-03T18:04:57.78457513-03:00","Action":"output","Package":"benchmarks/bolt_fast","Output":"BenchmarkFastLargeJSON-12          \t  312673\t      4362 ns/op\t    1794 B/op\t      15 allocs/op\n"}
+{"Time":"2025-10-03T18:04:59.283646742-03:00","Action":"output","Package":"benchmarks/bolt_fast","Output":"BenchmarkFastLargeJSON-12          \t  306240\t      4696 ns/op\t    1793 B/op\t      15 allocs/op\n"}
+{"Time":"2025-10-03T18:05:00.370807541-03:00","Action":"output","Package":"benchmarks/bolt_fast","Output":"BenchmarkFastLargeJSON-12          \t  273346\t      3726 ns/op\t    1793 B/op\t      15 allocs/op\n"}
+{"Time":"2025-10-03T18:05:00.371945849-03:00","Action":"run","Package":"benchmarks/bolt_fast","Test":"BenchmarkFastQueryParameters"}
+{"Time":"2025-10-03T18:05:00.372082814-03:00","Action":"output","Package":"benchmarks/bolt_fast","Test":"BenchmarkFastQueryParameters","Output":"=== RUN   BenchmarkFastQueryParameters\n"}
+{"Time":"2025-10-03T18:05:00.372161749-03:00","Action":"output","Package":"benchmarks/bolt_fast","Test":"BenchmarkFastQueryParameters","Output":"BenchmarkFastQueryParameters\n"}
+{"Time":"2025-10-03T18:05:01.632417926-03:00","Action":"output","Package":"benchmarks/bolt_fast","Test":"BenchmarkFastQueryParameters","Output":"BenchmarkFastQueryParameters-12    \t  190965\t      6160 ns/op\t    2164 B/op\t      22 allocs/op\n"}
+{"Time":"2025-10-03T18:05:02.957456923-03:00","Action":"output","Package":"benchmarks/bolt_fast","Output":"BenchmarkFastQueryParameters-12    \t  183240\t      6740 ns/op\t    2162 B/op\t      22 allocs/op\n"}
+{"Time":"2025-10-03T18:05:05.304447344-03:00","Action":"output","Package":"benchmarks/bolt_fast","Output":"BenchmarkFastQueryParameters-12    \t  193917\t      7147 ns/op\t    2163 B/op\t      22 allocs/op\n"}
+{"Time":"2025-10-03T18:05:07.036896928-03:00","Action":"output","Package":"benchmarks/bolt_fast","Output":"BenchmarkFastQueryParameters-12    \t  150274\t      6794 ns/op\t    2163 B/op\t      22 allocs/op\n"}
+{"Time":"2025-10-03T18:05:08.394663988-03:00","Action":"output","Package":"benchmarks/bolt_fast","Output":"BenchmarkFastQueryParameters-12    \t  200545\t      6333 ns/op\t    2163 B/op\t      22 allocs/op\n"}
+{"Time":"2025-10-03T18:05:09.695692102-03:00","Action":"output","Package":"benchmarks/bolt_fast","Output":"BenchmarkFastQueryParameters-12    \t  196278\t      6201 ns/op\t    2162 B/op\t      22 allocs/op\n"}
+{"Time":"2025-10-03T18:05:12.693872141-03:00","Action":"output","Package":"benchmarks/bolt_fast","Output":"BenchmarkFastQueryParameters-12    \t  196092\t      6286 ns/op\t    2162 B/op\t      22 allocs/op\n"}
+{"Time":"2025-10-03T18:05:14.139990434-03:00","Action":"output","Package":"benchmarks/bolt_fast","Output":"BenchmarkFastQueryParameters-12    \t  215552\t      6354 ns/op\t    2163 B/op\t      22 allocs/op\n"}
+{"Time":"2025-10-03T18:05:14.140456251-03:00","Action":"run","Package":"benchmarks/bolt_fast","Test":"BenchmarkFastFileUpload"}
+{"Time":"2025-10-03T18:05:14.140507809-03:00","Action":"output","Package":"benchmarks/bolt_fast","Test":"BenchmarkFastFileUpload","Output":"=== RUN   BenchmarkFastFileUpload\n"}
+{"Time":"2025-10-03T18:05:14.140593386-03:00","Action":"output","Package":"benchmarks/bolt_fast","Test":"BenchmarkFastFileUpload","Output":"BenchmarkFastFileUpload\n"}
+{"Time":"2025-10-03T18:05:15.424662034-03:00","Action":"output","Package":"benchmarks/bolt_fast","Test":"BenchmarkFastFileUpload","Output":"BenchmarkFastFileUpload-12         \t   82701\t     13507 ns/op\t   11790 B/op\t      12 allocs/op\n"}
+{"Time":"2025-10-03T18:05:16.803588724-03:00","Action":"output","Package":"benchmarks/bolt_fast","Output":"BenchmarkFastFileUpload-12         \t   89160\t     13695 ns/op\t   11789 B/op\t      12 allocs/op\n"}
+{"Time":"2025-10-03T18:05:18.233953112-03:00","Action":"output","Package":"benchmarks/bolt_fast","Output":"BenchmarkFastFileUpload-12         \t   70512\t     17033 ns/op\t   11789 B/op\t      12 allocs/op\n"}
+{"Time":"2025-10-03T18:05:20.334729069-03:00","Action":"output","Package":"benchmarks/bolt_fast","Output":"BenchmarkFastFileUpload-12         \t  122520\t     16135 ns/op\t   11789 B/op\t      12 allocs/op\n"}
+{"Time":"2025-10-03T18:05:22.495562725-03:00","Action":"output","Package":"benchmarks/bolt_fast","Output":"BenchmarkFastFileUpload-12         \t   73100\t     15226 ns/op\t   11789 B/op\t      12 allocs/op\n"}
+{"Time":"2025-10-03T18:05:24.55086919-03:00","Action":"output","Package":"benchmarks/bolt_fast","Output":"BenchmarkFastFileUpload-12         \t   87686\t     21687 ns/op\t   11790 B/op\t      12 allocs/op\n"}
+{"Time":"2025-10-03T18:05:25.891304991-03:00","Action":"output","Package":"benchmarks/bolt_fast","Output":"BenchmarkFastFileUpload-12         \t   86914\t     13578 ns/op\t   11789 B/op\t      12 allocs/op\n"}
+{"Time":"2025-10-03T18:05:25.229371273-03:00","Action":"output","Package":"benchmarks/bolt_fast","Output":"BenchmarkFastFileUpload-12         \t   94131\t     15041 ns/op\t   11790 B/op\t      12 allocs/op\n"}
+{"Time":"2025-10-03T18:05:25.22966579-03:00","Action":"output","Package":"benchmarks/bolt_fast","Output":"PASS\n"}
+{"Time":"2025-10-03T18:05:25.4992387-03:00","Action":"output","Package":"benchmarks/bolt_fast","Output":"ok  \tbenchmarks/bolt_fast\t103.785s\n"}
+{"Time":"2025-10-03T18:05:25.499615919-03:00","Action":"pass","Package":"benchmarks/bolt_fast","Elapsed":103.808}

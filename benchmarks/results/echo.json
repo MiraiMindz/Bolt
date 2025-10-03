@@ -1,52 +1,52 @@
-{"Time":"2025-10-03T11:59:51.027528942-03:00","Action":"start","Package":"benchmarks/echo"}
-{"Time":"2025-10-03T11:59:51.079327733-03:00","Action":"output","Package":"benchmarks/echo","Output":"goos: linux\n"}
-{"Time":"2025-10-03T11:59:51.07950798-03:00","Action":"output","Package":"benchmarks/echo","Output":"goarch: amd64\n"}
-{"Time":"2025-10-03T11:59:51.079536738-03:00","Action":"output","Package":"benchmarks/echo","Output":"pkg: benchmarks/echo\n"}
-{"Time":"2025-10-03T11:59:51.079544972-03:00","Action":"output","Package":"benchmarks/echo","Output":"cpu: 13th Gen Intel(R) Core(TM) i5-1334U\n"}
-{"Time":"2025-10-03T11:59:51.079561557-03:00","Action":"run","Package":"benchmarks/echo","Test":"BenchmarkStaticRoute"}
-{"Time":"2025-10-03T11:59:51.079568524-03:00","Action":"output","Package":"benchmarks/echo","Test":"BenchmarkStaticRoute","Output":"=== RUN   BenchmarkStaticRoute\n"}
-{"Time":"2025-10-03T11:59:51.079577116-03:00","Action":"output","Package":"benchmarks/echo","Test":"BenchmarkStaticRoute","Output":"BenchmarkStaticRoute\n"}
-{"Time":"2025-10-03T11:59:53.644265913-03:00","Action":"output","Package":"benchmarks/echo","Test":"BenchmarkStaticRoute","Output":"BenchmarkStaticRoute-12     \t 1416069\t       879.6 ns/op\t    1024 B/op\t      10 allocs/op\n"}
-{"Time":"2025-10-03T11:59:56.862322122-03:00","Action":"output","Package":"benchmarks/echo","Output":"BenchmarkStaticRoute-12     \t 1475242\t      1620 ns/op\t    1024 B/op\t      10 allocs/op\n"}
-{"Time":"2025-10-03T11:59:58.954432902-03:00","Action":"output","Package":"benchmarks/echo","Output":"BenchmarkStaticRoute-12     \t  712416\t      1636 ns/op\t    1024 B/op\t      10 allocs/op\n"}
-{"Time":"2025-10-03T12:00:00.062641759-03:00","Action":"output","Package":"benchmarks/echo","Output":"BenchmarkStaticRoute-12     \t 1000000\t      1087 ns/op\t    1024 B/op\t      10 allocs/op\n"}
-{"Time":"2025-10-03T12:00:02.909279968-03:00","Action":"output","Package":"benchmarks/echo","Output":"BenchmarkStaticRoute-12     \t 1408621\t      1407 ns/op\t    1024 B/op\t      10 allocs/op\n"}
-{"Time":"2025-10-03T12:00:06.743218394-03:00","Action":"output","Package":"benchmarks/echo","Output":"BenchmarkStaticRoute-12     \t 1558618\t       765.2 ns/op\t    1024 B/op\t      10 allocs/op\n"}
-{"Time":"2025-10-03T12:00:09.747951173-03:00","Action":"output","Package":"benchmarks/echo","Output":"BenchmarkStaticRoute-12     \t 1557805\t      1426 ns/op\t    1024 B/op\t      10 allocs/op\n"}
-{"Time":"2025-10-03T12:00:10.939844883-03:00","Action":"output","Package":"benchmarks/echo","Output":"BenchmarkStaticRoute-12     \t  620590\t      1873 ns/op\t    1024 B/op\t      10 allocs/op\n"}
-{"Time":"2025-10-03T12:00:10.940027091-03:00","Action":"run","Package":"benchmarks/echo","Test":"BenchmarkDynamicRoute"}
-{"Time":"2025-10-03T12:00:10.94004485-03:00","Action":"output","Package":"benchmarks/echo","Test":"BenchmarkDynamicRoute","Output":"=== RUN   BenchmarkDynamicRoute\n"}
-{"Time":"2025-10-03T12:00:10.940052849-03:00","Action":"output","Package":"benchmarks/echo","Test":"BenchmarkDynamicRoute","Output":"BenchmarkDynamicRoute\n"}
-{"Time":"2025-10-03T12:00:12.757709001-03:00","Action":"output","Package":"benchmarks/echo","Test":"BenchmarkDynamicRoute","Output":"BenchmarkDynamicRoute-12    \t  810358\t      1461 ns/op\t    1473 B/op\t      15 allocs/op\n"}
-{"Time":"2025-10-03T12:00:14.339816825-03:00","Action":"output","Package":"benchmarks/echo","Output":"BenchmarkDynamicRoute-12    \t 1000000\t      1564 ns/op\t    1473 B/op\t      15 allocs/op\n"}
-{"Time":"2025-10-03T12:00:15.456783628-03:00","Action":"output","Package":"benchmarks/echo","Output":"BenchmarkDynamicRoute-12    \t  362715\t      2956 ns/op\t    1474 B/op\t      15 allocs/op\n"}
-{"Time":"2025-10-03T12:00:16.558030138-03:00","Action":"output","Package":"benchmarks/echo","Output":"BenchmarkDynamicRoute-12    \t  376124\t      2818 ns/op\t    1474 B/op\t      15 allocs/op\n"}
-{"Time":"2025-10-03T12:00:18.542116826-03:00","Action":"output","Package":"benchmarks/echo","Output":"BenchmarkDynamicRoute-12    \t  337922\t      3111 ns/op\t    1474 B/op\t      15 allocs/op\n"}
-{"Time":"2025-10-03T12:00:18.013696438-03:00","Action":"output","Package":"benchmarks/echo","Output":"BenchmarkDynamicRoute-12    \t  766328\t      1445 ns/op\t    1473 B/op\t      15 allocs/op\n"}
-{"Time":"2025-10-03T12:00:20.347829124-03:00","Action":"output","Package":"benchmarks/echo","Output":"BenchmarkDynamicRoute-12    \t  787328\t      2940 ns/op\t    1474 B/op\t      15 allocs/op\n"}
-{"Time":"2025-10-03T12:00:21.734541633-03:00","Action":"output","Package":"benchmarks/echo","Output":"BenchmarkDynamicRoute-12    \t  477006\t      2838 ns/op\t    1473 B/op\t      15 allocs/op\n"}
-{"Time":"2025-10-03T12:00:21.734721045-03:00","Action":"run","Package":"benchmarks/echo","Test":"BenchmarkTypedJSON"}
-{"Time":"2025-10-03T12:00:21.734736129-03:00","Action":"output","Package":"benchmarks/echo","Test":"BenchmarkTypedJSON","Output":"=== RUN   BenchmarkTypedJSON\n"}
-{"Time":"2025-10-03T12:00:21.73474714-03:00","Action":"output","Package":"benchmarks/echo","Test":"BenchmarkTypedJSON","Output":"BenchmarkTypedJSON\n"}
-{"Time":"2025-10-03T12:00:23.720229606-03:00","Action":"output","Package":"benchmarks/echo","Test":"BenchmarkTypedJSON","Output":"BenchmarkTypedJSON-12       \t  268839\t      3767 ns/op\t    2034 B/op\t      17 allocs/op\n"}
-{"Time":"2025-10-03T12:00:25.559171393-03:00","Action":"output","Package":"benchmarks/echo","Output":"BenchmarkTypedJSON-12       \t  602006\t      2035 ns/op\t    2034 B/op\t      17 allocs/op\n"}
-{"Time":"2025-10-03T12:00:27.197339659-03:00","Action":"output","Package":"benchmarks/echo","Output":"BenchmarkTypedJSON-12       \t  487461\t      3292 ns/op\t    2034 B/op\t      17 allocs/op\n"}
-{"Time":"2025-10-03T12:00:29.005627271-03:00","Action":"output","Package":"benchmarks/echo","Output":"BenchmarkTypedJSON-12       \t  394488\t      4479 ns/op\t    2035 B/op\t      17 allocs/op\n"}
-{"Time":"2025-10-03T12:00:30.31894077-03:00","Action":"output","Package":"benchmarks/echo","Output":"BenchmarkTypedJSON-12       \t  315654\t      3991 ns/op\t    2034 B/op\t      17 allocs/op\n"}
-{"Time":"2025-10-03T12:00:31.670100888-03:00","Action":"output","Package":"benchmarks/echo","Output":"BenchmarkTypedJSON-12       \t  285080\t      4538 ns/op\t    2035 B/op\t      17 allocs/op\n"}
-{"Time":"2025-10-03T12:00:35.738462694-03:00","Action":"output","Package":"benchmarks/echo","Output":"BenchmarkTypedJSON-12       \t  375699\t      3173 ns/op\t    2035 B/op\t      17 allocs/op\n"}
-{"Time":"2025-10-03T12:00:37.698815321-03:00","Action":"output","Package":"benchmarks/echo","Output":"BenchmarkTypedJSON-12       \t  543698\t      3549 ns/op\t    2034 B/op\t      17 allocs/op\n"}
-{"Time":"2025-10-03T12:00:37.698984736-03:00","Action":"run","Package":"benchmarks/echo","Test":"BenchmarkMiddleware"}
-{"Time":"2025-10-03T12:00:37.699018892-03:00","Action":"output","Package":"benchmarks/echo","Test":"BenchmarkMiddleware","Output":"=== RUN   BenchmarkMiddleware\n"}
-{"Time":"2025-10-03T12:00:37.699033034-03:00","Action":"output","Package":"benchmarks/echo","Test":"BenchmarkMiddleware","Output":"BenchmarkMiddleware\n"}
-{"Time":"2025-10-03T12:00:38.741181561-03:00","Action":"output","Package":"benchmarks/echo","Test":"BenchmarkMiddleware","Output":"BenchmarkMiddleware-12      \t  453770\t      2207 ns/op\t    1073 B/op\t      12 allocs/op\n"}
-{"Time":"2025-10-03T12:00:41.389212919-03:00","Action":"output","Package":"benchmarks/echo","Output":"BenchmarkMiddleware-12      \t  692035\t      2331 ns/op\t    1072 B/op\t      12 allocs/op\n"}
-{"Time":"2025-10-03T12:00:42.626316902-03:00","Action":"output","Package":"benchmarks/echo","Output":"BenchmarkMiddleware-12      \t 1000000\t      1217 ns/op\t    1072 B/op\t      12 allocs/op\n"}
-{"Time":"2025-10-03T12:00:45.127552553-03:00","Action":"output","Package":"benchmarks/echo","Output":"BenchmarkMiddleware-12      \t 1000000\t      2475 ns/op\t    1073 B/op\t      12 allocs/op\n"}
-{"Time":"2025-10-03T12:00:46.179476364-03:00","Action":"output","Package":"benchmarks/echo","Output":"BenchmarkMiddleware-12      \t  350227\t      2863 ns/op\t    1073 B/op\t      12 allocs/op\n"}
-{"Time":"2025-10-03T12:00:47.254868492-03:00","Action":"output","Package":"benchmarks/echo","Output":"BenchmarkMiddleware-12      \t  515179\t      2007 ns/op\t    1072 B/op\t      12 allocs/op\n"}
-{"Time":"2025-10-03T12:00:47.405916703-03:00","Action":"output","Package":"benchmarks/echo","Output":"BenchmarkMiddleware-12      \t  512744\t      2473 ns/op\t    1072 B/op\t      12 allocs/op\n"}
-{"Time":"2025-10-03T12:00:49.367590894-03:00","Action":"output","Package":"benchmarks/echo","Output":"BenchmarkMiddleware-12      \t  639541\t      1692 ns/op\t    1072 B/op\t      12 allocs/op\n"}
-{"Time":"2025-10-03T12:00:49.367746812-03:00","Action":"output","Package":"benchmarks/echo","Output":"PASS\n"}
-{"Time":"2025-10-03T12:00:49.598485934-03:00","Action":"output","Package":"benchmarks/echo","Output":"ok  \tbenchmarks/echo\t62.429s\n"}
-{"Time":"2025-10-03T12:00:49.598614356-03:00","Action":"pass","Package":"benchmarks/echo","Elapsed":62.449}
+{"Time":"2025-10-03T18:08:02.732316681-03:00","Action":"start","Package":"benchmarks/echo"}
+{"Time":"2025-10-03T18:08:02.74149887-03:00","Action":"output","Package":"benchmarks/echo","Output":"goos: linux\n"}
+{"Time":"2025-10-03T18:08:02.74156587-03:00","Action":"output","Package":"benchmarks/echo","Output":"goarch: amd64\n"}
+{"Time":"2025-10-03T18:08:02.741571777-03:00","Action":"output","Package":"benchmarks/echo","Output":"pkg: benchmarks/echo\n"}
+{"Time":"2025-10-03T18:08:02.741574765-03:00","Action":"output","Package":"benchmarks/echo","Output":"cpu: 13th Gen Intel(R) Core(TM) i5-1334U\n"}
+{"Time":"2025-10-03T18:08:02.741583606-03:00","Action":"run","Package":"benchmarks/echo","Test":"BenchmarkStaticRoute"}
+{"Time":"2025-10-03T18:08:02.741586226-03:00","Action":"output","Package":"benchmarks/echo","Test":"BenchmarkStaticRoute","Output":"=== RUN   BenchmarkStaticRoute\n"}
+{"Time":"2025-10-03T18:08:02.741589526-03:00","Action":"output","Package":"benchmarks/echo","Test":"BenchmarkStaticRoute","Output":"BenchmarkStaticRoute\n"}
+{"Time":"2025-10-03T18:08:05.668473362-03:00","Action":"output","Package":"benchmarks/echo","Test":"BenchmarkStaticRoute","Output":"BenchmarkStaticRoute-12     \t 1350524\t      1572 ns/op\t    1024 B/op\t      10 allocs/op\n"}
+{"Time":"2025-10-03T18:08:07.332474725-03:00","Action":"output","Package":"benchmarks/echo","Output":"BenchmarkStaticRoute-12     \t  707220\t      1586 ns/op\t    1024 B/op\t      10 allocs/op\n"}
+{"Time":"2025-10-03T18:08:08.662173028-03:00","Action":"output","Package":"benchmarks/echo","Output":"BenchmarkStaticRoute-12     \t  761349\t      1715 ns/op\t    1024 B/op\t      10 allocs/op\n"}
+{"Time":"2025-10-03T18:08:11.699280956-03:00","Action":"output","Package":"benchmarks/echo","Output":"BenchmarkStaticRoute-12     \t 1029931\t      1413 ns/op\t    1024 B/op\t      10 allocs/op\n"}
+{"Time":"2025-10-03T18:08:12.877327529-03:00","Action":"output","Package":"benchmarks/echo","Output":"BenchmarkStaticRoute-12     \t  811008\t      1424 ns/op\t    1024 B/op\t      10 allocs/op\n"}
+{"Time":"2025-10-03T18:08:14.228624568-03:00","Action":"output","Package":"benchmarks/echo","Output":"BenchmarkStaticRoute-12     \t  857563\t      1549 ns/op\t    1024 B/op\t      10 allocs/op\n"}
+{"Time":"2025-10-03T18:08:15.585028493-03:00","Action":"output","Package":"benchmarks/echo","Output":"BenchmarkStaticRoute-12     \t  858573\t      1556 ns/op\t    1024 B/op\t      10 allocs/op\n"}
+{"Time":"2025-10-03T18:08:16.811627482-03:00","Action":"output","Package":"benchmarks/echo","Output":"BenchmarkStaticRoute-12     \t  804660\t      1497 ns/op\t    1024 B/op\t      10 allocs/op\n"}
+{"Time":"2025-10-03T18:08:16.81172799-03:00","Action":"run","Package":"benchmarks/echo","Test":"BenchmarkDynamicRoute"}
+{"Time":"2025-10-03T18:08:16.811737598-03:00","Action":"output","Package":"benchmarks/echo","Test":"BenchmarkDynamicRoute","Output":"=== RUN   BenchmarkDynamicRoute\n"}
+{"Time":"2025-10-03T18:08:16.811746307-03:00","Action":"output","Package":"benchmarks/echo","Test":"BenchmarkDynamicRoute","Output":"BenchmarkDynamicRoute\n"}
+{"Time":"2025-10-03T18:08:17.851974874-03:00","Action":"output","Package":"benchmarks/echo","Test":"BenchmarkDynamicRoute","Output":"BenchmarkDynamicRoute-12    \t  401223\t      2492 ns/op\t    1474 B/op\t      15 allocs/op\n"}
+{"Time":"2025-10-03T18:08:19.761877543-03:00","Action":"output","Package":"benchmarks/echo","Output":"BenchmarkDynamicRoute-12    \t  496034\t      2344 ns/op\t    1473 B/op\t      15 allocs/op\n"}
+{"Time":"2025-10-03T18:08:21.169225876-03:00","Action":"output","Package":"benchmarks/echo","Output":"BenchmarkDynamicRoute-12    \t  984772\t      1413 ns/op\t    1473 B/op\t      15 allocs/op\n"}
+{"Time":"2025-10-03T18:08:23.237536759-03:00","Action":"output","Package":"benchmarks/echo","Output":"BenchmarkDynamicRoute-12    \t 1000000\t      2052 ns/op\t    1473 B/op\t      15 allocs/op\n"}
+{"Time":"2025-10-03T18:08:26.517437398-03:00","Action":"output","Package":"benchmarks/echo","Output":"BenchmarkDynamicRoute-12    \t  966782\t      1641 ns/op\t    1473 B/op\t      15 allocs/op\n"}
+{"Time":"2025-10-03T18:08:27.835551098-03:00","Action":"output","Package":"benchmarks/echo","Output":"BenchmarkDynamicRoute-12    \t  875478\t      1485 ns/op\t    1473 B/op\t      15 allocs/op\n"}
+{"Time":"2025-10-03T18:08:27.617986091-03:00","Action":"output","Package":"benchmarks/echo","Output":"BenchmarkDynamicRoute-12    \t  927598\t      2190 ns/op\t    1473 B/op\t      15 allocs/op\n"}
+{"Time":"2025-10-03T18:08:31.04841079-03:00","Action":"output","Package":"benchmarks/echo","Output":"BenchmarkDynamicRoute-12    \t 1070755\t      1580 ns/op\t    1473 B/op\t      15 allocs/op\n"}
+{"Time":"2025-10-03T18:08:31.048475266-03:00","Action":"run","Package":"benchmarks/echo","Test":"BenchmarkTypedJSON"}
+{"Time":"2025-10-03T18:08:31.048479281-03:00","Action":"output","Package":"benchmarks/echo","Test":"BenchmarkTypedJSON","Output":"=== RUN   BenchmarkTypedJSON\n"}
+{"Time":"2025-10-03T18:08:31.048482442-03:00","Action":"output","Package":"benchmarks/echo","Test":"BenchmarkTypedJSON","Output":"BenchmarkTypedJSON\n"}
+{"Time":"2025-10-03T18:08:32.895802138-03:00","Action":"output","Package":"benchmarks/echo","Test":"BenchmarkTypedJSON","Output":"BenchmarkTypedJSON-12       \t  853176\t      2143 ns/op\t    2034 B/op\t      17 allocs/op\n"}
+{"Time":"2025-10-03T18:08:34.899960199-03:00","Action":"output","Package":"benchmarks/echo","Output":"BenchmarkTypedJSON-12       \t  864795\t      2297 ns/op\t    2034 B/op\t      17 allocs/op\n"}
+{"Time":"2025-10-03T18:08:36.901317861-03:00","Action":"output","Package":"benchmarks/echo","Output":"BenchmarkTypedJSON-12       \t  842140\t      2351 ns/op\t    2034 B/op\t      17 allocs/op\n"}
+{"Time":"2025-10-03T18:08:38.746389763-03:00","Action":"output","Package":"benchmarks/echo","Output":"BenchmarkTypedJSON-12       \t  862761\t      2117 ns/op\t    2034 B/op\t      17 allocs/op\n"}
+{"Time":"2025-10-03T18:08:41.756080499-03:00","Action":"output","Package":"benchmarks/echo","Output":"BenchmarkTypedJSON-12       \t  657781\t      1705 ns/op\t    2034 B/op\t      17 allocs/op\n"}
+{"Time":"2025-10-03T18:08:43.708906657-03:00","Action":"output","Package":"benchmarks/echo","Output":"BenchmarkTypedJSON-12       \t  889699\t      2174 ns/op\t    2034 B/op\t      17 allocs/op\n"}
+{"Time":"2025-10-03T18:08:45.48205337-03:00","Action":"output","Package":"benchmarks/echo","Output":"BenchmarkTypedJSON-12       \t  762704\t      2298 ns/op\t    2034 B/op\t      17 allocs/op\n"}
+{"Time":"2025-10-03T18:08:46.779679922-03:00","Action":"output","Package":"benchmarks/echo","Output":"BenchmarkTypedJSON-12       \t  671834\t      1890 ns/op\t    2034 B/op\t      17 allocs/op\n"}
+{"Time":"2025-10-03T18:08:46.779842197-03:00","Action":"run","Package":"benchmarks/echo","Test":"BenchmarkMiddleware"}
+{"Time":"2025-10-03T18:08:46.779851373-03:00","Action":"output","Package":"benchmarks/echo","Test":"BenchmarkMiddleware","Output":"=== RUN   BenchmarkMiddleware\n"}
+{"Time":"2025-10-03T18:08:46.779857452-03:00","Action":"output","Package":"benchmarks/echo","Test":"BenchmarkMiddleware","Output":"BenchmarkMiddleware\n"}
+{"Time":"2025-10-03T18:08:47.843919682-03:00","Action":"output","Package":"benchmarks/echo","Test":"BenchmarkMiddleware","Output":"BenchmarkMiddleware-12      \t  619759\t      1674 ns/op\t    1073 B/op\t      12 allocs/op\n"}
+{"Time":"2025-10-03T18:08:49.127461318-03:00","Action":"output","Package":"benchmarks/echo","Output":"BenchmarkMiddleware-12      \t  681908\t      1845 ns/op\t    1073 B/op\t      12 allocs/op\n"}
+{"Time":"2025-10-03T18:08:53.118621321-03:00","Action":"output","Package":"benchmarks/echo","Output":"BenchmarkMiddleware-12      \t 1568248\t      1500 ns/op\t    1072 B/op\t      12 allocs/op\n"}
+{"Time":"2025-10-03T18:08:54.46844301-03:00","Action":"output","Package":"benchmarks/echo","Output":"BenchmarkMiddleware-12      \t  958402\t      1390 ns/op\t    1072 B/op\t      12 allocs/op\n"}
+{"Time":"2025-10-03T18:08:56.192265676-03:00","Action":"output","Package":"benchmarks/echo","Output":"BenchmarkMiddleware-12      \t 1000000\t      1711 ns/op\t    1072 B/op\t      12 allocs/op\n"}
+{"Time":"2025-10-03T18:08:57.066986339-03:00","Action":"output","Package":"benchmarks/echo","Output":"BenchmarkMiddleware-12      \t 1242006\t       938.2 ns/op\t    1072 B/op\t      12 allocs/op\n"}
+{"Time":"2025-10-03T18:08:58.130999306-03:00","Action":"output","Package":"benchmarks/echo","Output":"BenchmarkMiddleware-12      \t 1000000\t      1049 ns/op\t    1072 B/op\t      12 allocs/op\n"}
+{"Time":"2025-10-03T18:08:59.626262921-03:00","Action":"output","Package":"benchmarks/echo","Output":"BenchmarkMiddleware-12      \t 1000000\t      1482 ns/op\t    1072 B/op\t      12 allocs/op\n"}
+{"Time":"2025-10-03T18:08:59.626362494-03:00","Action":"output","Package":"benchmarks/echo","Output":"PASS\n"}
+{"Time":"2025-10-03T18:08:59.977979305-03:00","Action":"output","Package":"benchmarks/echo","Output":"ok  \tbenchmarks/echo\t61.649s\n"}
+{"Time":"2025-10-03T18:08:59.9782431-03:00","Action":"pass","Package":"benchmarks/echo","Elapsed":61.65}

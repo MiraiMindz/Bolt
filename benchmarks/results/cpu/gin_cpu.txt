@@ -1,236 +1,229 @@
 File: gin.test
 Build ID: ea5d1f591631c56fc8179f52f76ddfdbdf4fa5c3
 Type: cpu
-Time: 2025-10-03 11:58:50 -03
-Duration: 63.18s, Total samples = 85.93s (136.00%)
-Showing nodes accounting for 67.76s, 78.85% of 85.93s total
-Dropped 485 nodes (cum <= 0.43s)
+Time: 2025-10-03 18:07:16 -03
+Duration: 48.85s, Total samples = 64.35s (131.74%)
+Showing nodes accounting for 50.16s, 77.95% of 64.35s total
+Dropped 463 nodes (cum <= 0.32s)
       flat  flat%   sum%        cum   cum%
-     5.42s  6.31%  6.31%      5.42s  6.31%  runtime.futex
-     4.67s  5.43% 11.74%      4.67s  5.43%  runtime.memclrNoHeapPointers
-     4.48s  5.21% 16.96%     10.35s 12.04%  runtime.scanobject
-     3.62s  4.21% 21.17%      3.62s  4.21%  runtime.nextFreeFast (inline)
-     2.78s  3.24% 24.40%      4.02s  4.68%  internal/runtime/maps.(*Iter).Next
-     2.34s  2.72% 27.13%      2.47s  2.87%  runtime.(*mspan).writeHeapBitsSmall
-     2.34s  2.72% 29.85%     22.28s 25.93%  runtime.mallocgcSmallScanNoHeader
-     2.13s  2.48% 32.33%      2.33s  2.71%  runtime.typePointers.next
-     1.49s  1.73% 34.06%      2.44s  2.84%  runtime.findObject
-     1.47s  1.71% 35.77%     29.85s 34.74%  runtime.mallocgc
-     1.30s  1.51% 37.29%     50.27s 58.50%  github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
-     1.25s  1.45% 38.74%      1.97s  2.29%  runtime.scanblock
-     1.20s  1.40% 40.14%      1.20s  1.40%  internal/chacha8rand.block
-        1s  1.16% 41.30%         1s  1.16%  runtime.bool2int (inline)
-     0.96s  1.12% 42.42%      0.96s  1.12%  runtime.tgkill
-     0.87s  1.01% 43.43%     14.67s 17.07%  runtime.mapassign_faststr
-     0.85s  0.99% 44.42%      0.85s  0.99%  aeshashbody
-     0.84s  0.98% 45.40%      0.84s  0.98%  runtime.(*mspan).base (inline)
-     0.80s  0.93% 46.33%      0.80s  0.93%  runtime.acquirem (inline)
-     0.80s  0.93% 47.26%      0.80s  0.93%  runtime.memmove
-     0.78s  0.91% 48.17%      1.35s  1.57%  sync.(*Pool).Put
-     0.73s  0.85% 49.02%      0.73s  0.85%  internal/runtime/maps.(*groupReference).key (inline)
-     0.72s  0.84% 49.85%      0.78s  0.91%  runtime.spanOf (inline)
-     0.69s   0.8% 50.66%      0.69s   0.8%  runtime.releasem (inline)
-     0.68s  0.79% 51.45%      4.86s  5.66%  runtime.sweepone
-     0.67s  0.78% 52.23%      0.67s  0.78%  internal/runtime/atomic.(*Uint32).Add (inline)
-     0.67s  0.78% 53.01%     15.86s 18.46%  net/http.Header.Clone (inline)
-     0.66s  0.77% 53.78%      0.66s  0.77%  runtime.(*fixalloc).alloc
-     0.62s  0.72% 54.50%      3.29s  3.83%  runtime.(*sweepLocked).sweep
-     0.62s  0.72% 55.22%      0.62s  0.72%  runtime.typePointers.nextFast (inline)
-     0.61s  0.71% 55.93%      0.62s  0.72%  runtime.traceAcquireEnabled
-     0.57s  0.66% 56.59%      0.57s  0.66%  runtime.(*mspan).init
-     0.52s  0.61% 57.20%      0.94s  1.09%  runtime.(*spanSet).push
-     0.49s  0.57% 57.77%      1.51s  1.76%  internal/runtime/maps.(*Map).putSlotSmallFastStr
-     0.47s  0.55% 58.31%     32.83s 38.21%  github.com/gin-gonic/gin.(*Context).Render
-     0.47s  0.55% 58.86%      0.51s  0.59%  runtime.step
-     0.46s  0.54% 59.40%         2s  2.33%  internal/runtime/maps.(*Iter).Init
-     0.45s  0.52% 59.92%      0.45s  0.52%  internal/runtime/maps.h2 (inline)
-     0.45s  0.52% 60.44%      0.45s  0.52%  internal/runtime/syscall.Syscall6
-     0.45s  0.52% 60.97%      1.99s  2.32%  runtime.rand
-     0.43s   0.5% 61.47%      1.18s  1.37%  runtime.wbBufFlush1
-     0.42s  0.49% 61.96%      3.35s  3.90%  runtime.mallocgcSmallNoscan
-     0.41s  0.48% 62.43%      0.50s  0.58%  runtime.(*gcBits).bitp (inline)
-     0.41s  0.48% 62.91%     10.29s 11.97%  runtime.newobject
-     0.39s  0.45% 63.37%     52.83s 61.48%  github.com/gin-gonic/gin.(*Engine).ServeHTTP
-     0.38s  0.44% 63.81%     48.22s 56.12%  github.com/gin-gonic/gin.(*Context).Next
-     0.34s   0.4% 64.20%      7.02s  8.17%  github.com/gin-gonic/gin/render.writeContentType
-     0.32s  0.37% 64.58%      0.49s  0.57%  github.com/gin-gonic/gin.(*Context).reset (inline)
-     0.32s  0.37% 64.95%      0.49s  0.57%  github.com/gin-gonic/gin.(*node).getValue
-     0.31s  0.36% 65.31%      0.65s  0.76%  runtime.(*unwinder).resolveInternal
-     0.30s  0.35% 65.66%      1.36s  1.58%  runtime.greyobject
-     0.30s  0.35% 66.01%      0.76s  0.88%  sync.(*Pool).pin
-     0.29s  0.34% 66.34%      0.74s  0.86%  runtime.lock2
-     0.29s  0.34% 66.68%      0.88s  1.02%  runtime.pcvalue
-     0.29s  0.34% 67.02%      0.68s  0.79%  sync.(*Pool).Get
-     0.28s  0.33% 67.35%      1.22s  1.42%  gcWriteBarrier
-     0.28s  0.33% 67.67%      5.60s  6.52%  runtime.makeslice
-     0.26s   0.3% 67.97%      1.25s  1.45%  runtime.(*mheap).initSpan
-     0.24s  0.28% 68.25%      0.53s  0.62%  errors.as
-     0.24s  0.28% 68.53%     18.73s 21.80%  github.com/gin-gonic/gin.(*responseWriter).Write
-     0.22s  0.26% 68.79%      2.21s  2.57%  internal/runtime/maps.rand
-     0.22s  0.26% 69.04%      0.48s  0.56%  internal/sync.(*HashTrieMap[go.shape.interface {},go.shape.interface {}]).Load
-     0.22s  0.26% 69.30%      0.54s  0.63%  net/textproto.CanonicalMIMEHeaderKey
-     0.21s  0.24% 69.54%      6.57s  7.65%  runtime.(*mcache).refill
-     0.21s  0.24% 69.79%      0.69s   0.8%  runtime.(*spanSet).pop
-     0.20s  0.23% 70.02%      2.85s  3.32%  bytes.(*Buffer).Write
-     0.20s  0.23% 70.25%      5.55s  6.46%  encoding/json.Marshal
-     0.19s  0.22% 70.48%      1.39s  1.62%  encoding/json.(*Decoder).refill
-     0.19s  0.22% 70.70%     12.28s 14.29%  runtime.gcDrain
-     0.19s  0.22% 70.92%      2.66s  3.10%  runtime.heapSetTypeNoHeader (inline)
-     0.18s  0.21% 71.13%      2.25s  2.62%  encoding/json.mapEncoder.encode
-     0.17s   0.2% 71.33%     17.75s 20.66%  benchmarks/gin.BenchmarkMiddleware
-     0.17s   0.2% 71.52%      6.91s  8.04%  runtime.(*mcache).nextFree
-     0.16s  0.19% 71.71%     12.22s 14.22%  github.com/gin-gonic/gin/render.WriteJSON
-     0.16s  0.19% 71.90%      1.39s  1.62%  runtime.mapIterNext
-     0.15s  0.17% 72.07%     19.39s 22.56%  github.com/gin-gonic/gin/render.WriteString
-     0.15s  0.17% 72.24%      0.72s  0.84%  internal/reflectlite.implements
-     0.15s  0.17% 72.42%      1.25s  1.45%  runtime.(*mheap).freeSpanLocked
-     0.15s  0.17% 72.59%      0.49s  0.57%  runtime.(*mspan).typePointersOfUnchecked
-     0.15s  0.17% 72.77%      4.33s  5.04%  runtime.mapIterStart
-     0.14s  0.16% 72.93%     16.10s 18.74%  net/http/httptest.(*ResponseRecorder).WriteHeader
-     0.14s  0.16% 73.09%      2.47s  2.87%  runtime.(*mheap).allocSpan
-     0.13s  0.15% 73.25%     12.27s 14.28%  benchmarks/gin.BenchmarkDynamicRoute
-     0.13s  0.15% 73.40%     11.41s 13.28%  internal/runtime/maps.(*Map).growToSmall
-     0.13s  0.15% 73.55%      2.47s  2.87%  internal/runtime/maps.NewMap
-     0.12s  0.14% 73.69%      1.65s  1.92%  encoding/json.(*Decoder).readValue
-     0.12s  0.14% 73.83%      1.54s  1.79%  errors.As
-     0.12s  0.14% 73.97%      2.97s  3.46%  net/http/httptest.(*ResponseRecorder).Write
-     0.12s  0.14% 74.11%      0.47s  0.55%  runtime.(*pageAlloc).update
-     0.12s  0.14% 74.25%     11.11s 12.93%  runtime.newarray
-     0.11s  0.13% 74.37%      0.50s  0.58%  runtime.typedmemmove
-     0.10s  0.12% 74.49%      2.41s  2.80%  bytes.(*Buffer).grow
-     0.10s  0.12% 74.61%      0.77s   0.9%  encoding/json.structEncoder.encode
-     0.10s  0.12% 74.72%      1.30s  1.51%  internal/chacha8rand.(*State).Refill
-     0.10s  0.12% 74.84%      2.66s  3.10%  runtime.makemap_small
-     0.10s  0.12% 74.96%     23.47s 27.31%  runtime.systemstack
-     0.09s   0.1% 75.06%     13.20s 15.36%  benchmarks/gin.BenchmarkTypedJSON
-     0.09s   0.1% 75.17%      3.67s  4.27%  encoding/json.(*encodeState).reflectValue
-     0.09s   0.1% 75.27%      0.44s  0.51%  encoding/json.newEncodeState
-     0.09s   0.1% 75.38%      4.49s  5.23%  github.com/gin-gonic/gin.(*Context).Header
-     0.09s   0.1% 75.48%      0.81s  0.94%  internal/reflectlite.rtype.Implements
-     0.09s   0.1% 75.58%      2.91s  3.39%  runtime.convT
-     0.09s   0.1% 75.69%      2.82s  3.28%  runtime.findRunnable
-     0.08s 0.093% 75.78%      3.82s  4.45%  encoding/json.(*encodeState).marshal
-     0.08s 0.093% 75.88%      0.48s  0.56%  encoding/json.stringEncoder
-     0.08s 0.093% 75.97%      2.47s  2.87%  runtime.deductAssistCredit
-     0.08s 0.093% 76.06%      0.68s  0.79%  runtime.gcmarknewobject
-     0.07s 0.081% 76.14%     10.18s 11.85%  benchmarks/gin.BenchmarkDynamicRoute.func1
-     0.07s 0.081% 76.22%      2.59s  3.01%  github.com/gin-gonic/gin/binding.decodeJSON
-     0.07s 0.081% 76.31%     11.18s 13.01%  internal/runtime/maps.newarray
-     0.07s 0.081% 76.39%      1.05s  1.22%  runtime.(*gcControllerState).update
-     0.07s 0.081% 76.47%      4.54s  5.28%  runtime.(*mcentral).cacheSpan
-     0.06s  0.07% 76.54%     15.90s 18.50%  benchmarks/gin.BenchmarkStaticRoute
-     0.06s  0.07% 76.61%     11.24s 13.08%  internal/runtime/maps.newGroups (inline)
-     0.06s  0.07% 76.68%      5.83s  6.78%  net/http/httptest.NewRecorder (inline)
-     0.06s  0.07% 76.75%      1.49s  1.73%  runtime.(*sweepLocked).sweep.(*mheap).freeSpan.func2
-     0.06s  0.07% 76.82%      0.79s  0.92%  runtime.growslice
-     0.06s  0.07% 76.89%      2.53s  2.94%  runtime.makemap
-     0.06s  0.07% 76.96%      0.61s  0.71%  runtime.traceEventWriter.event
-     0.05s 0.058% 77.02%     16.25s 18.91%  github.com/gin-gonic/gin.(*responseWriter).WriteHeaderNow (partial-inline)
-     0.05s 0.058% 77.07%      2.64s  3.07%  github.com/gin-gonic/gin/binding.jsonBinding.Bind
-     0.05s 0.058% 77.13%     19.44s 22.62%  github.com/gin-gonic/gin/render.String.Render
-     0.05s 0.058% 77.19%      0.76s  0.88%  runtime.(*mheap).nextSpanForSweep
-     0.05s 0.058% 77.25%      1.16s  1.35%  runtime.futexsleep
-     0.05s 0.058% 77.31%      2.97s  3.46%  runtime.markroot
-     0.05s 0.058% 77.37%      0.44s  0.51%  runtime.newMarkBits
-     0.05s 0.058% 77.42%      0.92s  1.07%  runtime.notesleep
-     0.05s 0.058% 77.48%      0.55s  0.64%  runtime.traceWriter.event
-     0.04s 0.047% 77.53%      1.32s  1.54%  github.com/gin-gonic/gin.(*Context).Error
-     0.04s 0.047% 77.57%      5.84s  6.80%  github.com/gin-gonic/gin.(*Context).MustBindWith
-     0.04s 0.047% 77.62%      2.68s  3.12%  github.com/gin-gonic/gin.(*Context).ShouldBindWith (inline)
-     0.04s 0.047% 77.67%      0.63s  0.73%  github.com/gin-gonic/gin.(*Context).Status (inline)
-     0.04s 0.047% 77.71%      0.59s  0.69%  github.com/gin-gonic/gin.(*responseWriter).WriteHeader
-     0.04s 0.047% 77.76%      2.52s  2.93%  runtime.(*mheap).alloc
-     0.04s 0.047% 77.81%      0.74s  0.86%  runtime.(*unwinder).next
-     0.04s 0.047% 77.85%      0.52s  0.61%  sync.(*Map).Load (inline)
-     0.03s 0.035% 77.89%      1.74s  2.02%  encoding/json.(*Decoder).Decode
-     0.03s 0.035% 77.92%      0.55s  0.64%  encoding/json.typeEncoder
-     0.03s 0.035% 77.96%     13.82s 16.08%  github.com/gin-gonic/gin.(*Context).JSON (inline)
-     0.03s 0.035% 77.99%      3.30s  3.84%  runtime.(*mcentral).grow
-     0.03s 0.035% 78.03%      0.53s  0.62%  runtime.(*mspan).markBitsForIndex (inline)
-     0.03s 0.035% 78.06%      0.75s  0.87%  runtime.forEachPInternal
-     0.03s 0.035% 78.10%      0.92s  1.07%  runtime.mProf_Malloc
-     0.03s 0.035% 78.13%      1.03s  1.20%  runtime.makeSpanClass (inline)
-     0.02s 0.023% 78.16%     12.26s 14.27%  benchmarks/gin.BenchmarkStaticRoute.func1
-     0.02s 0.023% 78.18%      2.03s  2.36%  github.com/gin-gonic/gin.(*Context).AbortWithError
-     0.02s 0.023% 78.20%      5.86s  6.82%  github.com/gin-gonic/gin.(*Context).BindJSON (inline)
-     0.02s 0.023% 78.23%     21.64s 25.18%  github.com/gin-gonic/gin.(*Context).String (inline)
-     0.02s 0.023% 78.25%      4.30s  5.00%  net/textproto.MIMEHeader.Set (inline)
-     0.02s 0.023% 78.27%      0.68s  0.79%  reflect.(*MapIter).Next
-     0.02s 0.023% 78.30%      0.54s  0.63%  reflect.mapIterStart
-     0.02s 0.023% 78.32%      0.67s  0.78%  runtime.(*mcentral).uncacheSpan
-     0.02s 0.023% 78.34%      4.91s  5.71%  runtime.bgsweep
-     0.02s 0.023% 78.37%      2.39s  2.78%  runtime.gcAssistAlloc
-     0.02s 0.023% 78.39%     12.31s 14.33%  runtime.gcBgMarkWorker.func2
-     0.02s 0.023% 78.41%      2.25s  2.62%  runtime.gcDrainN
-     0.02s 0.023% 78.44%      0.75s  0.87%  runtime.lock (partial-inline)
-     0.02s 0.023% 78.46%      0.94s  1.09%  runtime.mPark (inline)
-     0.02s 0.023% 78.48%      2.32s  2.70%  runtime.newstack
-     0.02s 0.023% 78.51%      0.48s  0.56%  runtime.traceLocker.HeapAlloc
-     0.02s 0.023% 78.53%      0.45s  0.52%  runtime.traceRelease (inline)
-     0.02s 0.023% 78.55%      0.44s  0.51%  runtime.traceStack
-     0.02s 0.023% 78.58%      0.76s  0.88%  runtime.tracebackPCs
-     0.02s 0.023% 78.60%      1.08s  1.26%  runtime.wbBufFlush.func1
-     0.01s 0.012% 78.61%     13.99s 16.28%  benchmarks/gin.BenchmarkMiddleware.func1
-     0.01s 0.012% 78.62%      0.69s   0.8%  github.com/gin-gonic/gin.(*Context).AbortWithStatus
-     0.01s 0.012% 78.63%      2.56s  2.98%  internal/runtime/maps.NewEmptyMap (inline)
-     0.01s 0.012% 78.65%      0.51s  0.59%  reflect.copyVal
-     0.01s 0.012% 78.66%      0.68s  0.79%  runtime.(*gcWork).balance
-     0.01s 0.012% 78.67%      2.48s  2.89%  runtime.(*mheap).alloc.func1
-     0.01s 0.012% 78.68%      1.51s  1.76%  runtime.(*mheap).freeSpan (inline)
-     0.01s 0.012% 78.69%      0.84s  0.98%  runtime.callers
-     0.01s 0.012% 78.70%      0.82s  0.95%  runtime.callers.func1
-     0.01s 0.012% 78.72%      0.48s  0.56%  runtime.dumpStacksRec
-     0.01s 0.012% 78.73%      4.32s  5.03%  runtime.futexwakeup
-     0.01s 0.012% 78.74%     14.28s 16.62%  runtime.gcBgMarkWorker
-     0.01s 0.012% 78.75%      2.22s  2.58%  runtime.goschedImpl
-     0.01s 0.012% 78.76%      0.89s  1.04%  runtime.markroot.func1
-     0.01s 0.012% 78.77%      4.21s  4.90%  runtime.mcall
-     0.01s 0.012% 78.79%      1.99s  2.32%  runtime.morestack
-     0.01s 0.012% 78.80%      0.78s  0.91%  runtime.runSafePointFn
-     0.01s 0.012% 78.81%      0.68s  0.79%  runtime.scanstack
-     0.01s 0.012% 78.82%      5.22s  6.07%  runtime.schedule
-     0.01s 0.012% 78.83%      3.45s  4.01%  runtime.startm
-     0.01s 0.012% 78.84%      1.17s  1.36%  runtime.stopm
-     0.01s 0.012% 78.85%      3.55s  4.13%  runtime.wakep
-         0     0% 78.85%      9.40s 10.94%  benchmarks/gin.BenchmarkMiddleware.func2
-         0     0% 78.85%     11.49s 13.37%  benchmarks/gin.BenchmarkTypedJSON.func1
-         0     0% 78.85%      0.78s  0.91%  encoding/json.NewDecoder (inline)
-         0     0% 78.85%      0.56s  0.65%  encoding/json.valueEncoder
-         0     0% 78.85%      5.55s  6.46%  github.com/gin-gonic/gin/codec/json.jsonApi.Marshal
-         0     0% 78.85%      0.78s  0.91%  github.com/gin-gonic/gin/codec/json.jsonApi.NewDecoder
-         0     0% 78.85%     12.22s 14.22%  github.com/gin-gonic/gin/render.JSON.Render
-         0     0% 78.85%      4.30s  5.00%  net/http.Header.Set (inline)
-         0     0% 78.85%      0.68s  0.79%  runtime.(*gcControllerState).enlistWorker
-         0     0% 78.85%      0.66s  0.77%  runtime.(*mheap).allocMSpanLocked
-         0     0% 78.85%      0.75s  0.87%  runtime.(*mspan).initHeapBits
-         0     0% 78.85%      0.58s  0.67%  runtime.(*pageAlloc).free
-         0     0% 78.85%      0.48s  0.56%  runtime.(*traceAdvancerState).start.func1
-         0     0% 78.85%      0.48s  0.56%  runtime.(*traceStackTable).dump
-         0     0% 78.85%      0.76s  0.88%  runtime.forEachP (inline)
-         0     0% 78.85%      2.29s  2.66%  runtime.gcAssistAlloc.func2
-         0     0% 78.85%      2.29s  2.66%  runtime.gcAssistAlloc1
-         0     0% 78.85%     11.29s 13.14%  runtime.gcDrainMarkWorkerDedicated (inline)
-         0     0% 78.85%      0.99s  1.15%  runtime.gcDrainMarkWorkerIdle (inline)
-         0     0% 78.85%      1.86s  2.16%  runtime.gcMarkDone
-         0     0% 78.85%      0.49s  0.57%  runtime.gcMarkDone.forEachP.func5
-         0     0% 78.85%      0.95s  1.11%  runtime.gcMarkTermination
-         0     0% 78.85%      1.42s  1.65%  runtime.gcStart
-         0     0% 78.85%      0.69s   0.8%  runtime.gcStart.func4
-         0     0% 78.85%      2.13s  2.48%  runtime.gopreempt_m (inline)
-         0     0% 78.85%      0.74s  0.86%  runtime.lockWithRank (inline)
-         0     0% 78.85%      0.44s  0.51%  runtime.makeTraceFrames
-         0     0% 78.85%      1.87s  2.18%  runtime.markrootBlock
-         0     0% 78.85%      4.14s  4.82%  runtime.notewakeup
-         0     0% 78.85%      4.08s  4.75%  runtime.park_m
-         0     0% 78.85%      1.09s  1.27%  runtime.preemptM (inline)
-         0     0% 78.85%      1.01s  1.18%  runtime.preemptone
-         0     0% 78.85%      0.94s  1.09%  runtime.profilealloc
-         0     0% 78.85%      2.23s  2.60%  runtime.resetspinning
-         0     0% 78.85%      1.08s  1.26%  runtime.signalM
-         0     0% 78.85%      1.07s  1.25%  runtime.startTheWorldWithSema
-         0     0% 78.85%      0.62s  0.72%  runtime.traceAcquire (inline)
-         0     0% 78.85%      0.48s  0.56%  runtime.traceAdvance
-         0     0% 78.85%      0.44s  0.51%  runtime.traceLocker.stack (inline)
-         0     0% 78.85%      1.09s  1.27%  runtime.wbBufFlush
-         0     0% 78.85%     59.21s 68.90%  testing.(*B).launch
-         0     0% 78.85%     59.22s 68.92%  testing.(*B).runN
+     3.99s  6.20%  6.20%      3.99s  6.20%  runtime.futex
+     3.61s  5.61% 11.81%      3.61s  5.61%  runtime.memclrNoHeapPointers
+     3.36s  5.22% 17.03%      7.71s 11.98%  runtime.scanobject
+     2.97s  4.62% 21.65%      2.97s  4.62%  runtime.nextFreeFast (inline)
+     2.29s  3.56% 25.21%      3.28s  5.10%  internal/runtime/maps.(*Iter).Next
+     2.16s  3.36% 28.56%     17.17s 26.68%  runtime.mallocgcSmallScanNoHeader
+     1.74s  2.70% 31.27%      1.87s  2.91%  runtime.(*mspan).writeHeapBitsSmall
+     1.72s  2.67% 33.94%      1.82s  2.83%  runtime.typePointers.next
+     1.18s  1.83% 35.77%     22.65s 35.20%  runtime.mallocgc
+     1.03s  1.60% 37.37%      1.03s  1.60%  internal/chacha8rand.block
+     0.94s  1.46% 38.83%      1.76s  2.74%  runtime.findObject
+     0.89s  1.38% 40.22%      0.89s  1.38%  aeshashbody
+     0.87s  1.35% 41.57%      1.57s  2.44%  runtime.scanblock
+     0.85s  1.32% 42.89%     37.37s 58.07%  github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+     0.79s  1.23% 44.12%      0.79s  1.23%  runtime.tgkill
+     0.66s  1.03% 45.14%      0.66s  1.03%  internal/runtime/maps.(*groupReference).key (inline)
+     0.63s  0.98% 46.12%      0.63s  0.98%  runtime.(*mspan).base (inline)
+     0.60s  0.93% 47.06%     10.92s 16.97%  runtime.mapassign_faststr
+     0.59s  0.92% 47.97%      0.59s  0.92%  runtime.bool2int (inline)
+     0.59s  0.92% 48.89%      0.69s  1.07%  runtime.spanOf (inline)
+     0.57s  0.89% 49.77%      0.57s  0.89%  runtime.releasem (inline)
+     0.50s  0.78% 50.55%      0.51s  0.79%  runtime.traceAcquireEnabled
+     0.49s  0.76% 51.31%      0.49s  0.76%  runtime.acquirem (inline)
+     0.49s  0.76% 52.07%      0.49s  0.76%  runtime.step
+     0.48s  0.75% 52.82%      0.48s  0.75%  runtime.typePointers.nextFast (inline)
+     0.45s   0.7% 53.52%      0.90s  1.40%  sync.(*Pool).Put
+     0.43s  0.67% 54.19%      0.43s  0.67%  runtime.(*fixalloc).alloc
+     0.41s  0.64% 54.83%     12.14s 18.87%  net/http.Header.Clone (inline)
+     0.41s  0.64% 55.46%      0.41s  0.64%  runtime.nanotime (inline)
+     0.40s  0.62% 56.08%      0.40s  0.62%  internal/runtime/atomic.(*Uint32).Add (inline)
+     0.40s  0.62% 56.71%      0.40s  0.62%  runtime.memmove
+     0.40s  0.62% 57.33%      1.73s  2.69%  runtime.rand
+     0.40s  0.62% 57.95%      3.23s  5.02%  runtime.sweepone
+     0.38s  0.59% 58.54%      1.65s  2.56%  internal/runtime/maps.(*Iter).Init
+     0.38s  0.59% 59.13%      0.97s  1.51%  internal/runtime/maps.(*Map).putSlotSmallFastStr
+     0.36s  0.56% 59.69%     25.48s 39.60%  github.com/gin-gonic/gin.(*Context).Render
+     0.35s  0.54% 60.23%      0.43s  0.67%  github.com/gin-gonic/gin.(*node).getValue
+     0.33s  0.51% 60.75%      0.68s  1.06%  runtime.(*spanSet).push
+     0.33s  0.51% 61.26%      2.28s  3.54%  runtime.(*sweepLocked).sweep
+     0.32s   0.5% 61.76%      8.15s 12.67%  runtime.newobject
+     0.31s  0.48% 62.24%      2.41s  3.75%  runtime.mallocgcSmallNoscan
+     0.31s  0.48% 62.72%      0.91s  1.41%  runtime.wbBufFlush1
+     0.30s  0.47% 63.19%      0.58s   0.9%  sync.(*Pool).pin
+     0.28s  0.44% 63.62%      5.80s  9.01%  github.com/gin-gonic/gin/render.writeContentType
+     0.27s  0.42% 64.04%     39.21s 60.93%  github.com/gin-gonic/gin.(*Engine).ServeHTTP
+     0.26s   0.4% 64.44%      0.43s  0.67%  errors.as
+     0.26s   0.4% 64.85%      0.54s  0.84%  runtime.(*spanSet).pop
+     0.25s  0.39% 65.24%      0.56s  0.87%  runtime.(*unwinder).resolveInternal
+     0.22s  0.34% 65.58%     35.83s 55.68%  github.com/gin-gonic/gin.(*Context).Next
+     0.21s  0.33% 65.91%      0.55s  0.85%  runtime.lock2
+     0.20s  0.31% 66.22%      1.84s  2.86%  runtime.(*mheap).allocSpan
+     0.20s  0.31% 66.53%      0.58s   0.9%  sync.(*Pool).Get
+     0.19s   0.3% 66.82%      0.34s  0.53%  github.com/gin-gonic/gin.(*Context).reset (inline)
+     0.18s  0.28% 67.10%      4.22s  6.56%  encoding/json.Marshal
+     0.18s  0.28% 67.38%      5.05s  7.85%  runtime.(*mcache).refill
+     0.17s  0.26% 67.65%      1.92s  2.98%  internal/runtime/maps.rand
+     0.17s  0.26% 67.91%      2.04s  3.17%  runtime.heapSetTypeNoHeader (inline)
+     0.17s  0.26% 68.17%      4.29s  6.67%  runtime.makeslice
+     0.16s  0.25% 68.42%      1.19s  1.85%  internal/chacha8rand.(*State).Refill
+     0.16s  0.25% 68.67%      2.32s  3.61%  net/http/httptest.(*ResponseRecorder).Write
+     0.16s  0.25% 68.92%      1.06s  1.65%  runtime.greyobject
+     0.16s  0.25% 69.17%      3.66s  5.69%  runtime.mapIterStart
+     0.16s  0.25% 69.42%      0.80s  1.24%  runtime.pcvalue
+     0.15s  0.23% 69.65%     12.34s 19.18%  net/http/httptest.(*ResponseRecorder).WriteHeader
+     0.15s  0.23% 69.88%      9.48s 14.73%  runtime.gcDrain
+     0.14s  0.22% 70.10%      2.19s  3.40%  bytes.(*Buffer).Write
+     0.14s  0.22% 70.32%      0.50s  0.78%  encoding/json.structEncoder.encode
+     0.13s   0.2% 70.52%      8.80s 13.68%  benchmarks/gin.BenchmarkMiddleware
+     0.13s   0.2% 70.72%      1.92s  2.98%  bytes.(*Buffer).grow
+     0.13s   0.2% 70.92%     14.17s 22.02%  github.com/gin-gonic/gin/render.WriteString
+     0.13s   0.2% 71.13%      8.41s 13.07%  internal/runtime/maps.(*Map).growToSmall
+     0.13s   0.2% 71.33%      0.49s  0.76%  runtime.(*mspan).typePointersOfUnchecked
+     0.12s  0.19% 71.52%      0.93s  1.45%  encoding/json.(*Decoder).refill
+     0.12s  0.19% 71.70%      0.77s  1.20%  gcWriteBarrier
+     0.11s  0.17% 71.87%     14.32s 22.25%  github.com/gin-gonic/gin.(*responseWriter).Write
+     0.11s  0.17% 72.04%      0.83s  1.29%  runtime.(*mheap).initSpan
+     0.11s  0.17% 72.21%      0.41s  0.64%  runtime.gcmarknewobject
+     0.10s  0.16% 72.37%      2.03s  3.15%  encoding/json.mapEncoder.encode
+     0.10s  0.16% 72.53%      0.69s  1.07%  runtime.makeSpanClass (inline)
+     0.09s  0.14% 72.67%      8.99s 13.97%  benchmarks/gin.BenchmarkTypedJSON
+     0.09s  0.14% 72.80%      0.46s  0.71%  internal/reflectlite.implements
+     0.09s  0.14% 72.94%      2.01s  3.12%  internal/runtime/maps.NewMap
+     0.09s  0.14% 73.08%      0.72s  1.12%  runtime.(*mheap).freeSpanLocked
+     0.09s  0.14% 73.22%     17.66s 27.44%  runtime.systemstack
+     0.08s  0.12% 73.35%     12.15s 18.88%  benchmarks/gin.BenchmarkDynamicRoute
+     0.08s  0.12% 73.47%     14.42s 22.41%  benchmarks/gin.BenchmarkStaticRoute
+     0.08s  0.12% 73.60%      2.95s  4.58%  encoding/json.(*encodeState).reflectValue
+     0.08s  0.12% 73.72%     10.38s 16.13%  github.com/gin-gonic/gin/render.WriteJSON
+     0.08s  0.12% 73.85%      3.59s  5.58%  runtime.(*mcentral).cacheSpan
+     0.08s  0.12% 73.97%      1.02s  1.59%  runtime.mapIterNext
+     0.07s  0.11% 74.08%      1.81s  2.81%  github.com/gin-gonic/gin/binding.decodeJSON
+     0.07s  0.11% 74.19%      8.20s 12.74%  internal/runtime/maps.newGroups (inline)
+     0.07s  0.11% 74.30%      8.13s 12.63%  internal/runtime/maps.newarray
+     0.07s  0.11% 74.41%      4.75s  7.38%  net/http/httptest.NewRecorder (inline)
+     0.07s  0.11% 74.51%      0.79s  1.23%  runtime.(*gcControllerState).update
+     0.07s  0.11% 74.62%      5.28s  8.21%  runtime.(*mcache).nextFree
+     0.07s  0.11% 74.73%      1.95s  3.03%  runtime.convT
+     0.06s 0.093% 74.83%      0.37s  0.57%  encoding/json.stringEncoder
+     0.06s 0.093% 74.92%      1.05s  1.63%  errors.As
+     0.06s 0.093% 75.01%      0.36s  0.56%  net/textproto.CanonicalMIMEHeaderKey
+     0.06s 0.093% 75.10%      0.53s  0.82%  runtime.growslice
+     0.06s 0.093% 75.20%      0.75s  1.17%  runtime.notesleep
+     0.05s 0.078% 75.28%      6.89s 10.71%  benchmarks/gin.BenchmarkMiddleware.func1
+     0.05s 0.078% 75.35%      1.09s  1.69%  encoding/json.(*Decoder).Decode
+     0.05s 0.078% 75.43%      3.05s  4.74%  encoding/json.(*encodeState).marshal
+     0.05s 0.078% 75.51%     12.52s 19.46%  github.com/gin-gonic/gin.(*responseWriter).WriteHeaderNow (partial-inline)
+     0.05s 0.078% 75.59%      0.54s  0.84%  runtime.(*mheap).nextSpanForSweep
+     0.05s 0.078% 75.66%      0.33s  0.51%  runtime.(*pageAlloc).update
+     0.05s 0.078% 75.74%      1.70s  2.64%  runtime.deductAssistCredit
+     0.05s 0.078% 75.82%         1s  1.55%  runtime.futexsleep
+     0.04s 0.062% 75.88%      1.03s  1.60%  encoding/json.(*Decoder).readValue
+     0.04s 0.062% 75.94%      1.88s  2.92%  github.com/gin-gonic/gin.(*Context).ShouldBindWith (inline)
+     0.04s 0.062% 76.01%      0.45s   0.7%  github.com/gin-gonic/gin.(*responseWriter).WriteHeader
+     0.04s 0.062% 76.07%      0.52s  0.81%  internal/reflectlite.rtype.Implements
+     0.04s 0.062% 76.13%      1.57s  2.44%  runtime.gcDrainN
+     0.04s 0.062% 76.19%      2.05s  3.19%  runtime.makemap
+     0.04s 0.062% 76.25%      0.48s  0.75%  runtime.newMarkBits
+     0.04s 0.062% 76.32%         4s  6.22%  runtime.schedule
+     0.03s 0.047% 76.36%      9.99s 15.52%  benchmarks/gin.BenchmarkDynamicRoute.func1
+     0.03s 0.047% 76.41%     10.73s 16.67%  benchmarks/gin.BenchmarkStaticRoute.func1
+     0.03s 0.047% 76.46%      0.58s   0.9%  github.com/gin-gonic/gin.(*Context).AbortWithStatus
+     0.03s 0.047% 76.50%      0.48s  0.75%  github.com/gin-gonic/gin.(*Context).Status (inline)
+     0.03s 0.047% 76.55%      1.84s  2.86%  github.com/gin-gonic/gin/binding.jsonBinding.Bind
+     0.03s 0.047% 76.60%      0.56s  0.87%  reflect.(*MapIter).Next
+     0.03s 0.047% 76.64%      0.68s  1.06%  runtime.(*mspan).initHeapBits
+     0.03s 0.047% 76.69%      0.61s  0.95%  runtime.forEachPInternal
+     0.03s 0.047% 76.74%      0.90s  1.40%  runtime.gcStart
+     0.03s 0.047% 76.78%      2.02s  3.14%  runtime.makemap_small
+     0.03s 0.047% 76.83%      8.06s 12.53%  runtime.newarray
+     0.03s 0.047% 76.88%      0.33s  0.51%  runtime.traceRelease (inline)
+     0.03s 0.047% 76.92%      0.54s  0.84%  runtime.traceWriter.event
+     0.03s 0.047% 76.97%      0.59s  0.92%  runtime.tracebackPCs
+     0.02s 0.031% 77.00%      4.84s  7.52%  benchmarks/gin.BenchmarkMiddleware.func2
+     0.02s 0.031% 77.03%      0.87s  1.35%  github.com/gin-gonic/gin.(*Context).Error
+     0.02s 0.031% 77.06%      1.99s  3.09%  github.com/gin-gonic/gin.(*Context).Header
+     0.02s 0.031% 77.09%     15.52s 24.12%  github.com/gin-gonic/gin.(*Context).String (inline)
+     0.02s 0.031% 77.13%     14.19s 22.05%  github.com/gin-gonic/gin/render.String.Render
+     0.02s 0.031% 77.16%      1.99s  3.09%  internal/runtime/maps.NewEmptyMap (inline)
+     0.02s 0.031% 77.19%      0.45s   0.7%  reflect.mapIterStart
+     0.02s 0.031% 77.22%      0.53s  0.82%  runtime.(*mcentral).uncacheSpan
+     0.02s 0.031% 77.25%      1.88s  2.92%  runtime.(*mheap).alloc.func1
+     0.02s 0.031% 77.28%      0.99s  1.54%  runtime.(*mheap).freeSpan (inline)
+     0.02s 0.031% 77.31%      2.24s  3.48%  runtime.findRunnable
+     0.02s 0.031% 77.34%      3.06s  4.76%  runtime.futexwakeup
+     0.02s 0.031% 77.37%      0.64s  0.99%  runtime.gcMarkTermination
+     0.02s 0.031% 77.40%      2.98s  4.63%  runtime.notewakeup
+     0.02s 0.031% 77.44%      0.74s  1.15%  runtime.preemptone
+     0.02s 0.031% 77.47%      0.74s  1.15%  runtime.profilealloc
+     0.02s 0.031% 77.50%      1.58s  2.46%  runtime.resetspinning
+     0.02s 0.031% 77.53%      0.67s  1.04%  runtime.scanstack
+     0.02s 0.031% 77.56%      0.43s  0.67%  runtime.traceLocker.HeapAlloc
+     0.01s 0.016% 77.58%      0.34s  0.53%  encoding/json.valueEncoder
+     0.01s 0.016% 77.59%      1.46s  2.27%  github.com/gin-gonic/gin.(*Context).AbortWithError
+     0.01s 0.016% 77.61%      4.24s  6.59%  github.com/gin-gonic/gin.(*Context).BindJSON (inline)
+     0.01s 0.016% 77.62%      4.23s  6.57%  github.com/gin-gonic/gin.(*Context).MustBindWith
+     0.01s 0.016% 77.64%      0.52s  0.81%  reflect.copyVal
+     0.01s 0.016% 77.65%      0.48s  0.75%  reflect.unsafe_New
+     0.01s 0.016% 77.67%      0.51s  0.79%  runtime.(*gcControllerState).enlistWorker
+     0.01s 0.016% 77.68%      2.59s  4.02%  runtime.(*mcentral).grow
+     0.01s 0.016% 77.70%      1.90s  2.95%  runtime.(*mheap).alloc
+     0.01s 0.016% 77.72%      0.33s  0.51%  runtime.(*scavengerState).run
+     0.01s 0.016% 77.73%      0.96s  1.49%  runtime.(*sweepLocked).sweep.(*mheap).freeSpan.func2
+     0.01s 0.016% 77.75%      0.52s  0.81%  runtime.(*unwinder).next
+     0.01s 0.016% 77.76%      0.62s  0.96%  runtime.forEachP (inline)
+     0.01s 0.016% 77.78%      1.59s  2.47%  runtime.gcAssistAlloc.func2
+     0.01s 0.016% 77.79%     10.99s 17.08%  runtime.gcBgMarkWorker
+     0.01s 0.016% 77.81%      9.52s 14.79%  runtime.gcBgMarkWorker.func2
+     0.01s 0.016% 77.82%      0.35s  0.54%  runtime.gcstopm
+     0.01s 0.016% 77.84%      0.56s  0.87%  runtime.lock (partial-inline)
+     0.01s 0.016% 77.86%      2.45s  3.81%  runtime.markroot
+     0.01s 0.016% 77.87%      3.03s  4.71%  runtime.park_m
+     0.01s 0.016% 77.89%      0.73s  1.13%  runtime.startTheWorldWithSema
+     0.01s 0.016% 77.90%      2.42s  3.76%  runtime.startm
+     0.01s 0.016% 77.92%      0.54s  0.84%  runtime.traceAcquire (inline)
+     0.01s 0.016% 77.93%      0.55s  0.85%  runtime.traceEventWriter.event
+     0.01s 0.016% 77.95%      0.85s  1.32%  runtime.wbBufFlush.func1
+         0     0% 77.95%      7.97s 12.39%  benchmarks/gin.BenchmarkTypedJSON.func1
+         0     0% 77.95%      0.65s  1.01%  encoding/json.NewDecoder (inline)
+         0     0% 77.95%     11.65s 18.10%  github.com/gin-gonic/gin.(*Context).JSON (inline)
+         0     0% 77.95%      4.22s  6.56%  github.com/gin-gonic/gin/codec/json.jsonApi.Marshal
+         0     0% 77.95%      0.65s  1.01%  github.com/gin-gonic/gin/codec/json.jsonApi.NewDecoder
+         0     0% 77.95%     10.38s 16.13%  github.com/gin-gonic/gin/render.JSON.Render
+         0     0% 77.95%      1.94s  3.01%  net/http.Header.Set (inline)
+         0     0% 77.95%      1.94s  3.01%  net/textproto.MIMEHeader.Set (inline)
+         0     0% 77.95%      0.46s  0.71%  runtime.(*gcWork).balance
+         0     0% 77.95%      0.41s  0.64%  runtime.(*mheap).allocMSpanLocked
+         0     0% 77.95%      0.35s  0.54%  runtime.(*pageAlloc).free
+         0     0% 77.95%      0.34s  0.53%  runtime.(*traceAdvancerState).start.func1
+         0     0% 77.95%      0.34s  0.53%  runtime.(*traceStackTable).dump
+         0     0% 77.95%      0.36s  0.56%  runtime.bgscavenge
+         0     0% 77.95%      3.24s  5.03%  runtime.bgsweep
+         0     0% 77.95%      0.61s  0.95%  runtime.callers
+         0     0% 77.95%      0.61s  0.95%  runtime.callers.func1
+         0     0% 77.95%      0.34s  0.53%  runtime.dumpStacksRec
+         0     0% 77.95%      1.65s  2.56%  runtime.gcAssistAlloc
+         0     0% 77.95%      1.58s  2.46%  runtime.gcAssistAlloc1
+         0     0% 77.95%      8.94s 13.89%  runtime.gcDrainMarkWorkerDedicated (inline)
+         0     0% 77.95%      0.54s  0.84%  runtime.gcDrainMarkWorkerIdle (inline)
+         0     0% 77.95%      1.40s  2.18%  runtime.gcMarkDone
+         0     0% 77.95%      0.43s  0.67%  runtime.gcMarkDone.forEachP.func5
+         0     0% 77.95%      0.47s  0.73%  runtime.gcStart.func4
+         0     0% 77.95%      1.66s  2.58%  runtime.gopreempt_m (inline)
+         0     0% 77.95%      1.69s  2.63%  runtime.goschedImpl
+         0     0% 77.95%      0.55s  0.85%  runtime.lockWithRank (inline)
+         0     0% 77.95%      0.75s  1.17%  runtime.mPark (inline)
+         0     0% 77.95%      0.70s  1.09%  runtime.mProf_Malloc
+         0     0% 77.95%      0.87s  1.35%  runtime.markroot.func1
+         0     0% 77.95%      1.49s  2.32%  runtime.markrootBlock
+         0     0% 77.95%      3.08s  4.79%  runtime.mcall
+         0     0% 77.95%      1.55s  2.41%  runtime.morestack
+         0     0% 77.95%      1.85s  2.87%  runtime.newstack
+         0     0% 77.95%      0.85s  1.32%  runtime.preemptM (inline)
+         0     0% 77.95%      0.51s  0.79%  runtime.runSafePointFn
+         0     0% 77.95%      0.85s  1.32%  runtime.signalM
+         0     0% 77.95%      1.01s  1.57%  runtime.stopm
+         0     0% 77.95%      0.34s  0.53%  runtime.traceAdvance
+         0     0% 77.95%      0.35s  0.54%  runtime.traceClockNow (inline)
+         0     0% 77.95%      2.47s  3.84%  runtime.wakep
+         0     0% 77.95%      0.86s  1.34%  runtime.wbBufFlush
+         0     0% 77.95%     44.39s 68.98%  testing.(*B).launch
+         0     0% 77.95%     44.40s 69.00%  testing.(*B).runN

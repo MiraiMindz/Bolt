@@ -1,0 +1,96 @@
+{"Time":"2025-10-03T18:05:28.910058363-03:00","Action":"start","Package":"benchmarks/bolt_sugared"}
+{"Time":"2025-10-03T18:05:28.978045119-03:00","Action":"output","Package":"benchmarks/bolt_sugared","Output":"goos: linux\n"}
+{"Time":"2025-10-03T18:05:28.978426988-03:00","Action":"output","Package":"benchmarks/bolt_sugared","Output":"goarch: amd64\n"}
+{"Time":"2025-10-03T18:05:28.978476422-03:00","Action":"output","Package":"benchmarks/bolt_sugared","Output":"pkg: benchmarks/bolt_sugared\n"}
+{"Time":"2025-10-03T18:05:28.978771789-03:00","Action":"output","Package":"benchmarks/bolt_sugared","Output":"cpu: 13th Gen Intel(R) Core(TM) i5-1334U\n"}
+{"Time":"2025-10-03T18:05:28.978841195-03:00","Action":"run","Package":"benchmarks/bolt_sugared","Test":"BenchmarkSugaredStaticRoute"}
+{"Time":"2025-10-03T18:05:28.978855996-03:00","Action":"output","Package":"benchmarks/bolt_sugared","Test":"BenchmarkSugaredStaticRoute","Output":"=== RUN   BenchmarkSugaredStaticRoute\n"}
+{"Time":"2025-10-03T18:05:28.978883607-03:00","Action":"output","Package":"benchmarks/bolt_sugared","Test":"BenchmarkSugaredStaticRoute","Output":"BenchmarkSugaredStaticRoute\n"}
+{"Time":"2025-10-03T18:05:31.012698497-03:00","Action":"output","Package":"benchmarks/bolt_sugared","Test":"BenchmarkSugaredStaticRoute","Output":"BenchmarkSugaredStaticRoute-12        \t  443794\t      2446 ns/op\t    1033 B/op\t      10 allocs/op\n"}
+{"Time":"2025-10-03T18:05:32.381919765-03:00","Action":"output","Package":"benchmarks/bolt_sugared","Output":"BenchmarkSugaredStaticRoute-12        \t  516193\t      2573 ns/op\t    1032 B/op\t      10 allocs/op\n"}
+{"Time":"2025-10-03T18:05:33.814771944-03:00","Action":"output","Package":"benchmarks/bolt_sugared","Output":"BenchmarkSugaredStaticRoute-12        \t  577881\t      2419 ns/op\t    1032 B/op\t      10 allocs/op\n"}
+{"Time":"2025-10-03T18:05:35.246757047-03:00","Action":"output","Package":"benchmarks/bolt_sugared","Output":"BenchmarkSugaredStaticRoute-12        \t  579716\t      2405 ns/op\t    1033 B/op\t      10 allocs/op\n"}
+{"Time":"2025-10-03T18:05:37.587699234-03:00","Action":"output","Package":"benchmarks/bolt_sugared","Output":"BenchmarkSugaredStaticRoute-12        \t  541735\t      2612 ns/op\t    1032 B/op\t      10 allocs/op\n"}
+{"Time":"2025-10-03T18:05:39.37738664-03:00","Action":"output","Package":"benchmarks/bolt_sugared","Output":"BenchmarkSugaredStaticRoute-12        \t  753589\t      2335 ns/op\t    1033 B/op\t      10 allocs/op\n"}
+{"Time":"2025-10-03T18:05:40.690639237-03:00","Action":"output","Package":"benchmarks/bolt_sugared","Output":"BenchmarkSugaredStaticRoute-12        \t  543558\t      2337 ns/op\t    1032 B/op\t      10 allocs/op\n"}
+{"Time":"2025-10-03T18:05:42.82761852-03:00","Action":"output","Package":"benchmarks/bolt_sugared","Output":"BenchmarkSugaredStaticRoute-12        \t  525372\t      2286 ns/op\t    1032 B/op\t      10 allocs/op\n"}
+{"Time":"2025-10-03T18:05:42.827932165-03:00","Action":"run","Package":"benchmarks/bolt_sugared","Test":"BenchmarkSugaredDynamicRoute"}
+{"Time":"2025-10-03T18:05:42.827972507-03:00","Action":"output","Package":"benchmarks/bolt_sugared","Test":"BenchmarkSugaredDynamicRoute","Output":"=== RUN   BenchmarkSugaredDynamicRoute\n"}
+{"Time":"2025-10-03T18:05:42.827996753-03:00","Action":"output","Package":"benchmarks/bolt_sugared","Test":"BenchmarkSugaredDynamicRoute","Output":"BenchmarkSugaredDynamicRoute\n"}
+{"Time":"2025-10-03T18:05:44.256370827-03:00","Action":"output","Package":"benchmarks/bolt_sugared","Test":"BenchmarkSugaredDynamicRoute","Output":"BenchmarkSugaredDynamicRoute-12       \t  606248\t      2298 ns/op\t    1144 B/op\t      12 allocs/op\n"}
+{"Time":"2025-10-03T18:05:46.581750154-03:00","Action":"output","Package":"benchmarks/bolt_sugared","Output":"BenchmarkSugaredDynamicRoute-12       \t  556813\t      2571 ns/op\t    1144 B/op\t      12 allocs/op\n"}
+{"Time":"2025-10-03T18:05:48.049599293-03:00","Action":"output","Package":"benchmarks/bolt_sugared","Output":"BenchmarkSugaredDynamicRoute-12       \t  586513\t      2446 ns/op\t    1144 B/op\t      12 allocs/op\n"}
+{"Time":"2025-10-03T18:05:49.268224569-03:00","Action":"output","Package":"benchmarks/bolt_sugared","Output":"BenchmarkSugaredDynamicRoute-12       \t  465994\t      2525 ns/op\t    1144 B/op\t      12 allocs/op\n"}
+{"Time":"2025-10-03T18:05:51.418180643-03:00","Action":"output","Package":"benchmarks/bolt_sugared","Output":"BenchmarkSugaredDynamicRoute-12       \t  495230\t      2403 ns/op\t    1144 B/op\t      12 allocs/op\n"}
+{"Time":"2025-10-03T18:05:52.721506908-03:00","Action":"output","Package":"benchmarks/bolt_sugared","Output":"BenchmarkSugaredDynamicRoute-12       \t  525760\t      2401 ns/op\t    1144 B/op\t      12 allocs/op\n"}
+{"Time":"2025-10-03T18:05:53.782225007-03:00","Action":"output","Package":"benchmarks/bolt_sugared","Output":"BenchmarkSugaredDynamicRoute-12       \t  406201\t      2503 ns/op\t    1144 B/op\t      12 allocs/op\n"}
+{"Time":"2025-10-03T18:05:55.030231578-03:00","Action":"output","Package":"benchmarks/bolt_sugared","Output":"BenchmarkSugaredDynamicRoute-12       \t  462896\t      2598 ns/op\t    1144 B/op\t      12 allocs/op\n"}
+{"Time":"2025-10-03T18:05:55.030549678-03:00","Action":"run","Package":"benchmarks/bolt_sugared","Test":"BenchmarkSugaredTypedJSON"}
+{"Time":"2025-10-03T18:05:55.030566676-03:00","Action":"output","Package":"benchmarks/bolt_sugared","Test":"BenchmarkSugaredTypedJSON","Output":"=== RUN   BenchmarkSugaredTypedJSON\n"}
+{"Time":"2025-10-03T18:05:55.030573734-03:00","Action":"output","Package":"benchmarks/bolt_sugared","Test":"BenchmarkSugaredTypedJSON","Output":"BenchmarkSugaredTypedJSON\n"}
+{"Time":"2025-10-03T18:05:56.476852244-03:00","Action":"output","Package":"benchmarks/bolt_sugared","Test":"BenchmarkSugaredTypedJSON","Output":"BenchmarkSugaredTypedJSON-12          \t  371550\t      3761 ns/op\t    1730 B/op\t      15 allocs/op\n"}
+{"Time":"2025-10-03T18:05:55.913542618-03:00","Action":"output","Package":"benchmarks/bolt_sugared","Output":"BenchmarkSugaredTypedJSON-12          \t  419870\t      3885 ns/op\t    1729 B/op\t      15 allocs/op\n"}
+{"Time":"2025-10-03T18:05:57.66697128-03:00","Action":"output","Package":"benchmarks/bolt_sugared","Output":"BenchmarkSugaredTypedJSON-12          \t  432126\t      3952 ns/op\t    1729 B/op\t      15 allocs/op\n"}
+{"Time":"2025-10-03T18:05:58.748643185-03:00","Action":"output","Package":"benchmarks/bolt_sugared","Output":"BenchmarkSugaredTypedJSON-12          \t  282267\t      3613 ns/op\t    1729 B/op\t      15 allocs/op\n"}
+{"Time":"2025-10-03T18:05:59.918122793-03:00","Action":"output","Package":"benchmarks/bolt_sugared","Output":"BenchmarkSugaredTypedJSON-12          \t  300945\t      3694 ns/op\t    1729 B/op\t      15 allocs/op\n"}
+{"Time":"2025-10-03T18:06:02.177876349-03:00","Action":"output","Package":"benchmarks/bolt_sugared","Output":"BenchmarkSugaredTypedJSON-12          \t  300094\t      4330 ns/op\t    1729 B/op\t      15 allocs/op\n"}
+{"Time":"2025-10-03T18:06:06.162035868-03:00","Action":"output","Package":"benchmarks/bolt_sugared","Output":"BenchmarkSugaredTypedJSON-12          \t  610726\t      1955 ns/op\t    1729 B/op\t      15 allocs/op\n"}
+{"Time":"2025-10-03T18:06:07.516575131-03:00","Action":"output","Package":"benchmarks/bolt_sugared","Output":"BenchmarkSugaredTypedJSON-12          \t  576159\t      2292 ns/op\t    1729 B/op\t      15 allocs/op\n"}
+{"Time":"2025-10-03T18:06:07.516752558-03:00","Action":"run","Package":"benchmarks/bolt_sugared","Test":"BenchmarkSugaredMiddleware"}
+{"Time":"2025-10-03T18:06:07.516784375-03:00","Action":"output","Package":"benchmarks/bolt_sugared","Test":"BenchmarkSugaredMiddleware","Output":"=== RUN   BenchmarkSugaredMiddleware\n"}
+{"Time":"2025-10-03T18:06:07.516804225-03:00","Action":"output","Package":"benchmarks/bolt_sugared","Test":"BenchmarkSugaredMiddleware","Output":"BenchmarkSugaredMiddleware\n"}
+{"Time":"2025-10-03T18:06:08.570875207-03:00","Action":"output","Package":"benchmarks/bolt_sugared","Test":"BenchmarkSugaredMiddleware","Output":"BenchmarkSugaredMiddleware-12         \t  589048\t      1738 ns/op\t    1065 B/op\t      11 allocs/op\n"}
+{"Time":"2025-10-03T18:06:10.048927871-03:00","Action":"output","Package":"benchmarks/bolt_sugared","Output":"BenchmarkSugaredMiddleware-12         \t  726752\t      1997 ns/op\t    1064 B/op\t      11 allocs/op\n"}
+{"Time":"2025-10-03T18:06:11.153628777-03:00","Action":"output","Package":"benchmarks/bolt_sugared","Output":"BenchmarkSugaredMiddleware-12         \t  391557\t      2712 ns/op\t    1064 B/op\t      11 allocs/op\n"}
+{"Time":"2025-10-03T18:06:12.510063585-03:00","Action":"output","Package":"benchmarks/bolt_sugared","Output":"BenchmarkSugaredMiddleware-12         \t  686864\t      1932 ns/op\t    1064 B/op\t      11 allocs/op\n"}
+{"Time":"2025-10-03T18:06:13.783553853-03:00","Action":"output","Package":"benchmarks/bolt_sugared","Output":"BenchmarkSugaredMiddleware-12         \t  660949\t      1881 ns/op\t    1064 B/op\t      11 allocs/op\n"}
+{"Time":"2025-10-03T18:06:17.579303564-03:00","Action":"output","Package":"benchmarks/bolt_sugared","Output":"BenchmarkSugaredMiddleware-12         \t  805074\t      1498 ns/op\t    1064 B/op\t      11 allocs/op\n"}
+{"Time":"2025-10-03T18:06:18.936773016-03:00","Action":"output","Package":"benchmarks/bolt_sugared","Output":"BenchmarkSugaredMiddleware-12         \t  780708\t      1709 ns/op\t    1064 B/op\t      11 allocs/op\n"}
+{"Time":"2025-10-03T18:06:20.130699128-03:00","Action":"output","Package":"benchmarks/bolt_sugared","Output":"BenchmarkSugaredMiddleware-12         \t  581484\t      2004 ns/op\t    1064 B/op\t      11 allocs/op\n"}
+{"Time":"2025-10-03T18:06:20.130809799-03:00","Action":"run","Package":"benchmarks/bolt_sugared","Test":"BenchmarkSugaredComplexRouting"}
+{"Time":"2025-10-03T18:06:20.13081815-03:00","Action":"output","Package":"benchmarks/bolt_sugared","Test":"BenchmarkSugaredComplexRouting","Output":"=== RUN   BenchmarkSugaredComplexRouting\n"}
+{"Time":"2025-10-03T18:06:20.130828144-03:00","Action":"output","Package":"benchmarks/bolt_sugared","Test":"BenchmarkSugaredComplexRouting","Output":"BenchmarkSugaredComplexRouting\n"}
+{"Time":"2025-10-03T18:06:21.384290299-03:00","Action":"output","Package":"benchmarks/bolt_sugared","Test":"BenchmarkSugaredComplexRouting","Output":"BenchmarkSugaredComplexRouting-12     \t  431174\t      2817 ns/op\t    1625 B/op\t      15 allocs/op\n"}
+{"Time":"2025-10-03T18:06:23.960553317-03:00","Action":"output","Package":"benchmarks/bolt_sugared","Output":"BenchmarkSugaredComplexRouting-12     \t  474368\t      2267 ns/op\t    1625 B/op\t      15 allocs/op\n"}
+{"Time":"2025-10-03T18:06:25.239717004-03:00","Action":"output","Package":"benchmarks/bolt_sugared","Output":"BenchmarkSugaredComplexRouting-12     \t  417172\t      2967 ns/op\t    1625 B/op\t      15 allocs/op\n"}
+{"Time":"2025-10-03T18:06:26.759705636-03:00","Action":"output","Package":"benchmarks/bolt_sugared","Output":"BenchmarkSugaredComplexRouting-12     \t  500384\t      2966 ns/op\t    1626 B/op\t      15 allocs/op\n"}
+{"Time":"2025-10-03T18:06:26.137721681-03:00","Action":"output","Package":"benchmarks/bolt_sugared","Output":"BenchmarkSugaredComplexRouting-12     \t  518604\t      2986 ns/op\t    1625 B/op\t      15 allocs/op\n"}
+{"Time":"2025-10-03T18:06:27.459208884-03:00","Action":"output","Package":"benchmarks/bolt_sugared","Output":"BenchmarkSugaredComplexRouting-12     \t  445903\t      2882 ns/op\t    1625 B/op\t      15 allocs/op\n"}
+{"Time":"2025-10-03T18:06:28.882432309-03:00","Action":"output","Package":"benchmarks/bolt_sugared","Output":"BenchmarkSugaredComplexRouting-12     \t  530059\t      2619 ns/op\t    1625 B/op\t      15 allocs/op\n"}
+{"Time":"2025-10-03T18:06:30.331125387-03:00","Action":"output","Package":"benchmarks/bolt_sugared","Output":"BenchmarkSugaredComplexRouting-12     \t  569397\t      2488 ns/op\t    1625 B/op\t      15 allocs/op\n"}
+{"Time":"2025-10-03T18:06:30.331244745-03:00","Action":"run","Package":"benchmarks/bolt_sugared","Test":"BenchmarkSugaredLargeJSON"}
+{"Time":"2025-10-03T18:06:30.331252322-03:00","Action":"output","Package":"benchmarks/bolt_sugared","Test":"BenchmarkSugaredLargeJSON","Output":"=== RUN   BenchmarkSugaredLargeJSON\n"}
+{"Time":"2025-10-03T18:06:30.331276493-03:00","Action":"output","Package":"benchmarks/bolt_sugared","Test":"BenchmarkSugaredLargeJSON","Output":"BenchmarkSugaredLargeJSON\n"}
+{"Time":"2025-10-03T18:06:31.457834183-03:00","Action":"output","Package":"benchmarks/bolt_sugared","Test":"BenchmarkSugaredLargeJSON","Output":"BenchmarkSugaredLargeJSON-12          \t  512582\t      2136 ns/op\t    1793 B/op\t      15 allocs/op\n"}
+{"Time":"2025-10-03T18:06:32.841231478-03:00","Action":"output","Package":"benchmarks/bolt_sugared","Output":"BenchmarkSugaredLargeJSON-12          \t  634522\t      2136 ns/op\t    1793 B/op\t      15 allocs/op\n"}
+{"Time":"2025-10-03T18:06:34.604016836-03:00","Action":"output","Package":"benchmarks/bolt_sugared","Output":"BenchmarkSugaredLargeJSON-12          \t  714722\t      2431 ns/op\t    1792 B/op\t      15 allocs/op\n"}
+{"Time":"2025-10-03T18:06:35.781239197-03:00","Action":"output","Package":"benchmarks/bolt_sugared","Output":"BenchmarkSugaredLargeJSON-12          \t  544377\t      2106 ns/op\t    1793 B/op\t      15 allocs/op\n"}
+{"Time":"2025-10-03T18:06:37.018136121-03:00","Action":"output","Package":"benchmarks/bolt_sugared","Output":"BenchmarkSugaredLargeJSON-12          \t  597094\t      2023 ns/op\t    1793 B/op\t      15 allocs/op\n"}
+{"Time":"2025-10-03T18:06:38.254026054-03:00","Action":"output","Package":"benchmarks/bolt_sugared","Output":"BenchmarkSugaredLargeJSON-12          \t  583182\t      2063 ns/op\t    1793 B/op\t      15 allocs/op\n"}
+{"Time":"2025-10-03T18:06:39.724997777-03:00","Action":"output","Package":"benchmarks/bolt_sugared","Output":"BenchmarkSugaredLargeJSON-12          \t  693292\t      2079 ns/op\t    1793 B/op\t      15 allocs/op\n"}
+{"Time":"2025-10-03T18:06:40.948876591-03:00","Action":"output","Package":"benchmarks/bolt_sugared","Output":"BenchmarkSugaredLargeJSON-12          \t  576295\t      2069 ns/op\t    1793 B/op\t      15 allocs/op\n"}
+{"Time":"2025-10-03T18:06:40.948990008-03:00","Action":"run","Package":"benchmarks/bolt_sugared","Test":"BenchmarkSugaredQueryParameters"}
+{"Time":"2025-10-03T18:06:40.948997824-03:00","Action":"output","Package":"benchmarks/bolt_sugared","Test":"BenchmarkSugaredQueryParameters","Output":"=== RUN   BenchmarkSugaredQueryParameters\n"}
+{"Time":"2025-10-03T18:06:40.949003536-03:00","Action":"output","Package":"benchmarks/bolt_sugared","Test":"BenchmarkSugaredQueryParameters","Output":"BenchmarkSugaredQueryParameters\n"}
+{"Time":"2025-10-03T18:06:42.374063243-03:00","Action":"output","Package":"benchmarks/bolt_sugared","Test":"BenchmarkSugaredQueryParameters","Output":"BenchmarkSugaredQueryParameters-12    \t  300336\t      4578 ns/op\t    2101 B/op\t      22 allocs/op\n"}
+{"Time":"2025-10-03T18:06:43.772118579-03:00","Action":"output","Package":"benchmarks/bolt_sugared","Output":"BenchmarkSugaredQueryParameters-12    \t  296670\t      4538 ns/op\t    2101 B/op\t      22 allocs/op\n"}
+{"Time":"2025-10-03T18:06:45.1372313-03:00","Action":"output","Package":"benchmarks/bolt_sugared","Output":"BenchmarkSugaredQueryParameters-12    \t  312565\t      4212 ns/op\t    2102 B/op\t      22 allocs/op\n"}
+{"Time":"2025-10-03T18:06:46.611795073-03:00","Action":"output","Package":"benchmarks/bolt_sugared","Output":"BenchmarkSugaredQueryParameters-12    \t  295304\t      4818 ns/op\t    2101 B/op\t      22 allocs/op\n"}
+{"Time":"2025-10-03T18:06:49.819575473-03:00","Action":"output","Package":"benchmarks/bolt_sugared","Output":"BenchmarkSugaredQueryParameters-12    \t  274886\t      5506 ns/op\t    2101 B/op\t      22 allocs/op\n"}
+{"Time":"2025-10-03T18:06:52.703190761-03:00","Action":"output","Package":"benchmarks/bolt_sugared","Output":"BenchmarkSugaredQueryParameters-12    \t  261405\t      4799 ns/op\t    2101 B/op\t      22 allocs/op\n"}
+{"Time":"2025-10-03T18:06:54.565546535-03:00","Action":"output","Package":"benchmarks/bolt_sugared","Output":"BenchmarkSugaredQueryParameters-12    \t  189688\t      6443 ns/op\t    2101 B/op\t      22 allocs/op\n"}
+{"Time":"2025-10-03T18:06:55.549471034-03:00","Action":"output","Package":"benchmarks/bolt_sugared","Output":"BenchmarkSugaredQueryParameters-12    \t  434468\t      2812 ns/op\t    2100 B/op\t      22 allocs/op\n"}
+{"Time":"2025-10-03T18:06:55.549732845-03:00","Action":"run","Package":"benchmarks/bolt_sugared","Test":"BenchmarkSugaredFileUpload"}
+{"Time":"2025-10-03T18:06:55.549771435-03:00","Action":"output","Package":"benchmarks/bolt_sugared","Test":"BenchmarkSugaredFileUpload","Output":"=== RUN   BenchmarkSugaredFileUpload\n"}
+{"Time":"2025-10-03T18:06:55.549777545-03:00","Action":"output","Package":"benchmarks/bolt_sugared","Test":"BenchmarkSugaredFileUpload","Output":"BenchmarkSugaredFileUpload\n"}
+{"Time":"2025-10-03T18:06:57.480859442-03:00","Action":"output","Package":"benchmarks/bolt_sugared","Test":"BenchmarkSugaredFileUpload","Output":"BenchmarkSugaredFileUpload-12         \t  162975\t     11359 ns/op\t   11776 B/op\t      15 allocs/op\n"}
+{"Time":"2025-10-03T18:06:58.687924803-03:00","Action":"output","Package":"benchmarks/bolt_sugared","Output":"BenchmarkSugaredFileUpload-12         \t  172201\t      6570 ns/op\t   11774 B/op\t      15 allocs/op\n"}
+{"Time":"2025-10-03T18:07:01.720115009-03:00","Action":"output","Package":"benchmarks/bolt_sugared","Output":"BenchmarkSugaredFileUpload-12         \t  224577\t      6417 ns/op\t   11775 B/op\t      15 allocs/op\n"}
+{"Time":"2025-10-03T18:07:03.663027965-03:00","Action":"output","Package":"benchmarks/bolt_sugared","Output":"BenchmarkSugaredFileUpload-12         \t  178383\t      6732 ns/op\t   11774 B/op\t      15 allocs/op\n"}
+{"Time":"2025-10-03T18:07:05.96926783-03:00","Action":"output","Package":"benchmarks/bolt_sugared","Output":"BenchmarkSugaredFileUpload-12         \t  321951\t      7034 ns/op\t   11774 B/op\t      15 allocs/op\n"}
+{"Time":"2025-10-03T18:07:07.401419526-03:00","Action":"output","Package":"benchmarks/bolt_sugared","Output":"BenchmarkSugaredFileUpload-12         \t  300858\t      4609 ns/op\t   11773 B/op\t      15 allocs/op\n"}
+{"Time":"2025-10-03T18:07:09.066829673-03:00","Action":"output","Package":"benchmarks/bolt_sugared","Output":"BenchmarkSugaredFileUpload-12         \t  282958\t      5719 ns/op\t   11774 B/op\t      15 allocs/op\n"}
+{"Time":"2025-10-03T18:07:10.837087206-03:00","Action":"output","Package":"benchmarks/bolt_sugared","Output":"BenchmarkSugaredFileUpload-12         \t  298798\t      5773 ns/op\t   11774 B/op\t      15 allocs/op\n"}
+{"Time":"2025-10-03T18:07:10.837196214-03:00","Action":"output","Package":"benchmarks/bolt_sugared","Output":"PASS\n"}
+{"Time":"2025-10-03T18:07:11.112155699-03:00","Action":"output","Package":"benchmarks/bolt_sugared","Output":"ok  \tbenchmarks/bolt_sugared\t108.831s\n"}
+{"Time":"2025-10-03T18:07:11.112461475-03:00","Action":"pass","Package":"benchmarks/bolt_sugared","Elapsed":108.833}

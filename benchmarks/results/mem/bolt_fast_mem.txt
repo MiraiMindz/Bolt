@@ -1,0 +1,50 @@
+File: bolt_fast.test
+Build ID: 7ac48e0941be0e23973aadae74c0651632fda924
+Type: alloc_space
+Time: 2025-10-03 18:05:25 -03
+Showing nodes accounting for 42.33GB, 98.23% of 43.09GB total
+Dropped 81 nodes (cum <= 0.22GB)
+      flat  flat%   sum%        cum   cum%
+   10.54GB 24.45% 24.45%    10.54GB 24.45%  net/http.Header.Clone (inline)
+    9.38GB 21.76% 46.21%     9.38GB 21.76%  net/textproto.MIMEHeader.Set (inline)
+    8.01GB 18.60% 64.81%     9.06GB 21.03%  benchmarks/bolt_fast.BenchmarkFastFileUpload.func1
+    4.33GB 10.05% 74.86%     4.33GB 10.05%  github.com/goccy/go-json/internal/decoder.NewStream (inline)
+    4.06GB  9.42% 84.28%     4.06GB  9.42%  net/http/httptest.NewRecorder (inline)
+    1.50GB  3.49% 87.77%     1.65GB  3.83%  bytes.(*Buffer).grow
+    1.35GB  3.12% 90.89%     1.70GB  3.93%  bolt.writeFieldsDirectToWriter
+    1.14GB  2.65% 93.54%       39GB 90.50%  bolt.(*App).ServeHTTP
+    0.75GB  1.74% 95.28%     0.75GB  1.74%  net/url.parseQuery
+    0.62GB  1.44% 96.72%     1.57GB  3.65%  benchmarks/bolt_fast.BenchmarkFastComplexRouting.func1
+    0.24GB  0.55% 97.27%     2.03GB  4.71%  benchmarks/bolt_fast.BenchmarkFastLargeJSON.func1
+    0.15GB  0.35% 97.62%     2.87GB  6.67%  benchmarks/bolt_fast.BenchmarkFastQueryParameters.func1
+    0.11GB  0.25% 97.87%     2.18GB  5.06%  benchmarks/bolt_fast.BenchmarkFastTypedJSON.func1
+    0.09GB  0.21% 98.08%     0.84GB  1.96%  net/url.ParseQuery (inline)
+    0.05GB  0.12% 98.20%     0.22GB  0.51%  github.com/goccy/go-json.MarshalWithOption (inline)
+    0.01GB 0.026% 98.23%     0.61GB  1.43%  benchmarks/bolt_fast.BenchmarkFastComplexRouting.func3
+         0     0% 98.23%     4.31GB  9.99%  benchmarks/bolt_fast.BenchmarkFastComplexRouting
+         0     0% 98.23%     5.47GB 12.70%  benchmarks/bolt_fast.BenchmarkFastDynamicRoute
+         0     0% 98.23%     9.21GB 21.36%  benchmarks/bolt_fast.BenchmarkFastFileUpload
+         0     0% 98.23%     4.74GB 10.99%  benchmarks/bolt_fast.BenchmarkFastLargeJSON
+         0     0% 98.23%     5.14GB 11.92%  benchmarks/bolt_fast.BenchmarkFastMiddleware
+         0     0% 98.23%     4.26GB  9.87%  benchmarks/bolt_fast.BenchmarkFastMiddleware.func1.1
+         0     0% 98.23%     2.47GB  5.73%  benchmarks/bolt_fast.BenchmarkFastMiddleware.func2
+         0     0% 98.23%     4.07GB  9.46%  benchmarks/bolt_fast.BenchmarkFastQueryParameters
+         0     0% 98.23%     4.77GB 11.07%  benchmarks/bolt_fast.BenchmarkFastStaticRoute
+         0     0% 98.23%     3.93GB  9.12%  benchmarks/bolt_fast.BenchmarkFastStaticRoute.func1
+         0     0% 98.23%     5.36GB 12.43%  benchmarks/bolt_fast.BenchmarkFastTypedJSON
+         0     0% 98.23%     4.47GB 10.36%  bolt.(*Context).BindJSON
+         0     0% 98.23%    10.37GB 24.07%  bolt.(*Context).Bytes
+         0     0% 98.23%     0.95GB  2.21%  bolt.(*Context).JSON
+         0     0% 98.23%     3.77GB  8.75%  bolt.(*Context).JSONFields
+         0     0% 98.23%     6.40GB 14.85%  bolt.(*Context).StringBytes
+         0     0% 98.23%     6.40GB 14.85%  bolt.(*Context).Text (inline)
+         0     0% 98.23%    10.37GB 24.07%  bolt.DefaultErrorHandler
+         0     0% 98.23%     1.65GB  3.83%  bytes.(*Buffer).Write
+         0     0% 98.23%     0.22GB  0.51%  github.com/goccy/go-json.Marshal
+         0     0% 98.23%     4.33GB 10.05%  github.com/goccy/go-json.NewDecoder (inline)
+         0     0% 98.23%     9.38GB 21.76%  net/http.Header.Set (inline)
+         0     0% 98.23%     1.65GB  3.83%  net/http/httptest.(*ResponseRecorder).Write
+         0     0% 98.23%    10.54GB 24.45%  net/http/httptest.(*ResponseRecorder).WriteHeader
+         0     0% 98.23%     0.84GB  1.96%  net/url.(*URL).Query
+         0     0% 98.23%    43.06GB 99.92%  testing.(*B).launch
+         0     0% 98.23%    43.06GB 99.93%  testing.(*B).runN

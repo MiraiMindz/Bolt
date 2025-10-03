@@ -1,0 +1,50 @@
+File: bolt_sugared.test
+Build ID: 2d89b4bc628a1a2ab1ce55f9125ef28dce630acd
+Type: alloc_space
+Time: 2025-10-03 18:07:11 -03
+Showing nodes accounting for 72.01GB, 98.92% of 72.79GB total
+Dropped 99 nodes (cum <= 0.36GB)
+      flat  flat%   sum%        cum   cum%
+   23.27GB 31.97% 31.97%    25.47GB 34.99%  benchmarks/bolt_sugared.BenchmarkSugaredFileUpload.func1
+   14.53GB 19.96% 51.93%    14.53GB 19.96%  net/http.Header.Clone (inline)
+   12.94GB 17.78% 69.71%    12.94GB 17.78%  net/textproto.MIMEHeader.Set (inline)
+    6.42GB  8.82% 78.53%     6.42GB  8.82%  github.com/goccy/go-json/internal/decoder.NewStream (inline)
+    5.65GB  7.76% 86.29%     5.65GB  7.76%  net/http/httptest.NewRecorder (inline)
+    2.02GB  2.78% 89.07%     2.31GB  3.17%  bytes.(*Buffer).grow
+    1.42GB  1.96% 91.02%     5.03GB  6.92%  benchmarks/bolt_sugared.BenchmarkSugaredQueryParameters.func1
+    1.42GB  1.94% 92.97%    67.10GB 92.18%  bolt.(*App).ServeHTTP
+    1.35GB  1.86% 94.83%     1.35GB  1.86%  net/url.parseQuery
+    0.95GB  1.30% 96.13%     2.44GB  3.36%  benchmarks/bolt_sugared.BenchmarkSugaredComplexRouting.func1
+    0.77GB  1.06% 97.19%     0.79GB  1.09%  github.com/goccy/go-json/internal/encoder/vm.Run
+    0.64GB  0.88% 98.07%     0.64GB  0.88%  reflect.New
+    0.47GB  0.64% 98.71%     1.28GB  1.76%  github.com/goccy/go-json.MarshalWithOption (inline)
+    0.15GB  0.21% 98.92%     1.51GB  2.07%  net/url.ParseQuery (inline)
+         0     0% 98.92%     6.62GB  9.09%  benchmarks/bolt_sugared.BenchmarkSugaredComplexRouting
+         0     0% 98.92%     5.21GB  7.15%  benchmarks/bolt_sugared.BenchmarkSugaredDynamicRoute
+         0     0% 98.92%    25.90GB 35.58%  benchmarks/bolt_sugared.BenchmarkSugaredFileUpload
+         0     0% 98.92%     8.23GB 11.31%  benchmarks/bolt_sugared.BenchmarkSugaredLargeJSON
+         0     0% 98.92%     6.73GB  9.24%  benchmarks/bolt_sugared.BenchmarkSugaredMiddleware
+         0     0% 98.92%     5.56GB  7.63%  benchmarks/bolt_sugared.BenchmarkSugaredMiddleware.func1.1
+         0     0% 98.92%     3.22GB  4.42%  benchmarks/bolt_sugared.BenchmarkSugaredMiddleware.func2
+         0     0% 98.92%     7.21GB  9.90%  benchmarks/bolt_sugared.BenchmarkSugaredQueryParameters
+         0     0% 98.92%     5.43GB  7.46%  benchmarks/bolt_sugared.BenchmarkSugaredStaticRoute
+         0     0% 98.92%     4.47GB  6.14%  benchmarks/bolt_sugared.BenchmarkSugaredStaticRoute.func1
+         0     0% 98.92%     7.44GB 10.21%  benchmarks/bolt_sugared.BenchmarkSugaredTypedJSON
+         0     0% 98.92%     6.67GB  9.17%  bolt.(*Context).BindJSON
+         0     0% 98.92%    13.75GB 18.89%  bolt.(*Context).Bytes
+         0     0% 98.92%     7.31GB 10.04%  bolt.(*Context).JSON
+         0     0% 98.92%     7.69GB 10.56%  bolt.(*Context).String
+         0     0% 98.92%    13.75GB 18.89%  bolt.DefaultErrorHandler
+         0     0% 98.92%     7.31GB 10.05%  bolt.wrapTypedHandler.func1
+         0     0% 98.92%     2.31GB  3.17%  bytes.(*Buffer).Write
+         0     0% 98.92%     1.28GB  1.76%  github.com/goccy/go-json.Marshal
+         0     0% 98.92%     6.42GB  8.82%  github.com/goccy/go-json.NewDecoder (inline)
+         0     0% 98.92%     0.79GB  1.09%  github.com/goccy/go-json.encode
+         0     0% 98.92%     0.79GB  1.09%  github.com/goccy/go-json.encodeRunCode
+         0     0% 98.92%     0.81GB  1.12%  github.com/goccy/go-json.marshal
+         0     0% 98.92%    12.94GB 17.78%  net/http.Header.Set (inline)
+         0     0% 98.92%     2.31GB  3.17%  net/http/httptest.(*ResponseRecorder).Write
+         0     0% 98.92%    14.53GB 19.96%  net/http/httptest.(*ResponseRecorder).WriteHeader
+         0     0% 98.92%     1.51GB  2.07%  net/url.(*URL).Query
+         0     0% 98.92%    72.75GB 99.94%  testing.(*B).launch
+         0     0% 98.92%    72.75GB 99.94%  testing.(*B).runN
