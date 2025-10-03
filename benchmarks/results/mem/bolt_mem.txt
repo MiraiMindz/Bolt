@@ -1,0 +1,39 @@
+File: bolt.test
+Build ID: e6ce98160211b8c6acc755e66a33908ae755356e
+Type: alloc_space
+Time: 2025-10-03 10:03:53 -03
+Showing nodes accounting for 62.31GB, 98.80% of 63.07GB total
+Dropped 74 nodes (cum <= 0.32GB)
+      flat  flat%   sum%        cum   cum%
+   19.94GB 31.62% 31.62%    19.94GB 31.62%  net/http.Header.Clone (inline)
+   17.66GB 28.00% 59.62%    17.66GB 28.00%  net/textproto.MIMEHeader.Set (inline)
+    7.42GB 11.77% 71.39%     7.42GB 11.77%  net/http/httptest.NewRecorder (inline)
+    6.17GB  9.78% 81.17%    23.52GB 37.29%  bolt.DefaultErrorHandler
+    2.96GB  4.69% 85.86%     2.96GB  4.69%  bytes.(*Buffer).grow
+    2.68GB  4.25% 90.11%     2.68GB  4.25%  bolt.(*Router).GetValue
+    2.26GB  3.58% 93.69%     2.26GB  3.58%  net/url.ParseQuery (inline)
+    1.28GB  2.03% 95.72%     1.49GB  2.37%  encoding/json.Unmarshal
+    0.91GB  1.44% 97.15%     1.49GB  2.37%  encoding/json.mapEncoder.encode
+    0.59GB  0.93% 98.09%     0.59GB  0.93%  reflect.copyVal
+    0.45GB  0.71% 98.80%    19.81GB 31.40%  bolt.(*Context).String
+         0     0% 98.80%    14.91GB 23.64%  benchmarks/bolt.BenchmarkDynamicRoute
+         0     0% 98.80%    16.68GB 26.45%  benchmarks/bolt.BenchmarkMiddleware
+         0     0% 98.80%    12.90GB 20.46%  benchmarks/bolt.BenchmarkMiddleware.func1.1
+         0     0% 98.80%     7.55GB 11.97%  benchmarks/bolt.BenchmarkMiddleware.func2
+         0     0% 98.80%    15.96GB 25.30%  benchmarks/bolt.BenchmarkStaticRoute
+         0     0% 98.80%    12.26GB 19.44%  benchmarks/bolt.BenchmarkStaticRoute.func1
+         0     0% 98.80%    15.49GB 24.57%  benchmarks/bolt.BenchmarkTypedJSON
+         0     0% 98.80%     1.97GB  3.13%  bolt.(*App).PostJSON.wrapTypedHandler.func1
+         0     0% 98.80%    55.61GB 88.18%  bolt.(*App).ServeHTTP
+         0     0% 98.80%     1.70GB  2.70%  bolt.(*Context).BindJSON
+         0     0% 98.80%    17.35GB 27.51%  bolt.(*Context).JSON
+         0     0% 98.80%     2.96GB  4.69%  bytes.(*Buffer).Write
+         0     0% 98.80%     2.71GB  4.29%  encoding/json.(*Encoder).Encode
+         0     0% 98.80%     1.49GB  2.37%  encoding/json.(*encodeState).marshal
+         0     0% 98.80%     1.49GB  2.37%  encoding/json.(*encodeState).reflectValue
+         0     0% 98.80%    17.66GB 28.00%  net/http.Header.Set (inline)
+         0     0% 98.80%     2.96GB  4.69%  net/http/httptest.(*ResponseRecorder).Write
+         0     0% 98.80%    19.94GB 31.62%  net/http/httptest.(*ResponseRecorder).WriteHeader
+         0     0% 98.80%     2.26GB  3.58%  net/url.(*URL).Query
+         0     0% 98.80%    63.04GB   100%  testing.(*B).launch
+         0     0% 98.80%    63.04GB   100%  testing.(*B).runN

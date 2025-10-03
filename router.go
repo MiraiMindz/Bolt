@@ -1,5 +1,7 @@
 package bolt
 
+import "unsafe"
+
 // nodeType represents the type of a node in the radix tree.
 type nodeType uint8
 
@@ -12,7 +14,7 @@ const (
 // Node represents a node in the radix tree.
 type Node struct {
 	path      string
-	indices   string
+	indices   []byte // Changed from string to []byte
 	children  []*Node
 	handlers  map[HTTPMethod]Handler
 	nodeType  nodeType
@@ -32,6 +34,13 @@ func NewRouter() *Router {
 	}
 }
 
+// unsafeBytesToString converts a byte slice to a string without allocation.
+// IMPORTANT: This is unsafe and should only be used when the underlying
+// []byte is not going to change for the lifetime of the string.
+func unsafeBytesToString(b []byte) string {
+	return *(*string)(unsafe.Pointer(&b))
+}
+
 // AddRoute adds a new route to the router.
 func (r *Router) AddRoute(method HTTPMethod, path string, handler Handler) {
 	if path[0] != '/' {
@@ -44,10 +53,10 @@ func (r *Router) AddRoute(method HTTPMethod, path string, handler Handler) {
 		r.trees[method] = root
 	}
 
-	addRoute(root, path, handler)
+	addRoute(root, path, handler, method)
 }
 
-func addRoute(n *Node, path string, handler Handler) {
+func addRoute(n *Node, path string, handler Handler, method HTTPMethod) {
 	n.priority++
 
 walk:
@@ -75,7 +84,7 @@ walk:
 			}
 
 			n.children = []*Node{child}
-			n.indices = string(n.path[i])
+			n.indices = []byte{n.path[i]}
 			n.path = path[:i]
 			n.handlers = nil
 			n.paramName = ""
@@ -97,17 +106,16 @@ walk:
 
 			// No existing child, create a new one.
 			if c == ':' || c == '*' {
-				// Wildcard/param nodes cannot be siblings of static nodes with the same prefix
 				if len(n.children) > 0 {
-					// This logic is complex, for now we assume simple cases.
+					// Logic for conflicting wildcards/params can be complex.
 				}
 			}
 
-			n.indices += string(c)
+			n.indices = append(n.indices, c)
 			child := &Node{}
 			n.children = append(n.children, child)
 			n = child
-			insertChild(n, path, handler)
+			insertChild(n, path, handler, method)
 			return
 		}
 
@@ -115,12 +123,12 @@ walk:
 		if n.handlers == nil {
 			n.handlers = make(map[HTTPMethod]Handler)
 		}
-		n.handlers["HANDLER"] = handler // Temporary key
+		n.handlers[method] = handler
 		return
 	}
 }
 
-func insertChild(n *Node, path string, handler Handler) {
+func insertChild(n *Node, path string, handler Handler, method HTTPMethod) {
 	var offset int
 	for offset = 0; offset < len(path); offset++ {
 		c := path[offset]
@@ -141,9 +149,9 @@ func insertChild(n *Node, path string, handler Handler) {
 			n.nodeType = paramNode
 			if end < len(path) {
 				child := &Node{}
-				n.indices = string(path[end])
+				n.indices = []byte{path[end]}
 				n.children = []*Node{child}
-				addRoute(child, path[end:], handler)
+				addRoute(child, path[end:], handler, method)
 				return
 			}
 		} else if c == '*' { // Wildcard
@@ -158,7 +166,7 @@ func insertChild(n *Node, path string, handler Handler) {
 	if n.handlers == nil {
 		n.handlers = make(map[HTTPMethod]Handler)
 	}
-	n.handlers["HANDLER"] = handler
+	n.handlers[method] = handler
 }
 
 // GetValue finds a handler and extracts parameters for a given path.
@@ -170,14 +178,16 @@ func (r *Router) GetValue(method HTTPMethod, path string) (Handler, ParamMap) {
 
 	var handler Handler
 	params := make(ParamMap)
+	pathBytes := []byte(path) // Work with byte slice to avoid allocations
 
 walk:
 	for {
-		if len(path) > len(root.path) {
-			if path[:len(root.path)] == root.path {
-				path = path[len(root.path):]
-				c := path[0]
-				for i, index := range []byte(root.indices) {
+		prefixLen := len(root.path)
+		if len(pathBytes) > prefixLen {
+			if unsafeBytesToString(pathBytes[:prefixLen]) == root.path {
+				pathBytes = pathBytes[prefixLen:]
+				c := pathBytes[0]
+				for i, index := range root.indices {
 					if c == index {
 						root = root.children[i]
 						continue walk
@@ -188,31 +198,31 @@ walk:
 				if len(root.children) > 0 && root.children[0].nodeType == paramNode {
 					root = root.children[0]
 					end := 0
-					for end < len(path) && path[end] != '/' {
+					for end < len(pathBytes) && pathBytes[end] != '/' {
 						end++
 					}
-					params[root.paramName] = path[:end]
-					if end < len(path) {
-						path = path[end:]
+					params[root.paramName] = unsafeBytesToString(pathBytes[:end])
+					if end < len(pathBytes) {
+						pathBytes = pathBytes[end:]
 						continue walk
 					}
-					handler = root.handlers["HANDLER"]
+					handler = root.handlers[method]
 					return handler, params
 				}
-				
+
 				// Handle wildcard
 				if len(root.children) > 0 && root.children[0].nodeType == wildcardNode {
 					root = root.children[0]
-					params[root.paramName] = path
-					handler = root.handlers["HANDLER"]
+					params[root.paramName] = unsafeBytesToString(pathBytes)
+					handler = root.handlers[method]
 					return handler, params
 				}
-				
+
 				return nil, nil
 			}
-		} else if path == root.path {
+		} else if unsafeBytesToString(pathBytes) == root.path {
 			if root.handlers != nil {
-				handler = root.handlers["HANDLER"]
+				handler = root.handlers[method]
 				return handler, params
 			}
 		}
@@ -220,4 +230,3 @@ walk:
 		return nil, nil
 	}
 }
-

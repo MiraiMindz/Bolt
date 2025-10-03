@@ -3,6 +3,7 @@ package bolt
 import (
 	"net/http"
 	"net/url"
+	"reflect"
 	"time"
 )
 
@@ -127,4 +128,14 @@ type Listener interface {
 	Accept() (interface{}, error)
 	Close() error
 	Addr() interface{}
+}
+
+// HandlerInfo contains information about a handler function for documentation
+type HandlerInfo struct {
+	// The function itself
+	Fn interface{}
+	// The input type (e.g., a struct for the request body)
+	InputType reflect.Type
+	// The output type (e.g., a struct for the response body)
+	OutputType reflect.Type
 }

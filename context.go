@@ -24,9 +24,7 @@ func (c *Context) Param(key string) string {
 
 // Query gets a query parameter by key
 func (c *Context) Query(key string) string {
-	if c.query == nil {
-		c.query = QueryValues(c.Request.URL.Query())
-	}
+	// The query map is now pre-filled in ServeHTTP, so no need for lazy init
 	return url.Values(c.query).Get(key)
 }
 
@@ -91,19 +89,37 @@ func (c *Context) Bytes(status int, contentType ContentType, data []byte) error 
 	return err
 }
 
-// BindJSON binds request body to a struct
+// BindJSON binds request body to a struct by reading the body into a pooled buffer
+// and then unmarshaling. This reduces allocations.
 func (c *Context) BindJSON(v interface{}) error {
 	if c.Request.Body == nil {
 		return ErrBadRequest
 	}
 
-	lr := io.LimitReader(c.Request.Body, 10<<20) // 10MB limit
-	decoder := json.NewDecoder(lr)
+	// Use buffer pool if available for efficiency
+	if c.app != nil && c.app.bufferPool != nil {
+		buf := c.app.bufferPool.Acquire()
+		defer c.app.bufferPool.Release(buf)
 
+		lr := io.LimitReader(c.Request.Body, 10<<20) // 10MB limit
+
+		_, err := io.Copy(buf, lr)
+		if err != nil {
+			return err
+		}
+
+		if err := json.Unmarshal(buf.Bytes(), v); err != nil {
+			return ErrBadRequest
+		}
+		return nil
+	}
+
+	// Fallback for when pooling is disabled
+	lr := io.LimitReader(c.Request.Body, 10<<20)
+	decoder := json.NewDecoder(lr)
 	if err := decoder.Decode(v); err != nil {
 		return ErrBadRequest
 	}
-
 	return nil
 }
 
@@ -123,7 +139,6 @@ func (c *Context) Status(code StatusCode) *Context {
 	return c
 }
 
-
 // NoContent sends a 204 No Content response
 func (c *Context) NoContent() error {
 	c.StatusCode = 204
@@ -140,3 +155,4 @@ func (c *Context) Redirect(code int, url string) error {
 	c.Response.WriteHeader(code)
 	return nil
 }
+

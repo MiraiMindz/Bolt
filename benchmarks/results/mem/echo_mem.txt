@@ -1,0 +1,58 @@
+File: gin.test
+Build ID: ea5d1f591631c56fc8179f52f76ddfdbdf4fa5c3
+Type: alloc_space
+Time: 2025-10-03 10:04:58 -03
+Showing nodes accounting for 61.59GB, 99.02% of 62.20GB total
+Dropped 68 nodes (cum <= 0.31GB)
+      flat  flat%   sum%        cum   cum%
+   19.35GB 31.10% 31.10%    19.35GB 31.10%  net/http.Header.Clone (inline)
+   11.57GB 18.60% 49.70%    11.57GB 18.60%  github.com/gin-gonic/gin/render.writeContentType
+    8.36GB 13.44% 63.14%     8.36GB 13.44%  net/http/httptest.NewRecorder (inline)
+    6.88GB 11.06% 74.20%     6.88GB 11.06%  net/textproto.MIMEHeader.Set (inline)
+    3.52GB  5.65% 79.86%     3.52GB  5.65%  encoding/json.(*Decoder).refill
+    3.33GB  5.36% 85.21%     3.33GB  5.36%  bytes.(*Buffer).grow
+    2.84GB  4.56% 89.77%    10.83GB 17.42%  benchmarks/gin.BenchmarkDynamicRoute.func1
+    2.19GB  3.52% 93.30%     2.19GB  3.52%  encoding/json.NewDecoder (inline)
+    1.72GB  2.76% 96.06%    25.75GB 41.39%  github.com/gin-gonic/gin.(*Context).String (inline)
+    0.43GB  0.69% 96.75%    10.33GB 16.60%  benchmarks/gin.BenchmarkTypedJSON.func1
+    0.42GB  0.68% 97.43%     0.70GB  1.12%  encoding/json.mapEncoder.encode
+    0.38GB  0.61% 98.04%     0.38GB  0.61%  github.com/gin-gonic/gin.(*Context).Error
+    0.31GB   0.5% 98.54%     1.02GB  1.64%  encoding/json.Marshal
+    0.25GB   0.4% 98.94%    11.42GB 18.36%  github.com/gin-gonic/gin.(*Context).JSON (inline)
+    0.05GB 0.078% 99.02%     6.47GB 10.41%  github.com/gin-gonic/gin.(*Context).MustBindWith
+         0     0% 99.02%    12.21GB 19.62%  benchmarks/gin.BenchmarkDynamicRoute
+         0     0% 99.02%    20.02GB 32.18%  benchmarks/gin.BenchmarkMiddleware
+         0     0% 99.02%    17.02GB 27.36%  benchmarks/gin.BenchmarkMiddleware.func1
+         0     0% 99.02%    10.14GB 16.30%  benchmarks/gin.BenchmarkMiddleware.func2
+         0     0% 99.02%    18.48GB 29.71%  benchmarks/gin.BenchmarkStaticRoute
+         0     0% 99.02%    15.61GB 25.09%  benchmarks/gin.BenchmarkStaticRoute.func1
+         0     0% 99.02%    11.47GB 18.44%  benchmarks/gin.BenchmarkTypedJSON
+         0     0% 99.02%     3.33GB  5.36%  bytes.(*Buffer).Write
+         0     0% 99.02%     3.52GB  5.65%  encoding/json.(*Decoder).Decode
+         0     0% 99.02%     3.52GB  5.65%  encoding/json.(*Decoder).readValue
+         0     0% 99.02%     0.70GB  1.12%  encoding/json.(*encodeState).marshal
+         0     0% 99.02%     0.70GB  1.12%  encoding/json.(*encodeState).reflectValue
+         0     0% 99.02%     0.72GB  1.15%  github.com/gin-gonic/gin.(*Context).AbortWithError
+         0     0% 99.02%     0.34GB  0.54%  github.com/gin-gonic/gin.(*Context).AbortWithStatus
+         0     0% 99.02%     6.47GB 10.41%  github.com/gin-gonic/gin.(*Context).BindJSON (inline)
+         0     0% 99.02%     6.88GB 11.06%  github.com/gin-gonic/gin.(*Context).Header
+         0     0% 99.02%    53.79GB 86.47%  github.com/gin-gonic/gin.(*Context).Next
+         0     0% 99.02%    35.20GB 56.59%  github.com/gin-gonic/gin.(*Context).Render
+         0     0% 99.02%     5.71GB  9.17%  github.com/gin-gonic/gin.(*Context).ShouldBindWith (inline)
+         0     0% 99.02%    53.81GB 86.51%  github.com/gin-gonic/gin.(*Engine).ServeHTTP
+         0     0% 99.02%    53.79GB 86.47%  github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+         0     0% 99.02%    22.34GB 35.92%  github.com/gin-gonic/gin.(*responseWriter).Write
+         0     0% 99.02%    19.35GB 31.10%  github.com/gin-gonic/gin.(*responseWriter).WriteHeaderNow (partial-inline)
+         0     0% 99.02%     5.71GB  9.17%  github.com/gin-gonic/gin/binding.decodeJSON
+         0     0% 99.02%     5.71GB  9.17%  github.com/gin-gonic/gin/binding.jsonBinding.Bind
+         0     0% 99.02%     1.02GB  1.64%  github.com/gin-gonic/gin/codec/json.jsonApi.Marshal
+         0     0% 99.02%     2.19GB  3.52%  github.com/gin-gonic/gin/codec/json.jsonApi.NewDecoder
+         0     0% 99.02%    10.90GB 17.53%  github.com/gin-gonic/gin/render.JSON.Render
+         0     0% 99.02%    24.03GB 38.63%  github.com/gin-gonic/gin/render.String.Render
+         0     0% 99.02%    10.90GB 17.53%  github.com/gin-gonic/gin/render.WriteJSON
+         0     0% 99.02%    24.03GB 38.63%  github.com/gin-gonic/gin/render.WriteString
+         0     0% 99.02%     6.88GB 11.06%  net/http.Header.Set (inline)
+         0     0% 99.02%     3.33GB  5.36%  net/http/httptest.(*ResponseRecorder).Write
+         0     0% 99.02%    19.35GB 31.10%  net/http/httptest.(*ResponseRecorder).WriteHeader
+         0     0% 99.02%    62.17GB   100%  testing.(*B).launch
+         0     0% 99.02%    62.17GB   100%  testing.(*B).runN

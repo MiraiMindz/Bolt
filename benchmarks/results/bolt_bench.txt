@@ -1,0 +1,46 @@
+goos: linux
+goarch: amd64
+pkg: benchmarks/bolt
+cpu: 13th Gen Intel(R) Core(TM) i5-1334U
+=== RUN   BenchmarkStaticRoute
+BenchmarkStaticRoute
+BenchmarkStaticRoute-12     	 1795669	       658.1 ns/op	    1128 B/op	      13 allocs/op
+BenchmarkStaticRoute-12     	 1730742	       683.5 ns/op	    1128 B/op	      13 allocs/op
+BenchmarkStaticRoute-12     	 1389295	       937.6 ns/op	    1128 B/op	      13 allocs/op
+BenchmarkStaticRoute-12     	 1600238	       918.0 ns/op	    1128 B/op	      13 allocs/op
+BenchmarkStaticRoute-12     	  829942	      1538 ns/op	    1129 B/op	      13 allocs/op
+BenchmarkStaticRoute-12     	 1000000	      1552 ns/op	    1128 B/op	      13 allocs/op
+BenchmarkStaticRoute-12     	  879903	      1349 ns/op	    1128 B/op	      13 allocs/op
+BenchmarkStaticRoute-12     	  816325	      1485 ns/op	    1128 B/op	      13 allocs/op
+=== RUN   BenchmarkDynamicRoute
+BenchmarkDynamicRoute
+BenchmarkDynamicRoute-12    	 1042647	      1464 ns/op	    1537 B/op	      17 allocs/op
+BenchmarkDynamicRoute-12    	 1000000	      1113 ns/op	    1537 B/op	      17 allocs/op
+BenchmarkDynamicRoute-12    	  932007	      1464 ns/op	    1537 B/op	      17 allocs/op
+BenchmarkDynamicRoute-12    	  803125	      1290 ns/op	    1537 B/op	      17 allocs/op
+BenchmarkDynamicRoute-12    	  992112	      1019 ns/op	    1537 B/op	      17 allocs/op
+BenchmarkDynamicRoute-12    	  977140	      2005 ns/op	    1537 B/op	      17 allocs/op
+BenchmarkDynamicRoute-12    	  635115	      1632 ns/op	    1537 B/op	      17 allocs/op
+BenchmarkDynamicRoute-12    	  652753	      1965 ns/op	    1537 B/op	      17 allocs/op
+=== RUN   BenchmarkTypedJSON
+BenchmarkTypedJSON
+BenchmarkTypedJSON-12       	  894871	      1347 ns/op	    1754 B/op	      21 allocs/op
+BenchmarkTypedJSON-12       	  979311	      1233 ns/op	    1754 B/op	      21 allocs/op
+BenchmarkTypedJSON-12       	  679876	      2136 ns/op	    1755 B/op	      21 allocs/op
+BenchmarkTypedJSON-12       	  970831	      1708 ns/op	    1754 B/op	      21 allocs/op
+BenchmarkTypedJSON-12       	  922693	      1273 ns/op	    1754 B/op	      21 allocs/op
+BenchmarkTypedJSON-12       	  919636	      1982 ns/op	    1755 B/op	      21 allocs/op
+BenchmarkTypedJSON-12       	  838363	      1586 ns/op	    1754 B/op	      21 allocs/op
+BenchmarkTypedJSON-12       	  922971	      1755 ns/op	    1755 B/op	      21 allocs/op
+=== RUN   BenchmarkMiddleware
+BenchmarkMiddleware
+BenchmarkMiddleware-12      	 1602945	       993.5 ns/op	    1160 B/op	      14 allocs/op
+BenchmarkMiddleware-12      	 1494722	      1370 ns/op	    1160 B/op	      14 allocs/op
+BenchmarkMiddleware-12      	 1151770	      1124 ns/op	    1160 B/op	      14 allocs/op
+BenchmarkMiddleware-12      	 1242706	      1162 ns/op	    1160 B/op	      14 allocs/op
+BenchmarkMiddleware-12      	 1000000	      1006 ns/op	    1160 B/op	      14 allocs/op
+BenchmarkMiddleware-12      	 1000000	      1051 ns/op	    1160 B/op	      14 allocs/op
+BenchmarkMiddleware-12      	 1222816	      1088 ns/op	    1160 B/op	      14 allocs/op
+BenchmarkMiddleware-12      	 1172904	      1435 ns/op	    1160 B/op	      14 allocs/op
+PASS
+ok  	benchmarks/bolt	62.615s

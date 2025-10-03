@@ -1,0 +1,26 @@
+./benchmarks/results/bolt.bench: 
+                │ ./benchmarks/results/echo.bench │   ./benchmarks/results/gin.bench   │
+                │             sec/op              │    sec/op     vs base              │
+StaticRoute-12                      1158.0n ± 23%   990.4n ± 39%       ~ (p=0.234 n=8)
+DynamicRoute-12                      1.345µ ± 48%   1.746µ ± 27%       ~ (p=0.234 n=8)
+TypedJSON-12                         2.301µ ± 50%   1.649µ ± 39%       ~ (p=0.234 n=8)
+Middleware-12                        1.112µ ± 39%   1.012µ ± 27%       ~ (p=0.487 n=8)
+geomean                              1.413µ         1.303µ        -7.76%
+
+                │ ./benchmarks/results/echo.bench │    ./benchmarks/results/gin.bench     │
+                │              B/op               │     B/op      vs base                 │
+StaticRoute-12                       1.000Ki ± 0%   1.016Ki ± 0%   +1.56% (p=0.000 n=8)
+DynamicRoute-12                      1.438Ki ± 0%   1.407Ki ± 0%   -2.17% (p=0.000 n=8)
+TypedJSON-12                         1.986Ki ± 0%   1.626Ki ± 0%  -18.14% (p=0.000 n=8)
+Middleware-12                        1.047Ki ± 0%   1.047Ki ± 0%        ~ (p=1.000 n=8) ¹
+geomean                              1.315Ki        1.249Ki        -5.03%
+¹ all samples are equal
+
+                │ ./benchmarks/results/echo.bench │   ./benchmarks/results/gin.bench    │
+                │            allocs/op            │ allocs/op   vs base                 │
+StaticRoute-12                        10.000 ± 0%   9.000 ± 0%  -10.00% (p=0.000 n=8)
+DynamicRoute-12                        15.00 ± 0%   15.00 ± 0%        ~ (p=1.000 n=8) ¹
+TypedJSON-12                           17.00 ± 0%   17.00 ± 0%        ~ (p=1.000 n=8) ¹
+Middleware-12                          12.00 ± 0%   10.00 ± 0%  -16.67% (p=0.000 n=8)
+geomean                                13.23        12.31        -6.94%
+¹ all samples are equal

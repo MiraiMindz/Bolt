@@ -45,7 +45,7 @@ func New(opts ...Option) *App {
 
 	if config.EnablePooling {
 		app.contextPool = NewContextPool()
-		app.bufferPool = NewBufferPool(4096)
+		app.bufferPool = NewBufferPool() // Updated to use the new BufferPool
 	}
 
 	return app
@@ -116,15 +116,23 @@ func (a *App) PatchJSON(path string, handler interface{}) *ChainLink {
 }
 
 // addRoute adds a route to the router and associates it with the current group context.
+// It also pre-compiles the middleware chain for the route.
 func (a *App) addRoute(method HTTPMethod, path string, handler Handler) *ChainLink {
 	fullPath := a.prefix + path
-	a.router.AddRoute(method, fullPath, handler)
+
+	// Pre-compile the middleware chain for this route
+	finalHandler := handler
+	for i := len(a.middleware) - 1; i >= 0; i-- {
+		finalHandler = a.middleware[i](finalHandler)
+	}
+
+	a.router.AddRoute(method, fullPath, finalHandler)
 
 	routeInfo := &RouteInfo{
 		Method:  method,
 		Path:    fullPath,
-		Handler: handler,
-		Group:   a.parentGroup, // Associate route with the App's group
+		Handler: handler, // Store original handler for documentation/inspection
+		Group:   a.parentGroup,
 	}
 	a.routes = append(a.routes, *routeInfo)
 
@@ -143,13 +151,13 @@ func (a *App) Group(prefix string, fn GroupFunc) *ChainLink {
 	subApp := &App{
 		router:       a.router,
 		config:       a.config,
-		routes:       a.routes, // Use the same slice to collect all routes
-		middleware:   a.middleware,
+		routes:       a.routes,     // Use the same slice to collect all routes
+		middleware:   a.middleware, // Inherit middleware
 		errorHandler: a.errorHandler,
 		contextPool:  a.contextPool,
 		bufferPool:   a.bufferPool,
 		prefix:       group.Prefix, // New prefix for routes defined inside
-		parentGroup:  group,      // All routes in here will belong to this group
+		parentGroup:  group,        // All routes in here will belong to this group
 	}
 
 	// Execute the user's function, defining all the routes within the group.
@@ -166,7 +174,7 @@ func (a *App) Group(prefix string, fn GroupFunc) *ChainLink {
 
 // Doc can be called on a route or a group.
 func (cl *ChainLink) Doc(doc RouteDoc) *ChainLink {
-	switch cl.subject.(type) {
+	switch v := cl.subject.(type) {
 	case *RouteInfo:
 		// When called after a route, update the last added route's doc.
 		if len(cl.app.routes) > 0 {
@@ -174,57 +182,33 @@ func (cl *ChainLink) Doc(doc RouteDoc) *ChainLink {
 		}
 	case *RouteGroup:
 		// When called after a group, update the group's doc.
-		(cl.subject.(*RouteGroup)).Doc = doc
+		v.Doc = doc
 	}
 	return cl
 }
 
 // Get, Post, etc., on a ChainLink delegate to the app, creating a new route.
-func (cl *ChainLink) Get(path string, handler Handler) *ChainLink {
-	return cl.app.Get(path, handler)
-}
-
-func (cl *ChainLink) Post(path string, handler Handler) *ChainLink {
-	return cl.app.Post(path, handler)
-}
-
-func (cl *ChainLink) Put(path string, handler Handler) *ChainLink {
-	return cl.app.Put(path, handler)
-}
-
+func (cl *ChainLink) Get(path string, handler Handler) *ChainLink { return cl.app.Get(path, handler) }
+func (cl *ChainLink) Post(path string, handler Handler) *ChainLink { return cl.app.Post(path, handler) }
+func (cl *ChainLink) Put(path string, handler Handler) *ChainLink { return cl.app.Put(path, handler) }
 func (cl *ChainLink) Delete(path string, handler Handler) *ChainLink {
 	return cl.app.Delete(path, handler)
 }
-
-func (cl *ChainLink) Patch(path string, handler Handler) *ChainLink {
-	return cl.app.Patch(path, handler)
-}
-
-func (cl *ChainLink) Head(path string, handler Handler) *ChainLink {
-	return cl.app.Head(path, handler)
-}
-
+func (cl *ChainLink) Patch(path string, handler Handler) *ChainLink { return cl.app.Patch(path, handler) }
+func (cl *ChainLink) Head(path string, handler Handler) *ChainLink { return cl.app.Head(path, handler) }
 func (cl *ChainLink) Options(path string, handler Handler) *ChainLink {
 	return cl.app.Options(path, handler)
 }
-
 func (cl *ChainLink) PostJSON(path string, handler interface{}) *ChainLink {
 	return cl.app.PostJSON(path, handler)
 }
-
 func (cl *ChainLink) PutJSON(path string, handler interface{}) *ChainLink {
 	return cl.app.PutJSON(path, handler)
 }
-
 func (cl *ChainLink) PatchJSON(path string, handler interface{}) *ChainLink {
 	return cl.app.PatchJSON(path, handler)
 }
-
-
-// Group can also be called on a chain, delegating to the app.
-func (cl *ChainLink) Group(prefix string, fn GroupFunc) *ChainLink {
-	return cl.app.Group(prefix, fn)
-}
+func (cl *ChainLink) Group(prefix string, fn GroupFunc) *ChainLink { return cl.app.Group(prefix, fn) }
 
 // wrapTypedHandler remains the same
 func wrapTypedHandler(handler interface{}) Handler {
@@ -251,29 +235,38 @@ func wrapTypedHandler(handler interface{}) Handler {
 	}
 }
 
-// ServeHTTP remains the same
+// ServeHTTP is the main entry point for handling requests.
 func (a *App) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	var c *Context
 	if a.contextPool != nil {
 		c = a.contextPool.Acquire()
 		defer a.contextPool.Release(c)
 	} else {
-		c = &Context{params: make(ParamMap, 8)}
+		c = &Context{
+			params: make(ParamMap, 8),
+			query:  make(QueryValues, 8),
+		}
 	}
 	c.Request = r
 	c.Response = w
 	c.app = a
+
+	// Eagerly parse query parameters and populate the pooled map.
+	// r.URL.Query() will allocate, but we reuse our `c.query` map.
+	parsedQuery := r.URL.Query()
+	for k, v := range parsedQuery {
+		c.query[k] = v
+	}
+
 	handler, params := a.router.GetValue(HTTPMethod(r.Method), r.URL.Path)
 	if handler == nil {
 		a.errorHandler(c, ErrNotFound)
 		return
 	}
 	c.params = params
-	finalHandler := handler
-	for i := len(a.middleware) - 1; i >= 0; i-- {
-		finalHandler = a.middleware[i](finalHandler)
-	}
-	if err := finalHandler(c); err != nil {
+
+	// The middleware chain is pre-compiled, so we can call the handler directly.
+	if err := handler(c); err != nil {
 		a.errorHandler(c, err)
 	}
 }
@@ -293,10 +286,13 @@ func DefaultErrorHandler(c *Context, err error) {
 		code = http.StatusBadRequest
 		message = "Bad Request"
 	}
-	c.JSON(code, map[string]string{"error": message})
+	// We check if the response has been written to already
+	if c.Response.Header().Get("Content-Type") == "" {
+		c.JSON(code, map[string]string{"error": message})
+	}
 }
 
-// SetErrorHandler is deprecated in favor of direct assignment or a functional option
+// SetErrorHandler sets a custom error handler for the application.
 func (a *App) SetErrorHandler(handler ErrorHandler) *App {
 	a.errorHandler = handler
 	return a
@@ -314,7 +310,7 @@ func (a *App) setupDocs() {
 	})
 	uiPath := a.config.DocsConfig.UIPath
 	a.Get(uiPath, ServeSwaggerUI(specPath))
-	if a.config.DevMode && a.server != nil {
+	if a.config.DevMode && a.server != nil && a.server.Addr != "" {
 		log.Printf("📚 API Documentation available at: http://localhost%s%s", a.server.Addr, uiPath)
 	}
 }
@@ -353,6 +349,9 @@ func (a *App) handleShutdown() {
 }
 
 func (a *App) Shutdown(ctx context.Context) error {
+	if a.server == nil {
+		return nil
+	}
 	return a.server.Shutdown(ctx)
 }
 
